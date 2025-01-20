@@ -29,5 +29,8 @@
       </div>
       <script src="<?= BASE_URL ?>/js/main.js"></script>
   </header>
+  <div class="background-image">
+    <img src="<?= BASE_URL ?>/images/dragon.png">
+  </div>
 
  
