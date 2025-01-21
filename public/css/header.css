@@ -36,6 +36,16 @@ header h1 {
   gap: 10px;
 }
 
+.right-nav a{
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.right-nav .username{
+ padding:4px 20px 4px 4px; 
+
+}
+
 .btn {
   width: 110px;
   padding: 4px;
@@ -56,6 +66,16 @@ header h1 {
   background-color: transparent;
   color: #ffffff;
   border: 1.8px solid transparent;
+}
+
+.type-2{
+  background-color: transparent;
+  color: #ffffff;
+}
+
+.type-2:hover{
+  background-color: #ffffff;
+  color: var(--primary);
 }
 
 /* Header Responsive */
