@@ -34,7 +34,6 @@ main h1{
     height: 120px;
     border-radius: 20px;
     padding-bottom:20px;
-    font-weight: 300;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 4;
 }
@@ -60,7 +59,6 @@ main h1{
 
 .card p{
     font-size: 1.7rem;
-    font-weight: 500;
     color: #ffffff;
     padding:0 20px;
 }
