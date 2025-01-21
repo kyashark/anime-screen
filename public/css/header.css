@@ -1,0 +1,156 @@
+header {
+  width: 78vw;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0 5px;
+  position: relative;
+  top: 20px;
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+header h1 {
+  display: none;
+  font-size: 3rem;
+  color: #ffffff;
+}
+
+.nav-bar {
+  position: relative;
+  display: flex;
+  gap: 70px;
+  list-style: none;
+}
+
+.nav-bar li a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.right-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn {
+  width: 110px;
+  padding: 4px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: 1.8px solid #ffffff;
+  color: var(--primary);
+}
+
+.btn:hover {
+  color: #ffffff;
+  background-color: transparent;
+  border: 1.8px solid #ffffff;
+}
+
+.type-1 {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1.8px solid transparent;
+}
+
+/* Header Responsive */
+
+@media only screen and (max-width: 1280px) {
+  header {
+    width: 80vw;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  header {
+    width: 82vw;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  header {
+    width: 85vw;
+  }
+
+  .nav-bar {
+    gap: 50px;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  header h1 {
+    display: block;
+  }
+  .nav-bar {
+    display: none;
+  }
+
+  .show {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0.3px;
+    width: 100%;
+    text-align: center;
+    gap: 12px;
+    background: linear-gradient(135deg,#020107,#0b0925);
+    padding-bottom: 25px;
+  }
+
+  .nav-bar li {
+    padding: 12px;
+  }
+
+  .nav-bar li:hover {
+    background-color: #ffffff2a;
+  }
+
+  .menu-item {
+    margin-left: 10px;
+    display: block;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    position: relative;
+  }
+
+  .menu-item span {
+    width: 100%;
+    height: 4px;
+    border-radius: 3px;
+    background-color: #ffffff;
+    opacity: 1;
+    transition: 0.3s;
+  }
+
+  .menu-item span.change:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 7px);
+  }
+
+  .menu-item span.change:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-item span.change:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -8px);
+  }
+}
+
+@media only screen and (max-width: 475px) {
+  header {
+    font-size: 1rem;
+  }
+
+  .btn {
+    width: 90px;
+    font-size: 1rem;
+  }
+}

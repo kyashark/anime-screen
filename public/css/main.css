@@ -1,0 +1,154 @@
+main{
+    width: 78vw;
+    display: block;
+    margin:0 auto;
+    z-index: 3;
+    margin-top: 65px;
+}
+
+main h1{
+    font-size: 6.4rem;
+    width: 80%;
+    color: #ffffff;
+    font-weight: 500;
+    margin-bottom: 50px;
+}
+
+.card-container{
+    width:80%;
+    display: grid;
+    grid-template-rows:1fr;
+    grid-template-columns: repeat(3, minmax(160px, 1fr));
+    gap:20px;
+    grid-auto-flow : column;
+    padding-bottom: 20px;
+   
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items:left;
+    text-align: left;
+    justify-content: space-between;
+    height: 120px;
+    border-radius: 20px;
+    padding-bottom:20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 4;
+}
+
+.card:hover {
+    transform: scale(1.02); 
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+.card-container .card:nth-child(1) {
+    background-color:#130f40;
+}
+
+.card-container .card:nth-child(2) {
+    background-color:#ffffff54;
+}
+
+.card-container .card:nth-child(3) {
+    background-color: #eb293c9d;
+}
+
+.card p{
+    font-size: 1.7rem;
+    color: #ffffff;
+    padding:0 20px;
+}
+
+.arrow {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content:right;
+    align-self: flex-end;
+    padding:5px;
+    margin-top: 4px;
+    margin-right: 9px;
+  }
+  
+  .arrow img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .arrow img:hover{
+    width: 18px;
+    height: 18px;
+    transition: all 0.3s ease-in-out;
+  }
+
+@media only screen and (max-width: 1280px) {
+    main {
+      width: 80vw;
+    }
+
+    main h1{
+        font-size:6rem;
+    }
+}
+  
+@media only screen and (max-width: 1024px) {
+    main {
+      width: 82vw;
+    }
+
+    main h1{
+        width: 100%;
+    }
+
+    .card-container{
+        width: 90%;
+    } 
+}
+  
+@media only screen and (max-width: 768px) {
+    main {
+      width: 85vw;
+    }
+
+    main h1{
+        font-size: 5.5rem;
+    }
+
+    .card-container{
+        width: 95%;
+    }
+  }
+
+  @media only screen and (max-width: 640px) {
+    main h1{
+        font-size: 4.2rem;
+        text-align: center;
+    }
+
+    .card{
+        height: 110px;
+    }
+
+    .card-container{
+        width: 80%;
+        margin: 0 auto;
+        grid-template-columns:1fr;
+        grid-template-rows: repeat(3,1fr);
+    }
+  }
+  
+  @media only screen and (max-width: 475px) {
+    main h1{
+        font-size: 3.3rem;
+    }
+
+    .card p{
+        font-size: 1.5rem;
+    }
+  }
+  
