@@ -6,12 +6,14 @@
   align-items: end;
   justify-content: end;
   z-index:0;
+  position:fixed;
+  top: 50;
+  left: 0
 }
 
 .background-image img {
   width: 50vw;
 }
-
 
 /* Background Responsive */
 
