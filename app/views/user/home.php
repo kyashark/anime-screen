@@ -31,7 +31,7 @@
         </div>
     
       </div>
-      <script src="<?= BASE_URL ?>/js/main.js"></script>
+     
   </header>
   <main>
     <h1>Zenith Movies Votes</h1>
@@ -59,6 +59,6 @@
   <div class="background-image">
     <img src="<?= BASE_URL ?>/images/dragon.png">
   </div>
-  
-
+  <script src="<?= BASE_URL ?>/js/main.js"></script>
+</body>
  
