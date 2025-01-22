@@ -11,9 +11,9 @@
   <header>
     <h1>Z</h1>
     <ul class="nav-bar" id="nav-bar">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Movies</a></li>
-          <li><a href="#">Series</a></li>
+          <li><a href="<?= BASE_URL ?>/user/home">Home</a></li>
+          <li><a href="<?= BASE_URL ?>/movie/filter?type=movie&sort=random">Movies</a></li>
+          <li><a href="<?= BASE_URL ?>/movie/filter?type=series&sort=random">Series</a></li>
     </ul>
 
     <div class="right-nav">
