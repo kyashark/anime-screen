@@ -3,13 +3,12 @@
 
 <head>
   <title>Zenith</title>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="<?= BASE_URL ?>/css/styles.css" />
-
-  <script>
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/styles.css" />
+    <script>
         const BASE_URL = "<?= BASE_URL ?>"; // BASE URL for set images 
-  </script>
+    </script>
 </head>
 
 <body>
@@ -42,19 +41,18 @@
   <div class="sort-container">
     <section>
       <button class="sort" data-sort="top">Top Voted</button>
-      <button class="sort" data-sort="new">New Realease</button>
+      <button class="sort" data-sort="new">New Release</button>
       <button class="sort" data-sort="alpha">Alphabetical</button>
     </section>
 
     <select class="sort-selector" id="sort-selector">
+          <option value="random" selected>Sort Movies</option>
           <option value="top">Top Voted</option>
           <option value="new">New Realease</option>
-          <option value="alphabetical">Alphabetical</option>
-    </select>
-
-    
+          <option value="alpha">Alphabetical</option>
+    </select>    
     <input type="search" placeholder="Search" class="search-input">
-  </div>
+    </div>
 
   <div class="genre-container">
   <button class="genre" data-genre="action">Action</button>
@@ -75,4 +73,4 @@
   <script src="<?= BASE_URL ?>/js/main.js"></script>
   <script src="<?= BASE_URL ?>/js/movie.js"></script>
  
-  </body>
+</body>

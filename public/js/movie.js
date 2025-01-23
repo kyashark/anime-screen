@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Movie Filter and URL Update
 const sortButtons = document.querySelectorAll(".sort");
 const genreButtons = document.querySelectorAll(".genre");
+const sortSelector = document.querySelector("#sort-selector");
 const movieGrid = document.querySelector("#movie-grid");
 
 function updateMovies() {
@@ -25,6 +26,15 @@ function updateMovies() {
 
   history.pushState(null, "", newUrl);
   fetchMovies();
+  syncSortSelector();
+}
+
+// Sync the sort selector with the current active sort button
+function syncSortSelector() {
+  const activeSortButton = document.querySelector(".sort.active");
+  const currentSort = activeSortButton?.dataset.sort || "random";
+
+  sortSelector.value = currentSort; // Update the <select> value
 }
 
   // Sort button click event
@@ -47,6 +57,25 @@ function updateMovies() {
       updateMovies();
     });
   });
+
+  // Handle the change event for the sort dropdown
+sortSelector.addEventListener("change", () => {
+  const selectedValue = sortSelector.value;
+
+
+  // Ignore if the placeholder is selected
+  if (!selectedValue) return;
+
+  // Update active state for sort buttons
+  sortButtons.forEach((button) => {
+    button.classList.toggle(
+      "active",
+      button.dataset.sort === selectedValue
+    );
+  });
+
+  updateMovies();
+});
 
 // Fetch movies via AJAX and update the movie grid
 function fetchMovies() {
@@ -163,6 +192,9 @@ function loadFiltersFromUrl() {
   if (activeSort) {
     activeSort.classList.add("active");
   }
+
+    // Set the sort dropdown value
+    sortSelector.value = sort;
 
   // Set the active genre buttons
   if (genres) {
