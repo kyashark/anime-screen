@@ -20,7 +20,7 @@
         <a href="#">
             <span class="username">
                 <?php echo $username ?>
-            </span>
+             </span>
         </a>
         <a href="<?= BASE_URL ?>/auth/register"><button class="btn type-2">Logout</button></a>
         

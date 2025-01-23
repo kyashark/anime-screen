@@ -37,12 +37,25 @@
       </div>
   </header>
 
-  <main>
+  <div class="movie-container">
+
   <div class="sort-container">
-        <button class="sort" data-sort="top">Top Voted</button>
-        <button class="sort" data-sort="new">New Realease</button>
-        <button class="sort" data-sort="alpha">Alphabetical</button>
+    <section>
+      <button class="sort" data-sort="top">Top Voted</button>
+      <button class="sort" data-sort="new">New Realease</button>
+      <button class="sort" data-sort="alpha">Alphabetical</button>
+    </section>
+
+    <select class="sort-selector" id="sort-selector">
+          <option value="top">Top Voted</option>
+          <option value="new">New Realease</option>
+          <option value="alphabetical">Alphabetical</option>
+    </select>
+
+    
+    <input type="search" placeholder="Search" class="search-input">
   </div>
+
   <div class="genre-container">
   <button class="genre" data-genre="action">Action</button>
         <button class="genre" data-genre="adventure">Adventure</button>
@@ -57,7 +70,7 @@
     <div class="movie-grid" id="movie-grid">
 
     </div>
-</main>
+</div>
  
   <script src="<?= BASE_URL ?>/js/main.js"></script>
   <script src="<?= BASE_URL ?>/js/movie.js"></script>
