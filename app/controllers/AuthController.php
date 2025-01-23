@@ -4,7 +4,7 @@ require_once "../core/Controller.php";
 require_once "../core/Session.php";
 require_once "../middleware/Middleware.php";
 
-class authController extends Controller{
+class AuthController extends Controller{
     private $userModel;
 
     public function __construct(){

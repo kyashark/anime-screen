@@ -11,16 +11,16 @@
   <header>
     <h1>Z</h1>
     <ul class="nav-bar" id="nav-bar">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Movies</a></li>
-          <li><a href="#">Series</a></li>
+          <li><a href="<?= BASE_URL ?>/user/home">Home</a></li>
+          <li><a href="<?= BASE_URL ?>/movie/filter?type=movie&sort=random">Movies</a></li>
+          <li><a href="<?= BASE_URL ?>/movie/filter?type=series&sort=random">Series</a></li>
     </ul>
 
     <div class="right-nav">
         <a href="#">
             <span class="username">
                 <?php echo $username ?>
-            </span>
+             </span>
         </a>
         <a href="<?= BASE_URL ?>/auth/register"><button class="btn type-2">Logout</button></a>
         
@@ -31,7 +31,7 @@
         </div>
     
       </div>
-      <script src="<?= BASE_URL ?>/js/main.js"></script>
+     
   </header>
   <main>
     <h1>Zenith Movies Votes</h1>
@@ -59,6 +59,6 @@
   <div class="background-image">
     <img src="<?= BASE_URL ?>/images/dragon.png">
   </div>
-  
-
+  <script src="<?= BASE_URL ?>/js/main.js"></script>
+</body>
  
