@@ -5,7 +5,6 @@ header {
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
-  padding: 0 5px;
   position: relative;
   top: 20px;
   font-size: 1.2rem;
@@ -33,17 +32,16 @@ header h1 {
 .right-nav {
   display: flex;
   align-items: center;
-  gap: 10px;
 }
 
-.right-nav a{
+.right-nav a {
   color: #ffffff;
   text-decoration: none;
 }
 
-.right-nav .username{
- padding:4px 20px 4px 4px; 
-
+.right-nav .username {
+  margin-right: 40px;
+  text-align: left;
 }
 
 .btn {
@@ -53,7 +51,7 @@ header h1 {
   font-size: 1.2rem;
   border-radius: 5px;
   border: 1.8px solid #ffffff;
-  color: var(--primary);
+  color: #130F40;
 }
 
 .btn:hover {
@@ -66,16 +64,17 @@ header h1 {
   background-color: transparent;
   color: #ffffff;
   border: 1.8px solid transparent;
+  margin-right: 10px;
 }
 
-.type-2{
+.type-2 {
   background-color: transparent;
   color: #ffffff;
 }
 
-.type-2:hover{
+.type-2:hover {
   background-color: #ffffff;
-  color: var(--primary);
+  color: #130F40;
 }
 
 /* Header Responsive */
@@ -115,11 +114,11 @@ header h1 {
     flex-direction: column;
     position: absolute;
     top: 60px;
-    right: 0.3px;
+    right: 0px;
     width: 100%;
     text-align: center;
     gap: 12px;
-    background: linear-gradient(135deg,#020107,#0b0925);
+    background: linear-gradient(135deg, #020107, #0b0925);
     padding-bottom: 25px;
   }
 
