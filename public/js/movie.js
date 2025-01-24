@@ -59,12 +59,8 @@ function syncSortSelector() {
   });
 
   // Handle the change event for the sort dropdown
-sortSelector.addEventListener("change", () => {
+  sortSelector.addEventListener("change", () => {
   const selectedValue = sortSelector.value;
-
-
-  // Ignore if the placeholder is selected
-  if (!selectedValue) return;
 
   // Update active state for sort buttons
   sortButtons.forEach((button) => {
