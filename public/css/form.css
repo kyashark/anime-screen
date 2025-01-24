@@ -1,0 +1,136 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.form-container {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff11;
+  width: 500px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ffffff;
+  font-size: 1rem;
+  padding-top: 25px;
+  padding-bottom: 40px;
+}
+
+.form-container h1 {
+  margin-bottom: 30px;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 320px;
+}
+
+.form-container form label {
+  display: block;
+  align-self: flex-start;
+  margin-bottom: 3px;
+}
+
+.form-container form input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #ccc;
+  font-size: 1rem;
+}
+
+.form-container form input:focus {
+  outline: 1px solid #ccc;
+}
+
+.form-container form span {
+  display: block;
+  align-self: flex-start;
+  height: 20px;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  font-weight: 500;
+  letter-spacing: 0.2;
+  color: #eb293ca9;
+}
+
+.form-container form p {
+  height: 10px;
+  position: relative;
+  top: -15px;
+  color: #eb293ca9;
+  letter-spacing: 0.2;
+  font-size: 0.9rem;
+}
+
+.form-container form button {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 1px;
+  background-color: #ffffffde;
+}
+
+.form-container form button:hover {
+  background-color: #fffffff6;
+}
+
+.form-text {
+  font-size: 1rem;
+}
+
+.form-text a {
+  text-decoration: none;
+  color: #ffffff96;
+  letter-spacing: 0.1px;
+}
+
+.form-text a:hover {
+  color: #ffffffc5;
+}
+
+
+
+/* Responsive */
+
+@media only screen and (max-width: 1536px) {
+}
+
+
+@media only screen and (max-width: 1280px) {
+}
+
+
+@media only screen and (max-width: 1024px) {
+}
+
+@media only screen and (max-width: 768px) {
+}
+
+@media only screen and (max-width: 640px) {
+    .form-container{
+        width:auto;
+        padding:25px 30px 40px 30px;
+    }
+}
+
+@media only screen and (max-width: 475px) {
+    .form-container{
+        width:auto;
+        padding:25px 30px 40px 30px;
+        font-size: 0.9rem;
+    }
+}

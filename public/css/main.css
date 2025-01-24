@@ -1,9 +1,10 @@
 main{
     width: 78vw;
-    display: block;
+    height: auto;
     margin:0 auto;
     z-index: 3;
-    margin-top: 65px;
+    margin-top: 70px;
+
 }
 
 main h1{
@@ -11,7 +12,7 @@ main h1{
     width: 80%;
     color: #ffffff;
     font-weight: 500;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
 .card-container{
@@ -21,8 +22,7 @@ main h1{
     grid-template-columns: repeat(3, minmax(160px, 1fr));
     gap:20px;
     grid-auto-flow : column;
-    padding-bottom: 20px;
-   
+    padding-bottom: 20px;  
 }
 
 .card{
@@ -79,12 +79,12 @@ main h1{
     width: 16px;
     height: 16px;
   }
-
-  .arrow img:hover{
+  
+  /* .arrow img:hover{
     width: 18px;
     height: 18px;
     transition: all 0.3s ease-in-out;
-  }
+  } */
 
 @media only screen and (max-width: 1280px) {
     main {
@@ -125,6 +125,9 @@ main h1{
   }
 
   @media only screen and (max-width: 640px) {
+    main{
+        height: auto;
+    }
     main h1{
         font-size: 4.2rem;
         text-align: center;
