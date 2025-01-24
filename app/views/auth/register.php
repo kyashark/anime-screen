@@ -4,16 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/css/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/styles.css">
 
     <title>Register</title>
 </head>
 
 <body>
     <section>
-        <div class="auth-container">
+        <div class="container">
             <div class="form-container">
-                <h5>Register</h2>
+                <h1>Register</h1>
                 <form method="POST" action="<?= BASE_URL ?>/auth/register">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" value="<?php echo $username ?? ''; ?>" required>
@@ -45,7 +45,7 @@
 
                     <button type="submit">Register</button>
                 </form>
-                <p>You already have an account ? <a href="<?= BASE_URL ?>/auth/login">Login</a></p>
+                <p class="form-text">You already have an account ? <a href="<?= BASE_URL ?>/auth/login">Login</a></p>
             </div>
         </div>
         <section>
