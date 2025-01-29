@@ -1,8 +1,10 @@
+
 .movie-container {
   width: 78vw;
   display: block;
   margin: 0 auto;
-  margin-top: 40px;
+  margin-top: 60px;
+  /* background-color: pink; */
 }
 
 .sort-container {
@@ -62,7 +64,7 @@
 }
 
 .genre-container {
-  margin-top: 15px;
+  margin-top: 18px;
   display: flex;
   align-items: left;
   justify-content: left;
@@ -228,15 +230,23 @@
     }
 
     .sort-container input {
-      width: 150px;
+      width: 130px;
     }
 
     .movie-grid {
-      grid-template-columns: repeat(auto-fit, 160px);
+      grid-template-columns: repeat(auto-fit, 140px);
+    }
+
+    .movie-card {
+      height: 210px;
     }
 
     .movie-card .card-label {
-      width: 140px;
+      width: 120px;
+    }
+    .movie-card .card-tab {
+
+      font-size: 0.8rem;
     }
   }
 }
