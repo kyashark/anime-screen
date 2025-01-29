@@ -62,6 +62,27 @@ class Movie{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
+    public function getMovie($movieId){
+        $query = "SELECT m.id,
+                         m.movie_name,
+                         m.release_date,
+                         m.movie_votes,
+                         m.image,
+                         m.description,
+                         GROUP_CONCAT(g.genre_name SEPARATOR ' ') AS genres
+                FROM movies m
+                LEFT JOIN movie_genres mg ON m.id = mg.movie_id 
+                LEFT JOIN genres g ON mg.genre_id = g.genre_id
+                WHERE m.id = :movieId
+                GROUP BY m.id";
+
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(':movieId', $movieId, PDO::PARAM_INT);
+            $stmt->execute();
+
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }        
 }
 
 /*

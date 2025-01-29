@@ -3,6 +3,17 @@ document.addEventListener("DOMContentLoaded", function () {
   loadFiltersFromUrl();
   initializeCardHover();
   initializeHeartClick();
+
+  document.addEventListener("click", function (event) {
+    const card = event.target.closest(".movie-card"); // Check if clicked element is a movie card
+    if (card) {
+      const movieId = card.dataset.id;
+      console.log("movieId:", movieId);
+      // Get base URL dynamically
+    const baseUrl = window.location.origin + "/zenith-movies/public/movie/movieprofile";
+    window.location.href = `${baseUrl}/${movieId}`;
+    }
+  });
 });
 
 // Movie Filter and URL Update
@@ -94,7 +105,7 @@ function fetchMovies() {
     .then((movies) => {
       movieGrid.innerHTML = ""; // Clear the grid before adding movies
       movies.forEach((movie) => {
-        console.log(`${BASE_URL}/images/${movie.image}`);
+        // console.log(`${BASE_URL}/images/${movie.image}`);
 
         const movieCard = `
             <div class="movie-card" 
@@ -153,8 +164,12 @@ function initializeCardHover() {
 function initializeHeartClick() {
   const heartItems = document.querySelectorAll(".material-symbols-outlined");
 
-  heartItems.forEach((heartItem) => {
-    heartItem.addEventListener("click", () => {
+    heartItems.forEach((heartItem) => {
+      heartItem.addEventListener("click", (event) => {
+
+      // Stop the click event from propagating to parent elements (movie card)
+      event.stopPropagation();
+      
       const currentStyle =
         window.getComputedStyle(heartItem).fontVariationSettings;
 
