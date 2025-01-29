@@ -17,6 +17,7 @@
                 <form method="POST" action="<?= BASE_URL ?>/auth/register">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" value="<?php echo $username ?? ''; ?>" required>
+                    
                     <span class="error-msg">
                         <?php echo $errors['username'] ?? ''; ?>
                     </span>
@@ -49,6 +50,8 @@
             </div>
         </div>
         <section>
+        
+        <script src="<?= BASE_URL ?>/js/main.js"></script>
 </body>
 
 </html>

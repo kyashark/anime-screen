@@ -68,6 +68,9 @@ class AuthController extends Controller{
             'registration' => ''
         ];
 
+        $username = '';
+        $email = '';
+
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $username = htmlspecialchars(trim($_POST['username']));
             $email = htmlspecialchars(trim($_POST['email']));
@@ -78,7 +81,7 @@ class AuthController extends Controller{
             if(empty($username)){
                 $errors['username'] = "Username is required.";
             }elseif(strlen($username)< 4){
-                $errors['username'] = "Username must be at least 4 characters.";
+                $errors['username'] = "Username must be at least 4 characters";
             }
 
             // Validate Email
@@ -87,18 +90,18 @@ class AuthController extends Controller{
             } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $errors['email'] = "Invalid email address.";
             } elseif ($this->userModel->emailExists($email)) {
-                $errors['email'] = "This email is already in use.";
+                $errors['email'] = "This email is already in use";
             }
 
             // Validate password
             if (empty($password)) {
                 $errors['password'] = "Password is required.";
             } elseif (strlen($password) < 6) {
-                $errors['password'] = "Password must be at least 6 characters long.";
+                $errors['password'] = "Password must be at least 6 characters long";
             } elseif (!preg_match("/[A-Z]/", $password)) {
-                $errors['password'] = "Password must contain at least one uppercase letter.";
+                $errors['password'] = "Password must contain at least one uppercase";
             } elseif (!preg_match("/[0-9]/", $password)) {
-                $errors['password'] = "Password must contain at least one number.";
+                $errors['password'] = "Password must contain at least one number";
             }
 
             // Check confirm password
@@ -117,7 +120,14 @@ class AuthController extends Controller{
                 }
             }
         }
-        $this->view('auth/register', ['errors' => $errors]);
+        // $this->view('auth/register', ['errors' => $errors]);
+
+        $this->view('auth/register', [
+            'errors' => $errors,
+            'username' => $username,
+            'email' => $email,
+        ]);
+
     }
 
 

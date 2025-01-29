@@ -27,7 +27,7 @@
                         <?php echo $errors['password'] ?? ''; ?>
                     </span>
 
-                    <p>
+                    <p class="error-text">
                         <?php echo $errors['credentials'] ?? ''; ?>
                     </p>
 
@@ -37,6 +37,8 @@
             </div>
         </div>
         <section>
+
+        <script src="<?= BASE_URL ?>/js/main.js"></script>
 </body>
 
 </html>

@@ -3,11 +3,23 @@ document.addEventListener("DOMContentLoaded", function () {
   loadFiltersFromUrl();
   initializeCardHover();
   initializeHeartClick();
+
+  document.addEventListener("click", function (event) {
+    const card = event.target.closest(".movie-card"); // Check if clicked element is a movie card
+    if (card) {
+      const movieId = card.dataset.id;
+      console.log("movieId:", movieId);
+      // Get base URL dynamically
+    const baseUrl = window.location.origin + "/zenith-movies/public/movie/movieprofile";
+    window.location.href = `${baseUrl}/${movieId}`;
+    }
+  });
 });
 
 // Movie Filter and URL Update
 const sortButtons = document.querySelectorAll(".sort");
 const genreButtons = document.querySelectorAll(".genre");
+const sortSelector = document.querySelector("#sort-selector");
 const movieGrid = document.querySelector("#movie-grid");
 
 function updateMovies() {
@@ -25,6 +37,15 @@ function updateMovies() {
 
   history.pushState(null, "", newUrl);
   fetchMovies();
+  syncSortSelector();
+}
+
+// Sync the sort selector with the current active sort button
+function syncSortSelector() {
+  const activeSortButton = document.querySelector(".sort.active");
+  const currentSort = activeSortButton?.dataset.sort || "random";
+
+  sortSelector.value = currentSort; // Update the <select> value
 }
 
   // Sort button click event
@@ -48,6 +69,21 @@ function updateMovies() {
     });
   });
 
+  // Handle the change event for the sort dropdown
+  sortSelector.addEventListener("change", () => {
+  const selectedValue = sortSelector.value;
+
+  // Update active state for sort buttons
+  sortButtons.forEach((button) => {
+    button.classList.toggle(
+      "active",
+      button.dataset.sort === selectedValue
+    );
+  });
+
+  updateMovies();
+});
+
 // Fetch movies via AJAX and update the movie grid
 function fetchMovies() {
   const url = window.location.href;
@@ -69,7 +105,7 @@ function fetchMovies() {
     .then((movies) => {
       movieGrid.innerHTML = ""; // Clear the grid before adding movies
       movies.forEach((movie) => {
-        console.log(`${BASE_URL}/images/${movie.image}`);
+        // console.log(`${BASE_URL}/images/${movie.image}`);
 
         const movieCard = `
             <div class="movie-card" 
@@ -128,8 +164,12 @@ function initializeCardHover() {
 function initializeHeartClick() {
   const heartItems = document.querySelectorAll(".material-symbols-outlined");
 
-  heartItems.forEach((heartItem) => {
-    heartItem.addEventListener("click", () => {
+    heartItems.forEach((heartItem) => {
+      heartItem.addEventListener("click", (event) => {
+
+      // Stop the click event from propagating to parent elements (movie card)
+      event.stopPropagation();
+      
       const currentStyle =
         window.getComputedStyle(heartItem).fontVariationSettings;
 
@@ -163,6 +203,9 @@ function loadFiltersFromUrl() {
   if (activeSort) {
     activeSort.classList.add("active");
   }
+
+    // Set the sort dropdown value
+    sortSelector.value = sort;
 
   // Set the active genre buttons
   if (genres) {
