@@ -6,9 +6,10 @@ header {
   justify-content: space-between;
   margin: 0 auto;
   position: relative;
-  top: 20px;
+  top: 30px;
   font-size: 1.2rem;
   z-index: 1;
+  /* background-color: skyblue; */
 }
 
 header h1 {
@@ -102,6 +103,9 @@ header h1 {
 }
 
 @media only screen and (max-width: 640px) {
+  header{
+    /* top:20px; */
+  }
   header h1 {
     display: block;
   }
@@ -119,6 +123,7 @@ header h1 {
     text-align: center;
     gap: 12px;
     background: linear-gradient(135deg, #020107, #0b0925);
+    /* background: linear-gradient(135deg, #020208, #070618); */
     padding-bottom: 25px;
   }
 
