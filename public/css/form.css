@@ -125,12 +125,23 @@
         width:auto;
         padding:25px 30px 40px 30px;
     }
+
 }
 
 @media only screen and (max-width: 475px) {
     .form-container{
-        width:auto;
-        padding:25px 30px 40px 30px;
         font-size: 0.9rem;
+    }
+
+    .form-container form {
+      width: 270px;
+    }
+
+    .form-container form button{
+      font-size: 1rem;
+    }
+
+    .form-text {
+      font-size: 0.9rem;
     }
 }
