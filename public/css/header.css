@@ -103,9 +103,6 @@ header h1 {
 }
 
 @media only screen and (max-width: 640px) {
-  header{
-    /* top:20px; */
-  }
   header h1 {
     display: block;
   }
