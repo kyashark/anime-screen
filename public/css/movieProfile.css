@@ -1,0 +1,140 @@
+.movie-profile-container{
+    background-color: rgba(199, 227, 238, 0.479);
+    margin-top: 60px;
+    height: auto;
+    color: #ffffff;
+}
+
+.movie-profile{
+    width: 78vw;
+    margin:0 auto;
+    /* background: tomato; */
+}
+
+.back{
+    display: inline-block;
+    cursor: pointer;
+    /* background: pink; */
+    width: 20px;
+    height: 28px;
+}
+
+.back span {
+    display: block;
+    width: 18px;
+    height: 4px;
+    background-color: #ffffff;
+    position: relative;
+    margin:6px 0;
+}
+
+.back span:first-child {
+    transform: rotate(-45deg);
+}
+
+.back span:last-child {
+    transform: rotate(45deg);
+}
+
+.movie{
+    /* background: mediumpurple; */
+    display: grid;
+    grid-template-columns:2fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.movie-details{
+    grid-column:1;
+    /* background:greenyellow; */
+    margin-top:50px;
+    margin-bottom: 10px;
+}
+
+.movie-details h1{
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 5px;
+}
+
+.movie-details .year{
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-right: 20px;
+}
+
+.movie-details .geners{
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.movie-profile .description{
+    margin-top: 20px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.movie-profile .movie-profile-tab{
+    margin-top: 20px;
+/* background-color: pink; */
+display: flex;
+align-items: center;
+
+}
+
+.movie-profile button{
+    width: 100px;
+    padding: 3px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1.8px solid #ffffff;
+    margin-right: 20px;
+}
+
+.movie-profile span{
+    margin-left:5px;
+}
+
+.movie-cover{
+    grid-column: 2;
+    /* background-color: goldenrod; */
+    margin-top:10px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.movie-cover img{
+    width: 300px;
+    height: 400px;
+    border-radius: 5px;
+}
+
+/* Responsive Movie Page */
+
+@media only screen and (max-width: 1280px) {
+    .movie-profile {
+      width: 80vw;
+    }
+  
+@media only screen and (max-width: 1024px) {
+      .movie-profile {
+        width: 82vw;
+      }  
+}
+  
+@media only screen and (max-width: 768px) {
+      .movie-profile {
+        width: 85vw;
+    }
+}
+  
+@media only screen and (max-width: 640px) {
+
+}
+  
+@media only screen and (max-width: 475px) {
+      
+      }
+    
+}
+  
