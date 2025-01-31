@@ -17,6 +17,8 @@ body{
     height:auto;
     min-height: 100vh;
     background: linear-gradient(135deg,var(--black),var(--primary));
+    display: flex;
+    flex-direction: column;
 }
 
 

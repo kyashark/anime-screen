@@ -34,21 +34,25 @@
         </div>
       </div>
   </header>
-<div class="movie-profile-container">
+  <div class="main">
+    <div class="movie-profile-container">
     <div class="movie-profile">
+        <a href="javascript:history.back();">
         <div class="back">
             <span></span>
             <span></span>
         </div>
-        <div class="movie">
-            <div class="movie-details">
+        </a>
+
+        <div class="movie-content">
+            <div class="movie-info">
                 <h1><?php echo $movie['movie_name'];  ?></h1>
                 <p>
-                    <span class="year"><?php echo date('Y', strtotime($movie['release_date'])) ;?></span>
-                    <span class="geners"><?php echo $movie['genres']; ?></span>
+                    <span class="movie-year"><?php echo date('Y', strtotime($movie['release_date'])) ;?></span>
+                    <span class="movie-geners"><?php echo $movie['genres']; ?></span>
                 </p>
-                <p class="description"><?php echo $movie['description'];?></p>
-                <div class="movie-profile-tab">
+                <p class="movie-description"><?php echo $movie['description'];?></p>
+                <div class="movie-action">
                     <button>Add List</button>
                     <span class="vote-count"><?php echo $movie['movie_votes'];?></span>
                     <span class="material-symbols-outlined heart" id="heart">&#xe87d;</span>  
@@ -60,10 +64,13 @@
             </div>
         </div>
     </div>
-</div>
+  </div>
 
 
 
+
+  <script src="<?= BASE_URL ?>/js/main.js"></script>
+  <script src="<?= BASE_URL ?>/js/movie.js"></script>
      
 </body>
 </html>
