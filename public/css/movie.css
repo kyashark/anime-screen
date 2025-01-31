@@ -1,10 +1,10 @@
-
 .movie-container {
   width: 78vw;
   display: block;
-  margin: 0 auto;
-  margin-top: 60px;
+  margin: 20px auto;
   /* background-color: pink; */
+  height: auto;
+  min-height: 100vh;
 }
 
 .sort-container {
@@ -245,7 +245,6 @@
       width: 120px;
     }
     .movie-card .card-tab {
-
       font-size: 0.8rem;
     }
   }
