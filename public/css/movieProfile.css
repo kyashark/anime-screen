@@ -1,24 +1,20 @@
-.main {
-  width: 100%;
-  flex: 1;
-  display: flex;
-  align-items: center;
-  margin:20px 0;
-}
-
 .movie-profile-container {
-  background: linear-gradient(135deg,rgba(19, 15, 64, 0.6),rgba(2, 92, 172, 0.2));
+  background: linear-gradient(
+    135deg,
+    rgba(19, 15, 64, 0.6),
+    rgba(2, 92, 172, 0.2)
+  );
   color: #ffffff;
   height: auto;
   min-height: 450px;
   width: 100%;
-
 }
 
 .movie-profile {
   width: 78vw;
   margin: 0 auto;
   margin-bottom: 15px;
+  /* background-color: pink; */
 }
 
 .back {
@@ -59,7 +55,6 @@
   margin-right: 18px;
   font-size: 1rem;
 }
-
 
 .movie-info h1 {
   font-size: 3.3rem;
@@ -121,14 +116,12 @@
 
 /* Responsive Movie Page */
 
-
 @media only screen and (max-width: 1536px) {
   .movie-profile {
     width: 78vw;
     /* background: blue; */
   }
 }
-
 
 @media only screen and (max-width: 1280px) {
   .movie-profile {
@@ -141,7 +134,6 @@
   }
 }
 
-
 @media only screen and (max-width: 1024px) {
   .movie-profile {
     width: 82vw;
@@ -150,14 +142,11 @@
 
   .movie-info {
     margin-top: 30px;
-   
   }
-  
+
   .movie-info h1 {
     font-size: 2.8rem;
   }
-
-
 }
 
 @media only screen and (max-width: 768px) {
@@ -170,35 +159,36 @@
     font-size: 2.6rem;
   }
 
-  .movie-description{
-    font-size:1rem;
+  .movie-description {
+    font-size: 1rem;
   }
 }
 
 @media only screen and (max-width: 640px) {
   .movie-profile {
     height: auto;
+    margin: 30px auto;
     /* background: #ff0080; */
   }
 
   .movie-content {
-    grid-template-columns:1fr;
+    grid-template-columns: 1fr;
     grid-template-rows: 2fr;
   }
-  .movie-cover{
-    grid-row:1;
+  .movie-cover {
+    grid-row: 1;
     grid-column: 1;
   }
 
-  .movie-info{
+  .movie-info {
     grid-row: 2;
     grid-column: 1;
     text-align: center;
     margin-right: 0;
   }
 
-  .movie-description{
-    margin:20px 10px;
+  .movie-description {
+    margin: 20px 10px;
   }
 
   .movie-cover img {
@@ -206,20 +196,15 @@
     height: 310px;
   }
 
-  .movie-action{
+  .movie-action {
     margin-top: 20px;
-  justify-content: center;
+    justify-content: center;
   }
 
   .movie-info h1 {
     font-size: 2.3rem;
   }
-
-
 }
 
 @media only screen and (max-width: 475px) {
-  .movie-profile {
-    /* background: #09ff00; */
-  }
 }

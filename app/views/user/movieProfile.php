@@ -34,7 +34,7 @@
         </div>
       </div>
   </header>
-  <div class="main">
+  <main>
     <div class="movie-profile-container">
     <div class="movie-profile">
         <a href="javascript:history.back();">
@@ -64,11 +64,7 @@
             </div>
         </div>
     </div>
-  </div>
-
-
-
-
+</main>
   <script src="<?= BASE_URL ?>/js/main.js"></script>
   <script src="<?= BASE_URL ?>/js/movie.js"></script>
      
