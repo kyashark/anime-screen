@@ -9,16 +9,15 @@ class Movie{
 
 
     public function getMovies($type,$sort = 'random', $genres = []) {
-        $query = "SELECT m.id,
+        $query = "SELECT DISTINCT m.id,
                         m.movie_name,
                         m.release_date,
                         m.movie_votes,
                         m.image
-                FROM movies m
-                LEFT JOIN movie_genres mg ON m.id = mg.movie_id 
-                LEFT JOIN genres g ON mg.genre_id = g.genre_id
-                WHERE m.type =:type
-                GROUP BY m.id";
+            FROM movies m
+            LEFT JOIN movie_genres mg ON m.id = mg.movie_id 
+            LEFT JOIN genres g ON mg.genre_id = g.genre_id
+            WHERE m.type =:type";
         
         $conditions = [];
         $params = [':type' => $type];
