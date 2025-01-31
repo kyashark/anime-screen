@@ -4,12 +4,10 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 auto;
-  position: relative;
-  top: 30px;
   font-size: 1.2rem;
   z-index: 1;
   /* background-color: skyblue; */
+  margin: 30px auto 0;
 }
 
 header h1 {
@@ -52,7 +50,7 @@ header h1 {
   font-size: 1.2rem;
   border-radius: 5px;
   border: 1.8px solid #ffffff;
-  color: #130F40;
+  color: #130f40;
 }
 
 .btn:hover {
@@ -75,7 +73,7 @@ header h1 {
 
 .type-2:hover {
   background-color: #ffffff;
-  color: #130F40;
+  color: #130f40;
 }
 
 /* Header Responsive */
@@ -103,9 +101,6 @@ header h1 {
 }
 
 @media only screen and (max-width: 640px) {
-  header{
-    /* top:20px; */
-  }
   header h1 {
     display: block;
   }
@@ -117,7 +112,7 @@ header h1 {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 60px;
+    top: 80px;
     right: 0px;
     width: 100%;
     text-align: center;

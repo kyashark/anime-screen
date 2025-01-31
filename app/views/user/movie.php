@@ -36,39 +36,42 @@
       </div>
   </header>
 
+  <main>
   <div class="movie-container">
 
-  <div class="sort-container">
-    <section>
-      <button class="sort" data-sort="top">Top Voted</button>
-      <button class="sort" data-sort="new">New Release</button>
-      <button class="sort" data-sort="alpha">Alphabetical</button>
-    </section>
+<div class="sort-container">
+  <section>
+    <button class="sort" data-sort="top">Top Voted</button>
+    <button class="sort" data-sort="new">New Release</button>
+    <button class="sort" data-sort="alpha">Alphabetical</button>
+  </section>
 
-    <select class="sort-selector" id="sort-selector">
-          <option value="random" selected>Sort Movies</option>
-          <option value="top">Top Voted</option>
-          <option value="new">New Realease</option>
-          <option value="alpha">Alphabetical</option>
-    </select>    
-    <input type="search" placeholder="Search" class="search-input">
-    </div>
+  <select class="sort-selector" id="sort-selector">
+        <option value="random" selected>Sort Movies</option>
+        <option value="top">Top Voted</option>
+        <option value="new">New Realease</option>
+        <option value="alpha">Alphabetical</option>
+  </select>    
+  <input type="search" placeholder="Search" class="search-input">
+  </div>
 
-  <div class="genre-container">
-  <button class="genre" data-genre="action">Action</button>
-        <button class="genre" data-genre="adventure">Adventure</button>
-        <button class="genre" data-genre="comedy">Comedy</button>
-        <button class="genre" data-genre="drama">Drama</button>
-        <button class="genre" data-genre="horror">Horror</button>
-        <button class="genre" data-genre="sci-fi">Sci-Fi</button>
-        <button class="genre" data-genre="thriller">Thriller</button>
-        <button class="genre" data-genre="romance">Romance</button>
-        <button class="genre" data-genre="fantasy">Fantasy</button>
-    </div>
-    <div class="movie-grid" id="movie-grid">
+<div class="genre-container">
+<button class="genre" data-genre="action">Action</button>
+      <button class="genre" data-genre="adventure">Adventure</button>
+      <button class="genre" data-genre="comedy">Comedy</button>
+      <button class="genre" data-genre="drama">Drama</button>
+      <button class="genre" data-genre="horror">Horror</button>
+      <button class="genre" data-genre="sci-fi">Sci-Fi</button>
+      <button class="genre" data-genre="thriller">Thriller</button>
+      <button class="genre" data-genre="romance">Romance</button>
+      <button class="genre" data-genre="fantasy">Fantasy</button>
+  </div>
+  <div class="movie-grid" id="movie-grid">
 
-    </div>
+  </div>
 </div>
+  </main>
+
  
   <script src="<?= BASE_URL ?>/js/main.js"></script>
   <script src="<?= BASE_URL ?>/js/movie.js"></script>
