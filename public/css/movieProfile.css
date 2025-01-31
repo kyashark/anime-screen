@@ -165,9 +165,13 @@
 }
 
 @media only screen and (max-width: 640px) {
+
+  .movie-profile-container{
+    margin-top: 30px;
+  }
+
   .movie-profile {
     height: auto;
-    margin: 30px auto;
     /* background: #ff0080; */
   }
 
