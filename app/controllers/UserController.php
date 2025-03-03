@@ -20,7 +20,6 @@ class UserController extends Controller{
         Session::start();
         $username = Session::get('username');
         $this->view('user/home', ['username' => $username]);
-
     }
 
 }

@@ -33,7 +33,8 @@
       </div>
      
   </header>
-  <main>
+  
+<main>
   <div class="home-container">
     <h1>Zenith Movies Votes</h1>
     <div class="card-container">
@@ -57,8 +58,8 @@
       </div>
     </div>
   </div>
-  </div>
 </main>
+
   <div class="background-image">
     <img src="<?= BASE_URL ?>/images/dragon.png">
   </div>
