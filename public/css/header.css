@@ -6,7 +6,6 @@ header {
   justify-content: space-between;
   font-size: 1.2rem;
   z-index: 1;
-  /* background-color: skyblue; */
   margin: 30px auto 0;
 }
 
@@ -15,6 +14,7 @@ header h1 {
   font-size: 3rem;
   color: #ffffff;
 }
+
 
 .nav-bar {
   position: relative;
@@ -82,6 +82,8 @@ header h1 {
   header {
     width: 80vw;
   }
+
+
 }
 
 @media only screen and (max-width: 1024px) {
@@ -95,6 +97,10 @@ header h1 {
     width: 85vw;
   }
 
+  header h2{
+    font-size: 2.4rem;
+  }
+
   .nav-bar {
     gap: 50px;
   }
@@ -104,6 +110,8 @@ header h1 {
   header h1 {
     display: block;
   }
+
+
   .nav-bar {
     display: none;
   }
@@ -161,6 +169,10 @@ header h1 {
   .menu-item span.change:nth-child(3) {
     transform: rotate(45deg) translate(-5px, -8px);
   }
+
+  header h2{
+    font-size: 2.2rem;
+  }
 }
 
 @media only screen and (max-width: 475px) {
@@ -168,6 +180,13 @@ header h1 {
     font-size: 1rem;
   }
 
+  header h1 {
+    font-size: 2.6rem;
+  }
+  
+  header h2{
+    font-size: 2rem;
+  }
   .btn {
     width: 90px;
     font-size: 1rem;
