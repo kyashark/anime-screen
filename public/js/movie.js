@@ -3,6 +3,18 @@ document.addEventListener("DOMContentLoaded", function () {
   loadFiltersFromUrl();
   initializeCardHover();
   initializeHeartClick();
+
+  document.addEventListener("click", function (event) {
+    const card = event.target.closest(".movie-card"); // Check if clicked element is a movie card
+    if (card) {
+      const movieId = card.dataset.id;
+      console.log("movieId:", movieId);
+      // Get base URL dynamically
+      const baseUrl =
+        window.location.origin + "/zenith-movies/public/movie/movieprofile";
+      window.location.href = `${baseUrl}/${movieId}`;
+    }
+  });
 });
 
 // Movie Filter and URL Update
@@ -37,41 +49,34 @@ function syncSortSelector() {
   sortSelector.value = currentSort; // Update the <select> value
 }
 
-  // Sort button click event
-  sortButtons.forEach(button => {
-    button.addEventListener("click", () => {
-      if (button.classList.contains("active")) {
-        button.classList.remove("active");
-      } else {
-        sortButtons.forEach(btn => btn.classList.remove("active"));
-        button.classList.add("active");
-      }
-      updateMovies();
-    });
+// Sort button click event
+sortButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    if (button.classList.contains("active")) {
+      button.classList.remove("active");
+    } else {
+      sortButtons.forEach((btn) => btn.classList.remove("active"));
+      button.classList.add("active");
+    }
+    updateMovies();
   });
-  
-  // Genre button click event
-  genreButtons.forEach(button => {
-    button.addEventListener("click", () => {
-      button.classList.toggle("active");
-      updateMovies();
-    });
-  });
+});
 
-  // Handle the change event for the sort dropdown
+// Genre button click event
+genreButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    button.classList.toggle("active");
+    updateMovies();
+  });
+});
+
+// Handle the change event for the sort dropdown
 sortSelector.addEventListener("change", () => {
   const selectedValue = sortSelector.value;
 
-
-  // Ignore if the placeholder is selected
-  if (!selectedValue) return;
-
   // Update active state for sort buttons
   sortButtons.forEach((button) => {
-    button.classList.toggle(
-      "active",
-      button.dataset.sort === selectedValue
-    );
+    button.classList.toggle("active", button.dataset.sort === selectedValue);
   });
 
   updateMovies();
@@ -98,7 +103,7 @@ function fetchMovies() {
     .then((movies) => {
       movieGrid.innerHTML = ""; // Clear the grid before adding movies
       movies.forEach((movie) => {
-        console.log(`${BASE_URL}/images/${movie.image}`);
+        // console.log(`${BASE_URL}/images/${movie.image}`);
 
         const movieCard = `
             <div class="movie-card" 
@@ -158,7 +163,10 @@ function initializeHeartClick() {
   const heartItems = document.querySelectorAll(".material-symbols-outlined");
 
   heartItems.forEach((heartItem) => {
-    heartItem.addEventListener("click", () => {
+    heartItem.addEventListener("click", (event) => {
+      // Stop the click event from propagating to parent elements (movie card)
+      event.stopPropagation();
+
       const currentStyle =
         window.getComputedStyle(heartItem).fontVariationSettings;
 
@@ -193,8 +201,8 @@ function loadFiltersFromUrl() {
     activeSort.classList.add("active");
   }
 
-    // Set the sort dropdown value
-    sortSelector.value = sort;
+  // Set the sort dropdown value
+  sortSelector.value = sort;
 
   // Set the active genre buttons
   if (genres) {

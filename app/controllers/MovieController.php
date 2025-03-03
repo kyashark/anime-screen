@@ -37,5 +37,18 @@ class movieController extends Controller{
             $this->view('user/movie', ['username' => $username, 'movies' => $movies]); 
         }
     }
+
+    public function movieProfile($movieId){
+    
+        $movie = $this->movieModel->getMovie($movieId);
+
+        if($movie){
+        $username = Session::get('username');
+        $this->view('user/movieProfile', ['username' => $username, 'movie' => $movie]);
+    } else {
+        echo "Movie not found!";
+    }
+
+    }
     
 }

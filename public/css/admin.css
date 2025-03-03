@@ -1,0 +1,136 @@
+.admin-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 2fr;
+  grid-template-rows: repeat(3, 3fr);
+  gap: 10px;
+  width: 78vw;
+  height: 90%;
+  margin: 0 auto;
+}
+
+.admin-container div {
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+.admin-container h3 {
+  font-size: 1.65rem;
+  color: #ffffff;
+  font-weight: 400;
+}
+
+.admin-container > div:nth-child(1) {
+  grid-column: 1/4;
+  grid-row: 1/3;
+  background-color: #ffffff13;
+}
+
+.admin-container > div:nth-child(2) {
+  grid-column: 4;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eb293c9d;
+}
+
+.admin-container > div:nth-child(3) {
+  grid-column: 4;
+  grid-row: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff54;
+}
+
+.admin-container > div:nth-child(2):hover,
+.admin-container > div:nth-child(3):hover {
+  transform: scale(1.01);
+  transition: all 0.3s ease-in-out;
+}
+.admin-container > div:nth-child(4) {
+  grid-column: 1;
+  grid-row: 3;
+  background-color: #ffffff13;
+}
+
+.admin-container > div:nth-child(5) {
+  grid-column: 2/5;
+  grid-row: 3;
+  background-color: #ffffff13;
+}
+
+@media only screen and (max-width: 1280px) {
+  .admin-container {
+    width: 80vw;
+  }
+
+  
+  .admin-container h3 {
+    font-size: 1.6rem;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .admin-container {
+    width: 82vw;
+  }
+
+  .admin-container h3 {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .admin-container {
+    width: 85vw;
+  }
+
+  .admin-container h3 {
+    font-size: 1.35rem;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .admin-container {
+    /* background-color: rgb(0, 255, 21); */
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(5, 100px);
+    height: auto;
+    margin: 30px auto;
+  }
+
+  .admin-container > div:nth-child(1) {
+    grid-column: 1/3;
+    grid-row: 1/3;
+  }
+
+  .admin-container > div:nth-child(2) {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .admin-container > div:nth-child(3) {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .admin-container > div:nth-child(4) {
+    grid-column: 1/3;
+    grid-row: 4;
+  }
+
+  .admin-container > div:nth-child(5) {
+    grid-column: 1/3;
+    grid-row: 5;
+  }
+
+  .admin-container h3 {
+    font-size: 1.3rem;
+  }
+}
+
+@media only screen and (max-width: 475px) {
+
+}

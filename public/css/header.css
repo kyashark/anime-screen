@@ -4,11 +4,9 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 auto;
-  position: relative;
-  top: 20px;
   font-size: 1.2rem;
   z-index: 1;
+  margin: 30px auto 0;
 }
 
 header h1 {
@@ -16,6 +14,7 @@ header h1 {
   font-size: 3rem;
   color: #ffffff;
 }
+
 
 .nav-bar {
   position: relative;
@@ -51,7 +50,7 @@ header h1 {
   font-size: 1.2rem;
   border-radius: 5px;
   border: 1.8px solid #ffffff;
-  color: #130F40;
+  color: #130f40;
 }
 
 .btn:hover {
@@ -74,7 +73,7 @@ header h1 {
 
 .type-2:hover {
   background-color: #ffffff;
-  color: #130F40;
+  color: #130f40;
 }
 
 /* Header Responsive */
@@ -83,6 +82,8 @@ header h1 {
   header {
     width: 80vw;
   }
+
+
 }
 
 @media only screen and (max-width: 1024px) {
@@ -96,6 +97,10 @@ header h1 {
     width: 85vw;
   }
 
+  header h2{
+    font-size: 2.4rem;
+  }
+
   .nav-bar {
     gap: 50px;
   }
@@ -105,6 +110,8 @@ header h1 {
   header h1 {
     display: block;
   }
+
+
   .nav-bar {
     display: none;
   }
@@ -113,12 +120,13 @@ header h1 {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 60px;
+    top: 80px;
     right: 0px;
     width: 100%;
     text-align: center;
     gap: 12px;
     background: linear-gradient(135deg, #020107, #0b0925);
+    /* background: linear-gradient(135deg, #020208, #070618); */
     padding-bottom: 25px;
   }
 
@@ -161,6 +169,10 @@ header h1 {
   .menu-item span.change:nth-child(3) {
     transform: rotate(45deg) translate(-5px, -8px);
   }
+
+  header h2{
+    font-size: 2.2rem;
+  }
 }
 
 @media only screen and (max-width: 475px) {
@@ -168,6 +180,13 @@ header h1 {
     font-size: 1rem;
   }
 
+  header h1 {
+    font-size: 2.6rem;
+  }
+  
+  header h2{
+    font-size: 2rem;
+  }
   .btn {
     width: 90px;
     font-size: 1rem;
