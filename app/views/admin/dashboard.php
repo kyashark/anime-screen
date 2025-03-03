@@ -1,6 +1,58 @@
+<html>
 
+<head>
+  <title>Zenith</title>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/styles.css" />
+</head>
 
-<h1>Welcome to Admin Admin Dashboard , <?php echo $username ?>.</h1>
+<body>
+<header>
+    <h1>Z</h1>
+    <ul class="nav-bar" id="nav-bar">
+          <li><a href="<?= BASE_URL ?>/user/home">Home</a></li>
+          <li><a href="<?= BASE_URL ?>/movie/filter?type=movie&sort=random">Movies</a></li>
+          <li><a href="<?= BASE_URL ?>/movie/filter?type=series&sort=random">Series</a></li>
+    </ul>
+
+    <div class="right-nav">
+        <a href="#">
+            <span class="username">
+                <?php echo $username ?>
+             </span>
+        </a>
+        <a href="<?= BASE_URL ?>/auth/register"><button class="btn type-2">Logout</button></a>
+        
+        <div class="menu-item" id="menu-item">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+    
+      </div>
+     
+  </header>
+  
+
+  <main>
+    <div class="admin-container">
+        <div></div>
+        <div>
+            <h3>Movie Management</h3>
+        </div>
+        <div>
+            <h3>User Management</h3>
+        </div>
+        <div></div>
+        <div></div>
+    </div>
+</main>
+<script src="<?= BASE_URL ?>/js/main.js"></script>
+</body>
+</html>
+
+<!-- <h1>Welcome to Admin Admin Dashboard , <?php echo $username ?>.</h1>
 <form method="POST" action="<?= BASE_URL ?>/auth/logout">
     <button class="register-btn" type="submit">Logout</button>
-</form>
+</form> -->
