@@ -17,34 +17,23 @@
                 <?php echo $username ?>
              </span>
         </a>
-        <a href="<?= BASE_URL ?>/auth/register"><button class="btn type-2">Logout</button></a>
+        <a href="<?= BASE_URL ?>/auth/register"><button class="btn logout">Logout</button></a>
         
-        <div class="menu-item" id="menu-item">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
     
       </div>
      
-  </header>
+</header>
   
 
   <main>
-    <div class="admin-grid">
+    <div class="admin-grid-container">
         <div></div>
         <a href="<?= BASE_URL ?>/admin/movieManagement">
-        <div>
-            <h3>Movie Management</h3>
-        </div>
+          <h3>Movie Management</h3>
         </a>
-
         <a href="<?= BASE_URL ?>/admin/userManagement">
-        <div>
             <h3>User Management</h3>
-        </div>
         </a>
-
         <div></div>
         <div></div>
     </div>

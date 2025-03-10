@@ -1,0 +1,203 @@
+.btn {
+  width: 110px;
+  padding: 4px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: 1.8px solid #ffffff;
+  color: #130f40;
+}
+
+.btn:hover {
+  color: #ffffff;
+  background-color: transparent;
+  border: 1.8px solid #ffffff;
+}
+
+.login {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1.8px solid transparent;
+  margin-right: 10px;
+}
+
+.logout {
+  background-color: transparent;
+  color: #ffffff;
+}
+
+.logout:hover {
+  background-color: #ffffff;
+  color: #130f40;
+}
+
+/* Back Button */
+.back {
+  display: inline-block;
+  cursor: pointer;
+  width: 100%;
+  height: 22px;
+}
+
+.back span {
+  display: block;
+  width: 15px;
+  height: 2px;
+  background-color: #ffffff;
+  position: relative;
+  margin: 7px 0;
+}
+
+.back span:first-child {
+  transform: rotate(-45deg);
+}
+
+.back span:last-child {
+  transform: rotate(45deg);
+}
+
+/* Admin movie action button */
+
+.filter-btn,
+.search-input,
+.add-movie-btn {
+  padding: 6px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 1rem;
+  border: none;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+}
+
+.filter-btn {
+  background-color: #130f40e3;
+  color: #ffffff;
+  width: 120px;
+}
+
+.filter-btn:hover {
+  background-color: #130f40;
+}
+.search-input {
+  padding-left: 20px;
+}
+.search-input:focus {
+  outline: 2px solid #262051;
+}
+
+.add-movie-btn {
+  background-color: #eb293c9d;
+  width: 120px;
+  color: #ffffff;
+}
+
+.add-movie-btn:hover {
+  background-color: #eb293cb0;
+}
+
+/* Custom Checkbox */
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.custom-checkbox input {
+  display: none;
+}
+
+.checkmark {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #333;
+  border-radius: 4px;
+  position: relative;
+}
+
+.custom-checkbox input:checked + .checkmark {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.custom-checkbox input:checked + .checkmark::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Table button */
+
+.delete-btn,
+.update-btn {
+  padding: 2px;
+  width: 60px;
+  height: 26px;
+  border-radius: 3px;
+  font-size: 0.85rem;
+  border: none;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+}
+
+.update-btn {
+  background-color: #ffffffe0;
+}
+
+.update-btn:hover {
+  background-color: #ffffff;
+}
+
+.delete-btn {
+  background-color: #eb293c6b;
+  color: #ffffff;
+}
+
+.delete-btn:hover {
+  background-color: #eb293c7a;
+}
+
+/* Movie Form */
+
+.movie-form-grid .clear-btn {
+  background-color: #eb293c9d;
+  border: none;
+  cursor: pointer;
+}
+
+.movie-form-grid .clear-btn:hover {
+  background-color: #eb293b;
+}
+
+.movie-form-grid .submit-btn {
+  background-color: #cccccc;
+  color: #130f40;
+  border: none;
+  cursor: pointer;
+}
+
+.movie-form-grid .submit-btn:hover {
+  background-color: #ffffff;
+}
+
+@media only screen and (max-width: 768px) {
+  .delete-btn,
+  .update-btn {
+    font-size: 0.8rem;
+  }
+}
+
+@media only screen and (max-width: 475px) {
+  .btn {
+    width: 90px;
+    font-size: 1rem;
+  }
+}
