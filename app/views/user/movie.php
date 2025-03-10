@@ -26,7 +26,7 @@
                 <?php echo $username ?>
             </span>
         </a>
-        <a href="<?= BASE_URL ?>/auth/register"><button class="btn type-2">Logout</button></a>
+        <a href="<?= BASE_URL ?>/auth/register"><button class="btn logout">Logout</button></a>
         
         <div class="menu-item" id="menu-item">
           <span></span>

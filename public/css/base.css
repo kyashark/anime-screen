@@ -27,7 +27,24 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: rgb(228, 110, 110); */
+}
+
+.background-image {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  z-index: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  align-items: end;
+  justify-content: end;
+  opacity: 0.2;
+  height: 100vh;
+}
+
+.background-image img {
+  width: 50vw;
 }
 
 /* Responsive */
@@ -36,6 +53,9 @@ main {
 }
 
 @media only screen and (max-width: 1280px) {
+  .background-image img {
+    width: 640px;
+  }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -47,6 +67,10 @@ main {
 @media only screen and (max-width: 640px) {
   body {
     height: auto;
+  }
+
+  .background-image img {
+    width: 83.33vw;
   }
 }
 

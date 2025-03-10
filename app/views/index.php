@@ -17,16 +17,14 @@
     </ul>
 
     <div class="right-nav">
-        <a href="<?= BASE_URL ?>/auth/login"><button class="btn type-1">Login</button></a>
+        <a href="<?= BASE_URL ?>/auth/login"><button class="btn login">Login</button></a>
         <a href="<?= BASE_URL ?>/auth/register"><button class="btn">Register</button></a>
-        
         <div class="menu-item" id="menu-item">
           <span></span>
           <span></span>
           <span></span>
         </div>
-    
-      </div>
+    </div>
       <script src="<?= BASE_URL ?>/js/main.js"></script>
   </header>
   
@@ -58,7 +56,7 @@
 
 <div class="background-image">
     <img src="<?= BASE_URL ?>/images/dragon.png">
-  </div>
+</div>
 
 
 </body>
