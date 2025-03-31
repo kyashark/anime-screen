@@ -38,7 +38,7 @@ if (!empty($movies)) {
 
 <body>
 <header>
-    <a href="javascript:history.back();">
+    <a href="<?= BASE_URL ?>/user/admin">
         <div class="back">
             <span></span>
             <span></span>
@@ -65,11 +65,11 @@ if (!empty($movies)) {
         
     
             <select class="sort-selector" id="sort-selector">
-        <option value="random" selected>Sort Movies</option>
-        <option value="top">Top Voted</option>
-        <option value="new">New Realease</option>
-        <option value="alpha">Alphabetical</option>
-  </select>  
+            <option value="random" selected>Sort Movies</option>
+  <option value="top">Top Voted</option>
+  <option value="new">New Release</option>
+  <option value="alpha">Alphabetical</option>
+</select> 
  
  
         
@@ -167,5 +167,7 @@ if (!empty($movies)) {
 </main>
 <script src="<?= BASE_URL ?>/js/main.js"></script>
 <script src="<?= BASE_URL ?>/js/movie.js"></script>
+<script src="<?= BASE_URL ?>/js/filter.js"></script>
+
 </body>
 </html>
