@@ -27,6 +27,7 @@ if (!empty($movies)) {
   }
 
 
+
   .genre-con {
     position: relative;
     display: inline-block;
@@ -84,7 +85,7 @@ if (!empty($movies)) {
                 <!-- <button class="filter-btn">Filter</button> -->
                 <!-- <input type="search" placeholder="Search" class="search-input"> -->
             </div>
-            <a href="<?= BASE_URL ?>/admin/addMovie"><button class="add-movie-btn">Add Movie</button></a>
+            <a href="<?= BASE_URL ?>/movie/addMovie"><button class="add-movie-btn">Add Movie</button></a>
         </div>
             <div class="movie-table-header">
                     <div>ID</div>
@@ -111,7 +112,7 @@ if (!empty($movies)) {
                         </div>
                         <div><?= htmlspecialchars($movie['movie_name']) ?></div>
                         <div><?= htmlspecialchars(date('Y', strtotime($movie['release_date']))) ?></div>
-                        <div>Movie</div>
+                        <div><?= $movie['type'] ?></div>
                         <div>
                             <?php 
                             if (!empty($movie['genres'])) {

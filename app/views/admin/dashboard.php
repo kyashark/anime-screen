@@ -28,11 +28,11 @@
   <main>
     <div class="admin-grid-container">
         <div></div>
-        <a href="<?= BASE_URL ?>/admin/movieManagement">
+        <a href="<?= BASE_URL ?>/movie/filter?type=movie&sort=random">
           <h3>Movie Management</h3>
         </a>
-        <a href="<?= BASE_URL ?>/admin/userManagement">
-            <h3>User Management</h3>
+        <a href="<?= BASE_URL ?>/movie/filter?type=series&sort=random">
+            <h3>Series Management</h3>
         </a>
         <div></div>
         <div></div>

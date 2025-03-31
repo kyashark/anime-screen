@@ -66,7 +66,8 @@ class Movie{
                         m.movie_name,
                         m.release_date,
                         m.movie_votes,
-                        m.image
+                        m.image,
+                        m.type
             FROM movies m
             LEFT JOIN movie_genres mg ON m.id = mg.movie_id 
             LEFT JOIN genres g ON mg.genre_id = g.genre_id";
