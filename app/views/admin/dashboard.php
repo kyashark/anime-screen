@@ -9,12 +9,7 @@
 
 <body>
 <header>
-    <h1>Z</h1>
-    <ul class="nav-bar" id="nav-bar">
-          <li><a href="<?= BASE_URL ?>/user/home">Home</a></li>
-          <li><a href="<?= BASE_URL ?>/movie/filter?type=movie&sort=random">Movies</a></li>
-          <li><a href="<?= BASE_URL ?>/movie/filter?type=series&sort=random">Series</a></li>
-    </ul>
+    <h2>Dashboard</h2>
 
     <div class="right-nav">
         <a href="#">
@@ -22,28 +17,23 @@
                 <?php echo $username ?>
              </span>
         </a>
-        <a href="<?= BASE_URL ?>/auth/register"><button class="btn type-2">Logout</button></a>
+        <a href="<?= BASE_URL ?>/auth/register"><button class="btn logout">Logout</button></a>
         
-        <div class="menu-item" id="menu-item">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
     
       </div>
      
-  </header>
+</header>
   
 
   <main>
-    <div class="admin-container">
+    <div class="admin-grid-container">
         <div></div>
-        <div>
-            <h3>Movie Management</h3>
-        </div>
-        <div>
-            <h3>User Management</h3>
-        </div>
+        <a href="<?= BASE_URL ?>/movie/filter?type=movie&sort=random">
+          <h3>Movie Management</h3>
+        </a>
+        <a href="<?= BASE_URL ?>/movie/filter?type=series&sort=random">
+            <h3>Series Management</h3>
+        </a>
         <div></div>
         <div></div>
     </div>
@@ -51,8 +41,3 @@
 <script src="<?= BASE_URL ?>/js/main.js"></script>
 </body>
 </html>
-
-<!-- <h1>Welcome to Admin Admin Dashboard , <?php echo $username ?>.</h1>
-<form method="POST" action="<?= BASE_URL ?>/auth/logout">
-    <button class="register-btn" type="submit">Logout</button>
-</form> -->

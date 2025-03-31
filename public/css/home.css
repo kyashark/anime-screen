@@ -2,7 +2,6 @@
   width: 78vw;
   height: auto;
   margin: 0 auto;
-  /* background-color: pink; */
 }
 
 .home-container h1 {
@@ -76,11 +75,6 @@
   height: 16px;
 }
 
-/* .arrow img:hover{
-    width: 18px;
-    height: 18px;
-    transition: all 0.3s ease-in-out;
-  } */
 
 @media only screen and (max-width: 1280px) {
   .home-container {
@@ -123,7 +117,6 @@
 
 @media only screen and (max-width: 640px) {
   .home-container {
-    /* height: auto; */
     margin: 30px auto;
   }
   .home-container h1 {

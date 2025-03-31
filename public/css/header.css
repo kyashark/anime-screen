@@ -4,7 +4,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   z-index: 1;
   margin: 30px auto 0;
 }
@@ -14,7 +14,6 @@ header h1 {
   font-size: 3rem;
   color: #ffffff;
 }
-
 
 .nav-bar {
   position: relative;
@@ -43,47 +42,21 @@ header h1 {
   text-align: left;
 }
 
-.btn {
-  width: 110px;
-  padding: 4px;
-  margin: 0 auto;
-  font-size: 1.2rem;
-  border-radius: 5px;
-  border: 1.8px solid #ffffff;
-  color: #130f40;
-}
-
-.btn:hover {
-  color: #ffffff;
-  background-color: transparent;
-  border: 1.8px solid #ffffff;
-}
-
-.type-1 {
-  background-color: transparent;
-  color: #ffffff;
-  border: 1.8px solid transparent;
-  margin-right: 10px;
-}
-
-.type-2 {
-  background-color: transparent;
+/* Admin Header */
+header h2{
+  font-size: 1.8rem;
   color: #ffffff;
 }
 
-.type-2:hover {
-  background-color: #ffffff;
-  color: #130f40;
-}
 
-/* Header Responsive */
+
+
+/* Responsive */
 
 @media only screen and (max-width: 1280px) {
   header {
     width: 80vw;
   }
-
-
 }
 
 @media only screen and (max-width: 1024px) {
@@ -98,9 +71,8 @@ header h1 {
   }
 
   header h2{
-    font-size: 2.4rem;
+    font-size: 1.6rem;
   }
-
   .nav-bar {
     gap: 50px;
   }
@@ -111,7 +83,9 @@ header h1 {
     display: block;
   }
 
-
+  header h2{
+    font-size: 1.5rem;
+  }
   .nav-bar {
     display: none;
   }
@@ -126,7 +100,6 @@ header h1 {
     text-align: center;
     gap: 12px;
     background: linear-gradient(135deg, #020107, #0b0925);
-    /* background: linear-gradient(135deg, #020208, #070618); */
     padding-bottom: 25px;
   }
 
@@ -169,26 +142,18 @@ header h1 {
   .menu-item span.change:nth-child(3) {
     transform: rotate(45deg) translate(-5px, -8px);
   }
-
-  header h2{
-    font-size: 2.2rem;
-  }
 }
 
 @media only screen and (max-width: 475px) {
   header {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   header h1 {
     font-size: 2.6rem;
   }
-  
+
   header h2{
-    font-size: 2rem;
-  }
-  .btn {
-    width: 90px;
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
 }

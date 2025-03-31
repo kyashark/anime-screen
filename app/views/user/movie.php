@@ -26,7 +26,7 @@
                 <?php echo $username ?>
             </span>
         </a>
-        <a href="<?= BASE_URL ?>/auth/register"><button class="btn type-2">Logout</button></a>
+        <a href="<?= BASE_URL ?>/auth/register"><button class="btn logout">Logout</button></a>
         
         <div class="menu-item" id="menu-item">
           <span></span>
@@ -47,7 +47,7 @@
   </section>
 
   <select class="sort-selector" id="sort-selector">
-        <option value="random" selected>Sort Movies</option>
+  <option value="random" selected>Sort Movies</option>
         <option value="top">Top Voted</option>
         <option value="new">New Realease</option>
         <option value="alpha">Alphabetical</option>
@@ -75,5 +75,6 @@
  
   <script src="<?= BASE_URL ?>/js/main.js"></script>
   <script src="<?= BASE_URL ?>/js/movie.js"></script>
+  <script src="<?= BASE_URL ?>/js/filter.js"></script>
  
 </body>
