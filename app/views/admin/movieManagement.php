@@ -14,21 +14,22 @@ if (!empty($movies)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/styles.css" />
   <style>
-  .genre-selector {
+
+  .genres-wrapper {
     width: 200px;
     position: absolute;
     background: white;
     padding: 10px;
     border: 1px solid #ccc;
     display: none;
-    top: 40px; /* Adjust based on button position */
+    top: 40px;
     left: 0;
     z-index: 1000;
   }
 
 
 
-  .genre-con {
+  .genre-container {
     position: relative;
     display: inline-block;
   }
@@ -61,20 +62,23 @@ if (!empty($movies)) {
     <div class="admin-container">
         <div class="movie-admin-action">
             <div class="filter-section">
+        
+    
             <select class="sort-selector" id="sort-selector">
         <option value="random" selected>Sort Movies</option>
         <option value="top">Top Voted</option>
         <option value="new">New Realease</option>
         <option value="alpha">Alphabetical</option>
-  </select> 
+  </select>  
+ 
  
         
-  <div class="genre-con">
-  <button id="toggleGenres">Select Genres</button>
-  <div class="genre-selector">
+  <div class="genre-selector" id="genre-selector">
+  <button id="toggle-genres">Select Genres</button>
+  <div class="genres-wrapper" id="genres-wrapper">
     <label><input type="checkbox" class="genre" data-genre="adventure"> Adventure</label>
     <label><input type="checkbox" class="genre" data-genre="comedy"> Comedy</label>
-    <label><input type="checkbox" class="genre" data-genre="drama"> Drama</label>
+  <label><input type="checkbox" class="genre" data-genre="drama"> Drama</label>
     <label><input type="checkbox" class="genre" data-genre="horror"> Horror</label>
     <label><input type="checkbox" class="genre" data-genre="sci-fi"> Sci-Fi</label>
     <label><input type="checkbox" class="genre" data-genre="thriller"> Thriller</label>
@@ -82,8 +86,8 @@ if (!empty($movies)) {
     <label><input type="checkbox" class="genre" data-genre="fantasy"> Fantasy</label>
   </div>
 </div>
-                <!-- <button class="filter-btn">Filter</button> -->
-                <!-- <input type="search" placeholder="Search" class="search-input"> -->
+                
+                <input type="search" placeholder="Search" class="search-input">
             </div>
             <a href="<?= BASE_URL ?>/movie/addMovie"><button class="add-movie-btn">Add Movie</button></a>
         </div>
@@ -125,7 +129,7 @@ if (!empty($movies)) {
                         </div>
                         <div><?= htmlspecialchars($movie['movie_votes']) ?></div>
                         <div>
-                            <button class="update-btn">Update</button>
+                            <button class="update-btn">More</button>
                             <button class="delete-btn">Delete</button>
                         </div>
                     </div>
@@ -162,22 +166,6 @@ if (!empty($movies)) {
     
 </main>
 <script src="<?= BASE_URL ?>/js/main.js"></script>
-
-
-<script>
-  document.getElementById("toggleGenres").addEventListener("click", function () {
-    const genreSelector = document.querySelector(".genre-selector");
-    genreSelector.style.display = genreSelector.style.display === "none" ? "block" : "none";
-  });
-
-  // Optional: Close the menu when clicking outside
-  document.addEventListener("click", function (event) {
-    const container = document.querySelector(".genre-container");
-    const genreSelector = document.querySelector(".genre-selector");
-    if (!container.contains(event.target)) {
-      genreSelector.style.display = "none";
-    }
-  });
-</script>
+<script src="<?= BASE_URL ?>/js/movie.js"></script>
 </body>
 </html>

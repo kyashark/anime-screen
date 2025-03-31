@@ -41,3 +41,21 @@ function clearErrorMessageOnInput() {
 // Call the function after the inputs are loaded
 clearErrorMessageOnInput();
 
+
+document.addEventListener("DOMContentLoaded", function () {
+    const genresToggleBtn = document.getElementById('toggle-genres');
+    const genresWrapper = document.getElementById('genres-wrapper');
+    
+    genresToggleBtn.addEventListener('click',()=>{
+            console.log("Click toggle btn");
+            genresWrapper.style.display = genresWrapper.style.display === "block" ? "none" : "block";
+    })
+});
+
+document.addEventListener("click", function (event) {
+    const container = document.getElementById('genre-selector');
+    const genreWrapper = document.getElementById('genres-wrapper');
+    if (!container.contains(event.target)) {
+        genreWrapper.style.display = "none";
+    }
+});

@@ -70,7 +70,7 @@ class movieController extends Controller{
 
     public function movieProfile($movieId){
     
-        $movie = $this->movieModel->getMovies($movieId);
+        $movie = $this->movieModel->getMovie($movieId);
 
         if($movie){
         $username = Session::get('username');
