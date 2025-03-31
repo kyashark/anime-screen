@@ -4,6 +4,13 @@ require_once "../core/Session.php";
 require_once "../middleware/Middleware.php";
 
 class AdminController extends Controller {
+    private $movieModel;
+
+    public function __construct() {
+        $this->movieModel = $this->model('Movie'); // Assuming 'Movie' is your model name
+    }
+
+
     public function index(){
         $this->view('index');
     }
@@ -25,16 +32,19 @@ class AdminController extends Controller {
     }
 
     public function movieManagement() {
-        Session::start();
+        Middleware::requireAdmin();
         $username = Session::get('username');
-        $is_admin = (int) Session::get('is_admin');
 
-        if (!$is_admin) {
-            echo "Access Denied!";
-            exit;
-        }
+        $movies = $this->movieModel->getMovies();
 
-        $this->view('admin/movieManagement', ['username' => $username]);
+    if (!empty($movies)) { 
+        $username = Session::get('username');
+        $this->view('admin/movieManagement', ['username' => $username, 'movies' => $movies]);
+    } else {
+        echo "No movies found!";
+    }
+
+        $this->view('admin/movieManagement', ['username' => $username, 'movies' => $movies]);
     }
 
     public function userManagement() {
@@ -48,5 +58,12 @@ class AdminController extends Controller {
         }
 
         $this->view('admin/userManagement', ['username' => $username]);
+    }
+
+    public function addMovie(){
+        Session::start();
+        $username = Session::get('username');
+
+        $this->view('admin/addMovie', ['username' => $username]);
     }
 }

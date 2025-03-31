@@ -3,6 +3,17 @@
 require_once '../core/Session.php';
 
 class Middleware{
+
+    public static function requireAdmin() {
+        Session::Start();
+        $is_admin = (int) Session::get('is_admin');
+
+        if (!$is_admin) { // If user is not an admin
+            header('Location: ' . BASE_URL . '/user/home'); // Redirect to normal user home
+            exit;
+        }
+    }
+
     public static function redirectIfLoggedIn(){
         if(Session::get('user_id')){
             $is_admin=(int) Session::get('is_admin');

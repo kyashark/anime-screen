@@ -40,3 +40,4 @@ function clearErrorMessageOnInput() {
 
 // Call the function after the inputs are loaded
 clearErrorMessageOnInput();
+
