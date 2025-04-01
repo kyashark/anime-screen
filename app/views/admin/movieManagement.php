@@ -15,24 +15,7 @@ if (!empty($movies)) {
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/styles.css" />
   <style>
 
-  .genres-wrapper {
-    width: 200px;
-    position: absolute;
-    background: white;
-    padding: 10px;
-    border: 1px solid #ccc;
-    display: none;
-    top: 40px;
-    left: 0;
-    z-index: 1000;
-  }
 
-
-
-  .genre-container {
-    position: relative;
-    display: inline-block;
-  }
 </style>
 </head>
 
@@ -61,7 +44,7 @@ if (!empty($movies)) {
 <main>
     <div class="admin-container">
         <div class="movie-admin-action">
-            <div class="filter-section">
+            <div class="first-section">
         
     
             <select class="sort-selector" id="sort-selector">
@@ -74,7 +57,7 @@ if (!empty($movies)) {
  
         
   <div class="genre-selector" id="genre-selector">
-  <button id="toggle-genres">Select Genres</button>
+  <button id="toggle-genres" class="genre">Select Genres</button>
   <div class="genres-wrapper" id="genres-wrapper">
     <label><input type="checkbox" class="genre" data-genre="adventure"> Adventure</label>
     <label><input type="checkbox" class="genre" data-genre="comedy"> Comedy</label>
@@ -87,9 +70,12 @@ if (!empty($movies)) {
   </div>
 </div>
                 
-                <input type="search" placeholder="Search" class="search-input">
+                
             </div>
+            <div class="second-section">
+            <input type="search" placeholder="Search" class="search-input">
             <a href="<?= BASE_URL ?>/movie/addMovie"><button class="add-movie-btn">Add Movie</button></a>
+</div>
         </div>
             <div class="movie-table-header">
                     <div>ID</div>

@@ -13,7 +13,9 @@
   /* background-color: indianred; */
 }
 
-.movie-admin-action .filter-section{
+.movie-admin-action .first-section,
+.movie-admin-action .second-section
+{
   display: flex;
   gap:10px;
 }
