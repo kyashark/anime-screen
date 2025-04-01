@@ -124,13 +124,25 @@ function initializeManagementFilters() {
     if (toggleGenres && genresWrapper) {
         toggleGenres.addEventListener("click", (e) => {
             e.stopPropagation();
-            genresWrapper.style.display = 
-                genresWrapper.style.display === "block" ? "none" : "block";
+            // genresWrapper.style.display = 
+            //     genresWrapper.style.display === "none" ? "flex" : "none";
+            //     genresWrapper.style.flexDirection = "column";
+            genresWrapper.classList.toggle("active");
+            // if (genresWrapper.style.display === "none" || genresWrapper.style.display === "") {
+            //     genresWrapper.style.display = "flex";
+            //     genresWrapper.style.flexDirection = "column"; // Ensure flex direction is applied
+            // } else {
+            //     genresWrapper.style.display = "none";
+            // }
         });
 
         document.addEventListener('click', function(event) {
             if (!container.contains(event.target)) {
-                genresWrapper.style.display = "none";
+                // genresWrapper.style.display = "none";
+                genresWrapper.classList.remove("active");
+                // if (!container.contains(event.target)) {
+                //     genresWrapper.style.display = "none";
+                // }
             }
         });
     }
