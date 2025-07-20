@@ -1,7 +1,7 @@
 <html>
 
 <head>
-  <title>Anime Screen</title>
+  <title>Zenith</title>
   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/styles.css" />
@@ -9,7 +9,7 @@
 
 <body>
   <header>
-    <h1>As</h1>
+    <h1>Z</h1>
     <ul class="nav-bar" id="nav-bar">
           <li><a href="#">Home</a></li>
           <li><a href="#">Movies</a></li>

@@ -58,7 +58,7 @@
 
 /* Admin movie action button */
 
-.genre-btn,
+.filter-btn,
 .search-input,
 .add-movie-btn {
   padding: 6px;
@@ -70,13 +70,13 @@
   cursor: pointer;
 }
 
-.genre-btn {
+.filter-btn {
   background-color: #130f40e3;
   color: #ffffff;
   width: 120px;
 }
 
-.genre-btn:hover {
+.filter-btn:hover {
   background-color: #130f40;
 }
 .search-input {
@@ -157,14 +157,12 @@
 }
 
 .delete-btn {
-  background-color: #1b165ae3;
+  background-color: #eb293c6b;
   color: #ffffff;
 }
 
 .delete-btn:hover {
-  background-color: #221c69;
-  
-
+  background-color: #eb293c7a;
 }
 
 /* Movie Form */
@@ -189,46 +187,6 @@
 .movie-form-grid .submit-btn:hover {
   background-color: #ffffff;
 }
-
-/* sort and geners */
-.admin-container select{
-  padding: 4px 7px;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  background-color: #ffffff;
-  outline: none;
-}
-
-.genres-wrapper {
-  display: none;
-  width: 150px;
-  height: auto;
-  position: absolute;
-  background: white;
-  padding: 10px;
-  border: 1px solid #ccc;
-  top: 27%;
-  left:21%;
-  z-index: 1000;
-  flex-direction: column;
-  gap:10px;
-  border-radius: 5px;
-}
-
-.genres-wrapper.active {
-  display: flex;
-}
-
-.genre-container {
-  height: auto;
-  position: relative;
-  display: inline-block;
-  background-color: red;
-}
-
 
 @media only screen and (max-width: 768px) {
   .delete-btn,
