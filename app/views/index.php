@@ -31,6 +31,7 @@
 <main>
   <div class="home-container">
     <h1>Anime Screen</h1>
+    <p>Discover your next favorite anime</p>
     <div class="card-container">
       <div class="card">
         <div class="arrow">
