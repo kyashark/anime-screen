@@ -1,7 +1,7 @@
 <html>
 
 <head>
-  <title>Zenith</title>
+  <title>Anime Screen</title>
   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/styles.css" />
@@ -9,7 +9,7 @@
 
 <body>
   <header>
-    <h1>Z</h1>
+    <h1>As</h1>
     <ul class="nav-bar" id="nav-bar">
           <li><a href="#">Home</a></li>
           <li><a href="#">Movies</a></li>
@@ -30,7 +30,7 @@
   
 <main>
   <div class="home-container">
-    <h1>Zenith Movies Votes</h1>
+    <h1>Anime Screen</h1>
     <div class="card-container">
       <div class="card">
         <div class="arrow">

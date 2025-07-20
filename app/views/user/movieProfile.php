@@ -12,7 +12,7 @@
 
 <body>
 <header>
-    <h1>Z</h1>
+    <h1>As</h1>
     <ul class="nav-bar" id="nav-bar">
         <li><a href="<?= BASE_URL ?>/user/home">Home</a></li>
         <li><a href="<?= BASE_URL ?>/movie/filter?type=movie&sort=random">Movies</a></li>

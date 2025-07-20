@@ -12,7 +12,7 @@ class User{
         
         $passwordHash = password_hash($password,PASSWORD_BCRYPT);
 
-        $is_admin = 0;
+        $is_admin = 1;
 
         $stmt = $this->db->prepare("INSERT INTO users(username,email,password,is_admin) VALUES (?,?,?,?)");
         return $stmt->execute([$username,$email,$passwordHash,$is_admin]);

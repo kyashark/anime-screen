@@ -1,6 +1,6 @@
 RewriteEngine On
 # Ensure that .htaccess is enabled
-RewriteBase /zenith-movies/public/
+RewriteBase /anime-screen/public/
 
 # Accept loading of actual file and directories
 
