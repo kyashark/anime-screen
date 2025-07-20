@@ -9,7 +9,7 @@
 
 <body>
   <header>
-    <h1>As</h1>
+    <h1>A</h1>
     <ul class="nav-bar" id="nav-bar">
           <li><a href="<?= BASE_URL ?>/user/home">Home</a></li>
           <li><a href="<?= BASE_URL ?>/movie/filter?type=movie&sort=random">Movies</a></li>
@@ -37,6 +37,7 @@
 <main>
   <div class="home-container">
     <h1>Anime Screen</h1>
+    <h3>Discover your next favorite anime filled with emotion, adventure, and unforgettable characters.</h3>
     <div class="card-container">
       <div class="card">
         <div class="arrow">

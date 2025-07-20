@@ -9,7 +9,18 @@
   width: 80%;
   color: #ffffff;
   font-weight: 500;
-  margin-bottom: 25px;
+ 
+}
+
+.home-container h3{
+  color:#ffffff;
+font-weight: 200;
+letter-spacing: 1.5px;
+font-size: 1.4rem;
+ margin-bottom: 90px;
+ margin-top: 20px;
+ line-height: 40px;
+
 }
 
 .card-container {
@@ -20,6 +31,7 @@
   gap: 20px;
   grid-auto-flow: column;
   padding-bottom: 20px;
+  margin-top:20px;
 }
 
 .card {
@@ -30,7 +42,8 @@
   justify-content: space-between;
   height: 120px;
   border-radius: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
+  padding-left: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 4;
 }
@@ -53,9 +66,11 @@
 }
 
 .card p {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   color: #ffffff;
   padding: 0 20px;
+  letter-spacing: 1px;
+
 }
 
 .arrow {
@@ -66,8 +81,8 @@
   justify-content: right;
   align-self: flex-end;
   padding: 5px;
-  margin-top: 4px;
-  margin-right: 9px;
+  margin-top: 10px;
+  margin-right: 12px;
 }
 
 .arrow img {
@@ -107,11 +122,11 @@
 
   .home-container h1 {
     font-size: 5.5rem;
-    margin-bottom: 40px;
+
   }
 
   .card-container {
-    width: 95%;
+    width: 100%;
   }
 }
 
@@ -119,10 +134,14 @@
   .home-container {
     margin: 30px auto;
   }
-  .home-container h1 {
+  .home-container h1{
     font-size: 4.2rem;
     text-align: center;
   }
+
+   .home-container h3{
+    text-align: center;
+   }
 
   .card {
     height: 110px;
@@ -141,7 +160,8 @@
     font-size: 3.3rem;
   }
 
-  .card p {
-    font-size: 1.5rem;
+  .home-container h3 {
+    font-size: 1.4rem;
   }
+
 }
