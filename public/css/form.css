@@ -92,6 +92,8 @@
 
 .form-text {
   font-size: 1rem;
+  margin-top:10px;
+  letter-spacing: 0.5px;
 }
 
 .form-text a {
