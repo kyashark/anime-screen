@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Zenith</title>
+  <title>Anime Screen</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/styles.css" />
@@ -13,7 +13,7 @@
 
 <body>
 <header>
-    <h1>Asc</h1>
+    <h1>A</h1>
     <ul class="nav-bar" id="nav-bar">
         <li><a href="<?= BASE_URL ?>/user/home">Home</a></li>
         <li><a href="<?= BASE_URL ?>/movie/filter?type=movie&sort=random">Movies</a></li>
@@ -38,7 +38,6 @@
 
   <main>
   <div class="movie-container">
-
 <div class="sort-container">
   <section>
     <button class="sort" data-sort="top">Top Voted</button>

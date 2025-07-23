@@ -9,19 +9,18 @@ if (!empty($movies)) {
 }
 ?>
 <head>
-  <title>Zenith</title>
+  <title>Anime Screen</title>
   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/styles.css" />
   <style>
-
 
 </style>
 </head>
 
 <body>
 <header>
-    <a href="<?= BASE_URL ?>/user/admin">
+    <a href="<?= BASE_URL ?>/admin/dashboard">
         <div class="back">
             <span></span>
             <span></span>
@@ -36,7 +35,7 @@ if (!empty($movies)) {
                 <?php echo $username ?>
              </span>
         </a>
-        <a href="<?= BASE_URL ?>/auth/register"><button class="btn logout">Logout</button></a>
+        <a href="<?= BASE_URL ?>/auth/logout"><button class="btn logout">Logout</button></a>
     </div>
      
 </header>
@@ -61,7 +60,7 @@ if (!empty($movies)) {
   <div class="genres-wrapper" id="genres-wrapper">
     <label><input type="checkbox" class="genre" data-genre="adventure"> Adventure</label>
     <label><input type="checkbox" class="genre" data-genre="comedy"> Comedy</label>
-  <label><input type="checkbox" class="genre" data-genre="drama"> Drama</label>
+    <label><input type="checkbox" class="genre" data-genre="drama"> Drama</label>
     <label><input type="checkbox" class="genre" data-genre="horror"> Horror</label>
     <label><input type="checkbox" class="genre" data-genre="sci-fi"> Sci-Fi</label>
     <label><input type="checkbox" class="genre" data-genre="thriller"> Thriller</label>
