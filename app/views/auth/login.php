@@ -14,20 +14,20 @@
 
             <div class="form-container">
                 <h1>Login</h1>
-                <form method="POST" action="<?= BASE_URL ?>/auth/login">
+                <form method="POST" action="<?= BASE_URL ?>/auth/login" id="login-form">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username">
-                    <span class="error-msg">
+                    <span class="error-msg" id="username-error">
                         <?php echo $errors['username'] ?? ''; ?>
                     </span>
 
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password">
-                    <span class="error-msg">
+                    <span class="error-msg" id="password-error">
                         <?php echo $errors['password'] ?? ''; ?>
                     </span>
 
-                    <p class="error-text">
+                    <p class="error-msg" id="credentials-error">
                         <?php echo $errors['credentials'] ?? ''; ?>
                     </p>
 
@@ -38,7 +38,7 @@
         </div>
         <section>
 
-        <script src="<?= BASE_URL ?>/js/main.js"></script>
+        <script src="<?= BASE_URL ?>/js/validation.js"></script>
 </body>
 
 </html>
