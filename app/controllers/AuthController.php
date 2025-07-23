@@ -12,123 +12,138 @@ class AuthController extends Controller{
         Session::Start();
     }
 
+        // Show login page
+    public function loginPage() {
+        $this->view("auth/login");
+    }
+
+    // Show registration page
+    public function registerPage() {
+        $this->view('auth/register');
+    }
+
 
     // Handle login request
-    public function login(){ 
 
-        $errors = [
-            'username' => '',
-            'password' => '',
-            'credentials' => ''
-        ];
+    public function login() {
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $username = htmlspecialchars(trim($_POST['username']));
-            $password = trim($_POST['password']);
+    $errors = [];
 
-            // Validate username
-            if(empty($username)){
-                $errors['username'] = "Username is required.";
-             }
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $username = htmlspecialchars(trim($_POST['username']));
+        $password = trim($_POST['password']);
 
-            // Validate password
-            if(empty($password)){
-                $errors['password'] = "Password is required.";
-            }
+        if (empty($username)) {
+            $errors['username'] = "Username is required.";
+        }
 
-            if(empty(array_filter($errors, fn($value) => !empty($value)))){
+        if (empty($password)) {
+            $errors['password'] = "Password is required.";
+        }
 
-                // Attempt login
-                $user = $this->userModel->login($username, $password);
+        // Only proceed with authentication if no validation errors
+        if (empty($errors)) {
+            $user = $this->userModel->login($username, $password);
 
-                if($user){
-                    // Successful login
-                    Session::set('user_id', $user['id']);
-                    Session::set('username', $user['username']);
-                    Session::set('is_admin', $user['is_admin']);
+            if ($user) {
+                Session::start();
+                Session::set('user_id', $user['id']);
+                Session::set('username', $user['username']);
+
+                $rolesRaw = $this->userModel->getRoles($user['id']);
+                $roles = array_column($rolesRaw, 'name');
+                Session::set('roles', $roles);
                 
-                    Middleware::redirectIfLoggedIn();
-                }else{
-                    $errors['credentials'] = 'Invalid username or password';
-                }
+                Middleware::redirectIfLoggedIn();
+                return; // return here to prevent showing the view
+             
+            } else {
+               $errors['credentials'] = 'Invalid username or password';
             }
         }
+
         $this->view('auth/login', ['errors' => $errors]);
+
+    } else {
+        $this->view('auth/login');
     }
+}
 
 
     // Handle register request
-    public function register(){
+ public function register() {
 
-        $errors = [
-            'username' => '',
-            'email' => '',
-            'password' => '',
-            'confirm-password' => '',
-            'registration' => ''
-        ];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $username = htmlspecialchars(trim($_POST['username']));
+        $email = htmlspecialchars(trim($_POST['email']));
+        $password = trim($_POST['password']);
+        $confirmPassword = trim($_POST['confirm-password']);
 
-        $username = '';
-        $email = '';
+        $errors = [];
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            $username = htmlspecialchars(trim($_POST['username']));
-            $email = htmlspecialchars(trim($_POST['email']));
-            $password = trim($_POST['password']);
-            $confirmPassword = trim($_POST['confirm-password']);
+        // Validate username
+        if (empty($username)) {
+            $errors['username'] = "Username is required";
+        } elseif (strlen($username) < 3) {
+            $errors['username'] = "Username must be at least 3 characters";
+        }
 
-            // Validate username
-            if(empty($username)){
-                $errors['username'] = "Username is required.";
-            }elseif(strlen($username)< 4){
-                $errors['username'] = "Username must be at least 4 characters";
-            }
+        // Validate email
+        if (empty($email)) {
+            $errors['email'] = "Email is required";
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors['email'] = "Invalid email address";
+        } elseif ($this->userModel->emailExists($email)) {
+            $errors['email'] = "This email is already in use";
+        }
 
-            // Validate Email
-            if (empty($email)) {
-                $errors['email'] = "Email is required";
-            } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $errors['email'] = "Invalid email address.";
-            } elseif ($this->userModel->emailExists($email)) {
-                $errors['email'] = "This email is already in use";
-            }
+        // Validate password
+        if (empty($password)) {
+            $errors['password'] = "Password is required.";
+        } elseif (strlen($password) < 8) {
+            $errors['password'] = "Password must be at least 8 characters long";
+        } elseif (!preg_match("/[A-Z]/", $password)) {
+            $errors['password'] = "Password must contain at least one uppercase letter";
+        } elseif (!preg_match("/[a-z]/", $password)) {
+            $errors['password'] = "Password must contain at least one lowercase letter";
+        } elseif (!preg_match("/[0-9]/", $password)) {
+            $errors['password'] = "Password must contain at least one number";
+        } elseif (!preg_match("/[!@#$%^&*(),.?\":{}|<>]/", $password)) {
+            $errors['password'] = "Password must contain at least one special character";
+        }
 
-            // Validate password
-            if (empty($password)) {
-                $errors['password'] = "Password is required.";
-            } elseif (strlen($password) < 6) {
-                $errors['password'] = "Password must be at least 6 characters long";
-            } elseif (!preg_match("/[A-Z]/", $password)) {
-                $errors['password'] = "Password must contain at least one uppercase";
-            } elseif (!preg_match("/[0-9]/", $password)) {
-                $errors['password'] = "Password must contain at least one number";
-            }
+        // Confirm password
+        if (empty($confirmPassword)) {
+            $errors['confirm_password'] = "Confirm Password is required.";
+        } elseif ($password !== $confirmPassword) {
+            $errors['confirm_password'] = "Passwords do not match.";
+        }
 
-            // Check confirm password
-            if (empty($confirmPassword)) {
-                $errors['confirm-password'] = "Confirm Password is required.";
-            } elseif ($password !== $confirmPassword) {
-                $errors['confirm-password'] = "Passwords do not match.";
-            }
-
-            if(empty(array_filter($errors, fn($value) => !empty($value)))){
-                if($this->userModel->register($username,$email,$password)){
+        if (empty($errors)) {
+            try {
+                if ($this->userModel->register($username, $email, $password)) {
+                    $userId = $this->userModel->getLastInsertedId();
+                    
+                    $this->userModel->assignRole($userId, 'admin');
+                
                     header('Location: ' . BASE_URL . '/auth/login');
                     exit;
-                }else{
+                } else {
                     $errors['registration'] = "Registration failed. Please try again.";
                 }
+            } catch (Exception $e) {
+                // Log the error for debugging
+                error_log("Registration error: " . $e->getMessage());
+                $errors['registration'] = "Registration failed. Please try again.";
             }
         }
-        // $this->view('auth/register', ['errors' => $errors]);
+        
+        $this->view('auth/register', ['errors' => $errors]);
 
-        $this->view('auth/register', [
-            'errors' => $errors,
-            'username' => $username,
-            'email' => $email,
-        ]);
-
+    } else {
+        $this->view('auth/register');
     }
+}
 
 
     // Logout user
