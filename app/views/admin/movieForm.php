@@ -37,10 +37,14 @@
             <label for="movie-name">Movie Name</label>
             <input type="text" id="movie-name" name="movie-name" required>
         </div>
-        <div>
-            <label for="movie-type">Movie Type</label>
-            <input type="text" id="movie-type" name="movie-type" required>
-        </div>
+<div>
+  <label for="movie-type">Movie Type</label>
+  <select id="movie-type" name="movie-type" required>
+    <option value="">Select Type</option>
+    <option value="Movie">Movie</option>
+    <option value="Series">Series</option>
+  </select>
+</div>
         <div>
             <label for="release-date">Release Date</label>
             <input type="date" id="release-date" name="release-date" required>
