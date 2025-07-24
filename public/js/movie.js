@@ -68,3 +68,4 @@ function initializeCardInteractions() {
   initializeCardHover();
   initializeHeartClick();
 }
+

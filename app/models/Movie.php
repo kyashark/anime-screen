@@ -5,6 +5,7 @@ class Movie{
 
     public function __construct(){
         $this->db = Database::connect();
+    
     }
 
 
@@ -127,6 +128,38 @@ class Movie{
         return false;
     }
 }
+
+
+public function getImageByMovieId($movieId) {
+    $stmt = $this->db->prepare("SELECT image FROM movies WHERE id = :id LIMIT 1");
+    $stmt->execute([':id' => $movieId]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result ? $result['image'] : null;
+}
+
+
+
+public function deleteMovieById($movieId) {
+    try {
+        $this->db->beginTransaction();
+
+        // Delete from movie_genres first (foreign key constraint)
+        $stmt = $this->db->prepare("DELETE FROM movie_genres WHERE movie_id = :id");
+        $stmt->execute([':id' => $movieId]);
+
+        // Delete the movie record
+        $stmt = $this->db->prepare("DELETE FROM movies WHERE id = :id");
+        $stmt->execute([':id' => $movieId]);
+
+        $this->db->commit();
+        return true;
+    } catch (PDOException $e) {
+        $this->db->rollBack();
+        error_log($e->getMessage());
+        return false;
+    }
+}
+
 
 }
 

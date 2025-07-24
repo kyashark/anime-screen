@@ -31,7 +31,7 @@
   
 <main>
 <div class="admin-container">
-        <form class="movie-form-grid" method="POST" action="<?= BASE_URL ?>/movie/storeMovie" enctype="multipart/form-data">
+        <form class="movie-form-grid" method="POST" action="<?= BASE_URL ?>/movie/store" enctype="multipart/form-data">
 
         <div>
             <label for="movie-name">Movie Name</label>

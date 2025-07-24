@@ -171,6 +171,7 @@ function updateMovies() {
     syncSortSelector();
 }
 
+
 function fetchMovies() {
     const url = window.location.href;
     const movieGrid = document.getElementById("movie-grid");
@@ -216,7 +217,7 @@ function updateMovieGrid(movies) {
     movies.forEach((movie) => {
         const movieCard = `
             <div class="movie-card" 
-                 style="background-image: url('${BASE_URL}/images/${movie.image}');" 
+                 style="background-image: url('${BASE_URL}/upload/${movie.image}');" 
                  data-id="${movie.id}">
                 <div class="card-label">
                     <span>${movie.movie_name}</span>
@@ -236,10 +237,12 @@ function updateMovieGrid(movies) {
     }
 }
 
+
+
 function updateMovieTable(movies) {
     const movieDataContainer = document.querySelector(".movie-data");
     movieDataContainer.innerHTML = "";
-    
+
     movies.forEach((movie) => {
         const movieRow = `
             <div class="movie-table-data">
@@ -261,13 +264,42 @@ function updateMovieTable(movies) {
                 <div>${movie.movie_votes}</div>
                 <div>
                     <button class="update-btn">More</button>
-                    <button class="delete-btn">Delete</button>
+                    <button class="delete-btn" data-id="${movie.id}">Delete</button>
                 </div>
             </div>
         `;
         movieDataContainer.innerHTML += movieRow;
     });
+
+
+    document.querySelectorAll(".delete-btn").forEach((btn) => {
+        btn.addEventListener("click", function () {
+            const movieId = this.dataset.id;
+            if (confirm("Are you sure you want to delete this movie?")) {
+                fetch(`${BASE_URL}/movie/delete`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                        "X-Requested-With": "XMLHttpRequest"
+                    },
+                    body: `movie_id=${movieId}`
+                })
+                .then((res) => res.text())
+                .then((msg) => {
+                    console.log("Server response:", msg);
+                    fetchMovies();
+                })
+                .catch((err) => {
+                    console.error("Delete failed", err);
+                });
+            }
+        });
+    });
 }
+
+
+
+
 
 function loadFiltersFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -303,18 +335,6 @@ function loadFiltersFromUrl() {
 
     updateMovies();
 }
-
-// function syncSortSelector() {
-//     const activeSortButton = document.querySelector(".sort.active");
-//     if (!activeSortButton) return;
-    
-//     const currentSort = activeSortButton.dataset.sort || "random";
-//     const sortSelector = document.querySelector(".sort-selector");
-
-//     if (sortSelector) {
-//         sortSelector.value = currentSort;
-//     }
-// }
 
 function syncSortSelector() {
     const activeSortButton = document.querySelector(".sort.active");
