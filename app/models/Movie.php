@@ -84,7 +84,50 @@ class Movie{
             $stmt->execute();
 
             return $stmt->fetch(PDO::FETCH_ASSOC);
-        }        
+        }  
+        
+        
+
+  public function insertMovie($name, $type, $releaseDate, $description, $image, $genres) {
+    try {
+        $this->db->beginTransaction();
+
+        $stmt = $this->db->prepare("INSERT INTO movies (movie_name, type, release_date, description, image) VALUES (:name, :type, :release, :desc, :image)");
+        $stmt->execute([
+            ':name' => $name,
+            ':type' => $type,
+            ':release' => $releaseDate,
+            ':desc' => $description,
+            ':image' => $image
+        ]);
+
+        $movieId = $this->db->lastInsertId();
+
+        foreach ($genres as $genreName) {
+            // First get genre_id by genre name
+            $stmt = $this->db->prepare("SELECT genre_id FROM genres WHERE genre_name = :name LIMIT 1");
+            $stmt->execute([':name' => $genreName]);
+            $genre = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($genre) {
+                $genreId = $genre['genre_id'];
+                $stmt = $this->db->prepare("INSERT INTO movie_genres (movie_id, genre_id) VALUES (:movieId, :genreId)");
+                $stmt->execute([
+                    ':movieId' => $movieId,
+                    ':genreId' => $genreId
+                ]);
+            }
+        }
+
+        $this->db->commit();
+        return true;
+    } catch (PDOException $e) {
+        $this->db->rollBack();
+         echo "DB Error: " . $e->getMessage(); 
+        return false;
+    }
+}
+
 }
 
 /*

@@ -31,26 +31,27 @@
   
 <main>
 <div class="admin-container">
-        <form class="movie-form-grid">
+        <form class="movie-form-grid" method="POST" action="<?= BASE_URL ?>/movie/storeMovie" enctype="multipart/form-data">
+
         <div>
             <label for="movie-name">Movie Name</label>
-            <input type="text" id="movie-name" name="movie-name">
+            <input type="text" id="movie-name" name="movie-name" required>
         </div>
         <div>
             <label for="movie-type">Movie Type</label>
-            <input type="text" id="movie-name" name="movie-name">
+            <input type="text" id="movie-type" name="movie-type" required>
         </div>
         <div>
             <label for="release-date">Release Date</label>
-            <input type="date" id="release-date" name="release-date">
+            <input type="date" id="release-date" name="release-date" required>
         </div>
         <div>
             <label for="image-cover">Upload Image Cover</label>
-            <input type="file" id="image-cover" name="image-cover">
+            <input type="file" id="image-cover" name="image-cover" required>
         </div>
         <div>
             <label for="movie-details">Movie Details</label>
-            <textarea id="movie-details" name="movie-details"></textarea>
+            <textarea id="movie-details" name="movie-details" required></textarea>
         </div>
         <div>
             <label>Select Genres</label>
@@ -80,31 +81,7 @@
                         <span class="checkmark"></span>
                         <span>Horror</span>
                     </label>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" name="genres[]" value="Action">
-                        <span class="checkmark"></span>
-                        <span>Action</span>
-                    </label>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" name="genres[]" value="Adventure">
-                        <span class="checkmark"></span>
-                        <span>Adventure</span>
-                    </label>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" name="genres[]" value="Comedy">
-                        <span class="checkmark"></span>
-                        <span>Comedy</span>
-                    </label>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" name="genres[]" value="Drama">
-                        <span class="checkmark"></span>
-                        <span>Drama</span>
-                    </label>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" name="genres[]" value="Horror">
-                        <span class="checkmark"></span>
-                        <span>Horror</span>
-                    </label>
+                   
             </div>
         </div>
         <div><input type="reset" value="Clear" class="clear-btn"></div>
