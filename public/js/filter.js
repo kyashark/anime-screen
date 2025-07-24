@@ -116,37 +116,31 @@ function initializeGenres(genreButtons) {
     });
 }
 
+// Admin filter genres
+
 function initializeManagementFilters() {
     const toggleGenres = document.getElementById("toggle-genres");
     const genresWrapper = document.getElementById("genres-wrapper");
-    const container = document.getElementById('genre-selector');
+    const container = document.getElementById("genre-selector");
 
     if (toggleGenres && genresWrapper) {
         toggleGenres.addEventListener("click", (e) => {
             e.stopPropagation();
-            // genresWrapper.style.display = 
-            //     genresWrapper.style.display === "none" ? "flex" : "none";
-            //     genresWrapper.style.flexDirection = "column";
-            genresWrapper.classList.toggle("active");
-            // if (genresWrapper.style.display === "none" || genresWrapper.style.display === "") {
-            //     genresWrapper.style.display = "flex";
-            //     genresWrapper.style.flexDirection = "column"; // Ensure flex direction is applied
-            // } else {
-            //     genresWrapper.style.display = "none";
-            // }
+            const isVisible = genresWrapper.style.display === "flex";
+            genresWrapper.style.display = isVisible ? "none" : "flex";
+            genresWrapper.style.flexDirection = "column";
+            genresWrapper.classList.toggle("active", !isVisible);
         });
 
         document.addEventListener('click', function(event) {
             if (!container.contains(event.target)) {
-                // genresWrapper.style.display = "none";
+                genresWrapper.style.display = "none";
                 genresWrapper.classList.remove("active");
-                // if (!container.contains(event.target)) {
-                //     genresWrapper.style.display = "none";
-                // }
             }
         });
     }
 }
+
 
 function updateMovies() {
     let sort, activeGenres;

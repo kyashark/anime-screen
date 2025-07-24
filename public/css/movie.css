@@ -1,9 +1,10 @@
 .movie-container {
   width: 78vw;
   display: block;
-  margin: 20px auto;
+  margin: 50px auto;
   height: auto;
-  min-height: 100vh;
+  /* background-color: lightcoral; */
+  align-self: flex-start;
 }
 
 .sort-container {
@@ -63,11 +64,10 @@
 }
 
 .genre-container {
-  margin-top: 18px;
+  margin-top: 40px;
   display: flex;
   align-items: left;
   justify-content: left;
-  margin-bottom: 35px;
   gap: 20px;
   overflow-x: auto; /* Enable horizontal scrolling */
   scrollbar-width: none; /* Hide scrollbar for Firefox */
@@ -93,14 +93,15 @@
 .movie-grid {
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(auto-fit, 185px);
+  grid-template-columns: repeat(auto-fit, 200px);
   grid-auto-flow: row;
   margin-bottom: 20px;
-  gap: 32px;
+  gap: 40px;
+  margin-top: 50px;
 }
 
 .movie-card {
-  height: 250px;
+  height: 260px;
   background-color: rgb(233, 233, 245);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 7px;
@@ -163,6 +164,37 @@
   color: #f33232;
 }
 
+#genres-wrapper {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 10;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  width: 150px;
+  margin-top: 5px;
+  border-radius: 3px;
+}
+
+#toggle-genres{
+  padding: 6px;
+width: 150px;
+}
+
+.sort-selector {
+  width: 160px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+}
+
+.sort-container input {
+  width: 160px;
+}
+
+
+
 /* Responsive Movie Page */
 
 @media only screen and (max-width: 1280px) {
@@ -222,14 +254,6 @@
     .sort-container input,
     .sort-container button {
       font-size: 0.9rem;
-    }
-    .sort-selector {
-      width: 160px;
-      font-size: 0.9rem;
-    }
-
-    .sort-container input {
-      width: 130px;
     }
 
     .movie-grid {

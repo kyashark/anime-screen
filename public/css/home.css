@@ -9,18 +9,7 @@
   width: 80%;
   color: #ffffff;
   font-weight: 500;
- 
-}
-
-.home-container h3{
-  color:#ffffff;
-font-weight: 200;
-letter-spacing: 1.5px;
-font-size: 1.4rem;
- margin-bottom: 90px;
- margin-top: 20px;
- line-height: 40px;
-
+  margin-bottom: 90px
 }
 
 .card-container {
@@ -31,7 +20,7 @@ font-size: 1.4rem;
   gap: 20px;
   grid-auto-flow: column;
   padding-bottom: 20px;
-  margin-top:20px;
+  margin-top: 20px;
 }
 
 .card {
@@ -70,7 +59,6 @@ font-size: 1.4rem;
   color: #ffffff;
   padding: 0 20px;
   letter-spacing: 1px;
-
 }
 
 .arrow {
@@ -89,7 +77,6 @@ font-size: 1.4rem;
   width: 16px;
   height: 16px;
 }
-
 
 @media only screen and (max-width: 1280px) {
   .home-container {
@@ -110,6 +97,7 @@ font-size: 1.4rem;
     width: 100%;
   }
 
+  
   .card-container {
     width: 90%;
   }
@@ -122,8 +110,9 @@ font-size: 1.4rem;
 
   .home-container h1 {
     font-size: 5.5rem;
-
   }
+
+
 
   .card-container {
     width: 100%;
@@ -134,14 +123,16 @@ font-size: 1.4rem;
   .home-container {
     margin: 30px auto;
   }
-  .home-container h1{
+  .home-container h1 {
     font-size: 4.2rem;
     text-align: center;
+    margin-bottom: 50px;
+    margin-top: 20px;
   }
 
-   .home-container h3{
-    text-align: center;
-   }
+
+
+  
 
   .card {
     height: 110px;
@@ -160,8 +151,5 @@ font-size: 1.4rem;
     font-size: 3.3rem;
   }
 
-  .home-container h3 {
-    font-size: 1.4rem;
-  }
-
+  
 }
