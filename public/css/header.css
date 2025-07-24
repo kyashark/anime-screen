@@ -46,6 +46,7 @@ header h1 {
 header h2{
   font-size: 1.8rem;
   color: #ffffff;
+  
 }
 
 
@@ -76,6 +77,15 @@ header h2{
   .nav-bar {
     gap: 50px;
   }
+  
+  header h2{
+  font-size: 1.7rem;
+  color: #ffffff;
+  padding-left: 25px;
+  
+}
+
+
 }
 
 @media only screen and (max-width: 640px) {

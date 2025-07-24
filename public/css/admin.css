@@ -6,6 +6,7 @@
   /* background-color: palevioletred; */
 }
 
+
 .movie-admin-action{
   width: 100%;
   display: flex;
@@ -113,6 +114,18 @@
 .movie-table-data > div:nth-child(7){
   flex-direction: column;
   align-items: center;
+}
+
+    .movie-admin-action{
+
+  display: flex;
+  flex-direction: column-reverse;
+  gap:20px;
+}
+
+.second-section{
+  display: flex;
+  justify-content: space-between;
 }
 
 }

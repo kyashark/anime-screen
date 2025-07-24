@@ -165,7 +165,8 @@
   place-content: center;
 }
 
-.movie-form-grid input {
+.movie-form-grid input,
+.movie-form-grid select {
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
@@ -173,6 +174,10 @@
   background-color: transparent;
   color: #ccc;
   font-size: 1rem;
+}
+
+.movie-form-grid select option{
+ color:#000000;
 }
 
 .movie-form-grid label {
@@ -209,6 +214,11 @@ textarea {
 
 .select-grid > label {
   display: flex;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Inverts black to white */
+  cursor: pointer;
 }
 
 /* Responsive */
