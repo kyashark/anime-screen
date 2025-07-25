@@ -61,11 +61,6 @@
             <label>Select Genres</label>
             <div class="select-grid">
                     <label class="custom-checkbox">
-                        <input type="checkbox" name="genres[]" value="Action">
-                        <span class="checkmark"></span>
-                        <span>Action</span>
-                    </label>
-                    <label class="custom-checkbox">
                         <input type="checkbox" name="genres[]" value="Adventure">
                         <span class="checkmark"></span>
                         <span>Adventure</span>
@@ -81,9 +76,29 @@
                         <span>Drama</span>
                     </label>
                     <label class="custom-checkbox">
+                        <input type="checkbox" name="genres[]" value="Fantasy">
+                        <span class="checkmark"></span>
+                        <span>Fantasy</span>
+                    </label>
+                    <label class="custom-checkbox">
                         <input type="checkbox" name="genres[]" value="Horror">
                         <span class="checkmark"></span>
                         <span>Horror</span>
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" name="genres[]" value="Romance">
+                        <span class="checkmark"></span>
+                        <span>Romance</span>
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" name="genres[]" value="Sci-Fi">
+                        <span class="checkmark"></span>
+                        <span>Sci-Fi</span>
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" name="genres[]" value="Thriller">
+                        <span class="checkmark"></span>
+                        <span>Thriller</span>
                     </label>
                    
             </div>

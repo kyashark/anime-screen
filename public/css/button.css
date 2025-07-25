@@ -188,11 +188,15 @@
   background-color: #ffffff;
 }
 
+
+
+
 @media only screen and (max-width: 768px) {
   .delete-btn,
   .update-btn {
     font-size: 0.8rem;
   }
+
 }
 
 @media only screen and (max-width: 475px) {
