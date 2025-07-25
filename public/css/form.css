@@ -63,6 +63,10 @@
   color: #eb293ca9;
 }
 
+.error-msg{
+  color: #eb293ca9;
+}
+
 .form-container form p {
   height: 10px;
   position: relative;

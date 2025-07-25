@@ -64,36 +64,96 @@ class movieController extends Controller{
     }
 
   // Store movies 
-  public function store() {
+
+public function store() {
+    $username = Session::get('username'); 
     Middleware::hasRole('admin');
 
+    $errors = [];
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $name = $_POST['movie-name'];
-        $type = $_POST['movie-type'];
-        $releaseDate = $_POST['release-date'];
-        $description = $_POST['movie-details'];
+        // Get input values safely
+        $name = trim($_POST['movie-name'] ?? '');
+        $type = trim($_POST['movie-type'] ?? '');
+        $releaseDate = $_POST['release-date'] ?? '';
+        $description = trim($_POST['movie-details'] ?? '');
         $genres = $_POST['genres'] ?? [];
-        $image = $_FILES['image-cover'];
+        $image = $_FILES['image-cover'] ?? null;
 
-       // Validate and move uploaded image
-       $image = $_FILES['image-cover'];
-       $imageName = basename($image['name']);
-       $targetPath = __DIR__ . '/../../public/upload/' . $imageName;
+        // Validate name
+        if (empty($name)) {
+            $errors['movie-name-error'] = "Movie name is required";
+        }
 
-      if (move_uploaded_file($image['tmp_name'], $targetPath)) {
-            $success = $this->movieModel->insertMovie($name, $type, $releaseDate, $description, $imageName, $genres);
+        // Validate type
+        if (empty($type)) {
+            $errors['movie-type-error'] = "Movie type is required";
+        }
 
-            if ($success) {
-                header('Location: ' . BASE_URL . '/movie/filter');
-                exit;
+        // Validate release date
+        if (empty($releaseDate)) {
+            $errors['release-date-error'] = "Release date is required";
+        } elseif (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $releaseDate)) {
+            $errors['release-date-error'] = "Invalid date format (YYYY-MM-DD)";
+        }
+
+        // Validate description
+        if (empty($description)) {
+            $errors['movie-details-error'] = "Movie description is required";
+        } elseif (str_word_count($description) > 100) {
+            $errors['movie-details-error'] = "Movie description must not exceed 100 words";
+        }
+
+        // Validate image
+        if (!$image || $image['error'] !== UPLOAD_ERR_OK) {
+            $errors['image-error'] = "Image upload failed";
+        } else {
+            $allowedTypes = ['image/jpeg', 'image/png'];
+            if (!in_array($image['type'], $allowedTypes)) {
+                $errors['image-error'] = "Only JPG and PNG images are allowed";
+            }
+
+            if ($image['size'] > 2 * 1024 * 1024) {
+                $errors['image-error'] = "Image must be less than 2MB";
+            }
+        }
+
+        // Check if no errors
+        if (empty($errors)) {
+            $imageName = basename($image['name']);
+            $targetPath = __DIR__ . '/../../public/upload/' . $imageName;
+
+            if (move_uploaded_file($image['tmp_name'], $targetPath)) {
+                $success = $this->movieModel->insertMovie($name, $type, $releaseDate, $description, $imageName, $genres);
+
+                if ($success) {
+                    header('Location: ' . BASE_URL . '/movie/filter');
+                    exit;
+                } else {
+                    $errors['general'] = "Failed to add movie to the database";
+                }
             } else {
-                echo "Failed to add movie.";
-         }
+                $errors['image-error'] = "Failed to move uploaded image";
+            }
+        }
+
+        $this->view('admin/movieForm', [
+            'username' => $username,
+        'errors' => $errors,
+        'old' => [
+        'movie-name' => $name,
+        'movie-type' => $type,
+        'release-date' => $releaseDate,
+        'movie-details' => $description,
+        'genres' => $genres
+    ]
+]);
     } else {
-        echo "Invalid Request";
+        echo "Invalid request method.";
     }
 }
-}
+
+
 
 public function delete() {
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -126,10 +186,5 @@ public function delete() {
         }
     }
 }
-
-
-
-
-
     
 }
