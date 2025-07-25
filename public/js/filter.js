@@ -52,23 +52,6 @@ function initializeManagementSorting(sortSelector) {
     });
 }
 
-// function initializeSorting(sortButtons, sortSelector) {
-//     sortButtons.forEach((button) => {
-//         button.addEventListener("click", () => {
-//             sortButtons.forEach((btn) => btn.classList.remove("active"));
-//             button.classList.add("active");
-//             updateMovies();
-//         });
-//     });
-
-//     sortSelector.addEventListener("change", () => {
-//         const selectedValue = sortSelector.value;
-//         sortButtons.forEach((button) => {
-//             button.classList.toggle("active", button.dataset.sort === selectedValue);
-//         });
-//         updateMovies();
-//     });
-// }
 function initializeSorting(sortButtons, sortSelector) {
     sortButtons.forEach((button) => {
         button.addEventListener("click", () => {

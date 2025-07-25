@@ -8,62 +8,63 @@ class Movie{
     
     }
 
-
-    public function getMovies($type = null, $sort = 'random', $genres = []) {
-        $query = "SELECT DISTINCT m.id,
-                        m.movie_name,
-                        m.release_date,
-                        m.movie_votes,
-                        m.image,
-                        m.type
+public function getMovies($type = null, $sort = 'random', $genres = []) {
+    $query = "SELECT m.id,
+                     m.movie_name,
+                     m.release_date,
+                     m.movie_votes,
+                     m.image,
+                     m.type,
+                     GROUP_CONCAT(g.genre_name SEPARATOR ',') AS genres
             FROM movies m
             LEFT JOIN movie_genres mg ON m.id = mg.movie_id 
             LEFT JOIN genres g ON mg.genre_id = g.genre_id";
-        
-        $conditions = [];
-        $params = [];
-    
-        // Add condition for type if provided
-        if (!empty($type)) {
-            $conditions[] = "m.type = :type";
-            $params[':type'] = $type;
-        }
-    
-        // Check for genres and use named placeholders
-        if (!empty($genres)) {
-            $placeholders = [];
-            foreach ($genres as $index => $genre) {
-                $placeholders[] = ":genre" . $index;
-                $params[":genre" . $index] = $genre;
-            }
-            $conditions[] = "g.genre_name IN (" . implode(",", $placeholders) . ")";
-        }
-    
-        // Append conditions if any exist
-        if (!empty($conditions)) {
-            $query .= ' WHERE ' . implode(' AND ', $conditions);
-        }
-    
-        // Sorting condition
-        switch ($sort) {
-            case 'top':
-                $query .= " ORDER BY m.movie_votes DESC";
-                break;
-            case 'new':
-                $query .= " ORDER BY m.release_date DESC";
-                break;
-            case 'alpha':
-                $query .= " ORDER BY m.movie_name ASC";
-                break;
-            default:
-                $query .= " ORDER BY RAND()";
-        }
-    
-        $stmt = $this->db->prepare($query);
-        $stmt->execute($params);
-    
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $conditions = [];
+    $params = [];
+
+    // Add condition for type if provided
+    if (!empty($type)) {
+        $conditions[] = "m.type = :type";
+        $params[':type'] = $type;
     }
+
+    // Check for genres and use named placeholders
+    if (!empty($genres)) {
+        $placeholders = [];
+        foreach ($genres as $index => $genre) {
+            $placeholders[] = ":genre" . $index;
+            $params[":genre" . $index] = $genre;
+        }
+        $conditions[] = "g.genre_name IN (" . implode(",", $placeholders) . ")";
+    }
+
+    if (!empty($conditions)) {
+        $query .= ' WHERE ' . implode(' AND ', $conditions);
+    }
+
+    $query .= " GROUP BY m.id ";
+
+    switch ($sort) {
+        case 'top':
+            $query .= " ORDER BY m.movie_votes DESC";
+            break;
+        case 'new':
+            $query .= " ORDER BY m.release_date DESC";
+            break;
+        case 'alpha':
+            $query .= " ORDER BY m.movie_name ASC";
+            break;
+        default:
+            $query .= " ORDER BY RAND()";
+    }
+
+    $stmt = $this->db->prepare($query);
+    $stmt->execute($params);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
 
     public function getMovie($movieId){
@@ -86,10 +87,13 @@ class Movie{
 
             return $stmt->fetch(PDO::FETCH_ASSOC);
         }  
-        
+    
         
 
-  public function insertMovie($name, $type, $releaseDate, $description, $image, $genres) {
+  
+  
+  
+        public function insertMovie($name, $type, $releaseDate, $description, $image, $genres) {
     try {
         $this->db->beginTransaction();
 
