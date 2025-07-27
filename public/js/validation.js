@@ -147,6 +147,127 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
+  // MOVIE FORM VALIDATIONS
+  const movieForm = document.getElementById("movie-form");
+    if (movieForm) {
+      const movieName = document.getElementById("movie-name");
+      const movieType = document.getElementById("movie-type");
+      const releaseDate = document.getElementById("release-date");
+      const movieDetails = document.getElementById("movie-details");
+      const imageCover = document.getElementById("image-cover");
+
+      const movieNameError = document.getElementById("movie-name-error");
+      const movieTypeError = document.getElementById("movie-type-error");
+      const releaseDateError = document.getElementById("release-date-error");
+      const movieDetailsError = document.getElementById("movie-details-error");
+      const imageError = document.getElementById("image-error");
+
+      function wordCount(text) {
+        return text.trim().split(/\s+/).filter(Boolean).length;
+      }
+
+      function validateMovieName() {
+        if (movieName.value.trim() === "") {
+          movieNameError.textContent = "Movie name is required";
+          return false;
+        }
+        movieNameError.textContent = "";
+        return true;
+      }
+
+      function validateMovieType() {
+        if (movieType.value === "") {
+          movieTypeError.textContent = "Movie type is required";
+          return false;
+        }
+        movieTypeError.textContent = "";
+        return true;
+      }
+
+      function validateReleaseDate() {
+        const dateVal = releaseDate.value;
+        if (dateVal === "") {
+          releaseDateError.textContent = "Release date is required";
+          return false;
+        } else if (!/^\d{4}-\d{2}-\d{2}$/.test(dateVal)) {
+          releaseDateError.textContent = "Invalid date format (YYYY-MM-DD).";
+          return false;
+        }
+        releaseDateError.textContent = "";
+        return true;
+      }
+
+      function validateMovieDetails() {
+        const words = wordCount(movieDetails.value);
+        if (movieDetails.value.trim() === "") {
+          movieDetailsError.textContent = "Movie description is required";
+          return false;
+        } else if (words > 100) {
+          movieDetailsError.textContent = `Description must not exceed 100 words. (${words} words entered)`;
+          return false;
+        }
+        movieDetailsError.textContent = "";
+        return true;
+      }
+
+      function validateImageCover() {
+        if (imageCover.files.length === 0) {
+          imageError.textContent = "Image upload is required";
+          return false;
+        }
+
+        const file = imageCover.files[0];
+        const allowedTypes = ["image/jpeg", "image/png"];
+        if (!allowedTypes.includes(file.type)) {
+          imageError.textContent = "Only JPG and PNG images are allowed";
+          return false;
+        } else if (file.size > 2 * 1024 * 1024) {
+          imageError.textContent = "Image size must be less than 2MB";
+          return false;
+        }
+
+        imageError.textContent = "";
+        return true;
+      }
+
+      // Clear error on focus
+      [movieName, movieType, releaseDate, movieDetails, imageCover].forEach(input => {
+        input.addEventListener("focus", () => {
+          const errorSpan = document.getElementById(input.id + "-error");
+          if (errorSpan) errorSpan.textContent = "";
+        });
+      });
+
+      // Validate on blur
+      movieName.addEventListener("blur", validateMovieName);
+      movieType.addEventListener("blur", validateMovieType);
+      releaseDate.addEventListener("blur", validateReleaseDate);
+      movieDetails.addEventListener("blur", validateMovieDetails);
+      imageCover.addEventListener("change", validateImageCover);
+
+      // Real-time typing validation
+      movieName.addEventListener("input", validateMovieName);
+      movieType.addEventListener("input", validateMovieType);
+      releaseDate.addEventListener("input", validateReleaseDate);
+      movieDetails.addEventListener("input", validateMovieDetails);
+
+      // Final submit validation
+      movieForm.addEventListener("submit", function (e) {
+        const isValid =
+          validateMovieName() &&
+          validateMovieType() &&
+          validateReleaseDate() &&
+          validateMovieDetails() &&
+          validateImageCover();
+
+        if (!isValid) {
+          e.preventDefault();
+        }
+      });
+    }
+
+
+
   // AUTO HIDE ERRORS
 
   const errorMessages = document.querySelectorAll(".error-msg");

@@ -157,24 +157,28 @@
 }
 
 .delete-btn {
-  background-color: #eb293c6b;
+  /* background-color: #eb293c6b; */
   color: #ffffff;
+
+  background-color: #3c3582e3;
 }
 
 .delete-btn:hover {
-  background-color: #eb293c7a;
+  background-color: #665dcae3;
 }
 
 /* Movie Form */
 
 .movie-form-grid .clear-btn {
-  background-color: #eb293c9d;
   border: none;
   cursor: pointer;
+
+  background-color: #3c3582e3;
+  color: #ffffff;
 }
 
 .movie-form-grid .clear-btn:hover {
-  background-color: #eb293b;
+  background-color: #665dcae3;
 }
 
 .movie-form-grid .submit-btn {
@@ -188,15 +192,11 @@
   background-color: #ffffff;
 }
 
-
-
-
 @media only screen and (max-width: 768px) {
   .delete-btn,
   .update-btn {
     font-size: 0.8rem;
   }
-
 }
 
 @media only screen and (max-width: 475px) {

@@ -13,7 +13,7 @@ function initializeMovieInteractions() {
     const card = event.target.closest(".movie-card");
     if (card) {
       const movieId = card.dataset.id;
-      const baseUrl = window.location.origin + "/zenith-movies/public/movie/movieprofile";
+      const baseUrl = window.location.origin + "/anime-screen/public/movie/movieprofile";
       window.location.href = `${baseUrl}/${movieId}`;
     }
   });

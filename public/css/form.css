@@ -63,6 +63,10 @@
   color: #eb293ca9;
 }
 
+.error-msg{
+  color: #eb293ca9;
+}
+
 .form-container form p {
   height: 10px;
   position: relative;
@@ -220,6 +224,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(1); /* Inverts black to white */
   cursor: pointer;
 }
+
+
 
 /* Responsive */
 
