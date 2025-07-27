@@ -63,7 +63,7 @@
   color: #eb293ca9;
 }
 
-.error-msg{
+.error-msg {
   color: #eb293ca9;
 }
 
@@ -96,7 +96,7 @@
 
 .form-text {
   font-size: 1rem;
-  margin-top:10px;
+  margin-top: 10px;
   letter-spacing: 0.5px;
 }
 
@@ -114,13 +114,14 @@
 
 .movie-form-grid {
   width: 78vw;
-  height: 90%;
+  height: auto;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: 1fr 1.1fr 1.1fr 1.5fr 1fr;
   color: #ffffff;
   gap: 20px;
+  margin-top: 22px;
 }
 
 .movie-form-grid div {
@@ -128,45 +129,63 @@
 }
 
 .movie-form-grid > div:nth-child(1) {
-  grid-column: 1/3;
+  grid-column: 1;
   grid-row: 1;
+  /* background: tomato; */
+  height: 90px;
 }
 
 .movie-form-grid > div:nth-child(2) {
-  grid-column: 3;
+  grid-column: 2;
   grid-row: 1;
+  /* background: #dd9c90; */
 }
 
 .movie-form-grid > div:nth-child(3) {
-  grid-column: 4;
+  grid-column: 3;
   grid-row: 1;
+  /* background: #47ff91; */
 }
 
 .movie-form-grid > div:nth-child(4) {
-  grid-column: 1/3;
-  grid-row: 2;
+  grid-column: 4;
+  grid-row: 1;
+  /* background: #ff47a9; */
 }
 
 .movie-form-grid > div:nth-child(5) {
   grid-column: 1/3;
-  grid-row: 3/5;
+  grid-row: 2;
+  /* background: rgb(74, 71, 255); */
 }
 
 .movie-form-grid > div:nth-child(6) {
-  grid-column: 3/5;
-  grid-row: 2/5;
+  grid-column: 1/3;
+  grid-row: 3;
+  /* background: #a8220a; */
 }
 
 .movie-form-grid > div:nth-child(7) {
-  grid-column: 2;
-  grid-row: 5;
-  place-content: center;
+  grid-column: 1/5;
+  grid-row: 4/5;
+  /* background: #94ff47a6; */
 }
 
 .movie-form-grid > div:nth-child(8) {
-  grid-column: 3;
-  grid-row: 5;
+  grid-column: 3/5;
+  grid-row: 2/4;
   place-content: center;
+  /* background: #81aa8b; */
+}
+
+.movie-form-grid > div:nth-child(9) {
+  grid-column: 2/3;
+  grid-row: 5;
+}
+
+.movie-form-grid > div:nth-child(10) {
+  grid-column: 3/4;
+  grid-row: 5;
 }
 
 .movie-form-grid input,
@@ -180,8 +199,8 @@
   font-size: 1rem;
 }
 
-.movie-form-grid select option{
- color:#000000;
+.movie-form-grid select option {
+  color: #000000;
 }
 
 .movie-form-grid label {
@@ -192,7 +211,7 @@
 
 textarea {
   width: 100%;
-  height: 100%;
+  height: 80%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -204,10 +223,10 @@ textarea {
 .select-grid {
   width: 100%;
   height: 100%;
-  padding: 20px;
+  padding: 10px 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   gap: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -225,20 +244,28 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 
-
-
 /* Responsive */
 
 @media only screen and (max-width: 1536px) {
 }
 
 @media only screen and (max-width: 1280px) {
+  .movie-form-grid {
+    width: 80vw;
+  }
 }
 
 @media only screen and (max-width: 1024px) {
+  .movie-form-grid {
+    width: 82vw;
+  }
 }
 
 @media only screen and (max-width: 768px) {
+  .movie-form-grid {
+    width: 85vw;
+    font-size: 0.9rem;
+  }
 }
 
 @media only screen and (max-width: 640px) {
@@ -253,59 +280,74 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(6, auto); /* Change from 1fr to auto */
     gap: 20px;
+    margin: 30px 0;
   }
 
   .movie-form-grid div {
     width: 100%;
-    height: auto; /* Ensure height adjusts dynamically */
+    height: auto;
   }
 
   .movie-form-grid > div:nth-child(1) {
-    grid-column: 1 / 3;
+    grid-column: 1;
     grid-row: 1;
+    height: 80px;
   }
 
   .movie-form-grid > div:nth-child(2) {
-    grid-column: 1;
-    grid-row: 2;
+    grid-column: 2;
+    grid-row: 1;
+    height: 80px;
   }
 
   .movie-form-grid > div:nth-child(3) {
-    grid-column: 2;
+    grid-column: 1;
     grid-row: 2;
+    height: 80px;
   }
 
   .movie-form-grid > div:nth-child(4) {
-    grid-column: 1 / 3;
-    grid-row: 3;
+    grid-column: 2;
+    grid-row: 2;
+    height: 80px;
   }
 
   .movie-form-grid > div:nth-child(5) {
     grid-column: 1 / 3;
-    grid-row: 4;
+    grid-row: 3;
+    height: 80px;
   }
 
   .movie-form-grid > div:nth-child(6) {
     grid-column: 1 / 3;
-    grid-row: 5;
-    margin-top: 20px;
+    grid-row: 4;
+    height: 80px;
   }
 
   .movie-form-grid > div:nth-child(7) {
-    grid-column: 1;
-    grid-row: 6;
+    grid-column: 1/3;
+    grid-row: 5;
+    height: 140px;
   }
 
   .movie-form-grid > div:nth-child(8) {
-    grid-column: 2;
+    grid-column: 1/3;
     grid-row: 6;
+  }
+
+  .movie-form-grid > div:nth-child(9) {
+    grid-column: 1;
+    grid-row: 7;
+  }
+  .movie-form-grid > div:nth-child(10) {
+    grid-column: 2;
+    grid-row: 7;
   }
 
   .select-grid {
     padding: 10px;
   }
 }
-
 
 @media only screen and (max-width: 475px) {
   .form-container {

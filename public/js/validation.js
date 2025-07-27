@@ -155,12 +155,16 @@ document.addEventListener("DOMContentLoaded", function () {
       const releaseDate = document.getElementById("release-date");
       const movieDetails = document.getElementById("movie-details");
       const imageCover = document.getElementById("image-cover");
+      const author = document.getElementById("author");
+      const bgImage = document.getElementById("image-background");
 
       const movieNameError = document.getElementById("movie-name-error");
       const movieTypeError = document.getElementById("movie-type-error");
       const releaseDateError = document.getElementById("release-date-error");
       const movieDetailsError = document.getElementById("movie-details-error");
       const imageError = document.getElementById("image-error");
+      const authorError = document.getElementById("author-error");
+      const bgImageError = document.getElementById("bg-image-error");
 
       function wordCount(text) {
         return text.trim().split(/\s+/).filter(Boolean).length;
@@ -172,6 +176,15 @@ document.addEventListener("DOMContentLoaded", function () {
           return false;
         }
         movieNameError.textContent = "";
+        return true;
+      }
+
+      function validateAuthor() {
+        if (author.value.trim() === "") {
+          authorError.textContent = "Author name is required";
+          return false;
+        }
+        authorError.textContent = "";
         return true;
       }
 
@@ -230,13 +243,35 @@ document.addEventListener("DOMContentLoaded", function () {
         return true;
       }
 
+
+
+      function validateBgImage() {
+        if (bgImage.files.length === 0) {
+          bgImageError.textContent = "Background image is required";
+          return false;
+        }
+
+        const file = bgImage.files[0];
+        const allowedTypes = ["image/jpeg", "image/png"];
+        if (!allowedTypes.includes(file.type)) {
+          bgImageError.textContent = "Only JPG and PNG images are allowed";
+          return false;
+        } else if (file.size > 2 * 1024 * 1024) {
+          bgImageError.textContent = "Image size must be less than 2MB";
+          return false;
+        }
+
+        bgImageError.textContent = "";
+        return true;
+      }
+
       // Clear error on focus
-      [movieName, movieType, releaseDate, movieDetails, imageCover].forEach(input => {
-        input.addEventListener("focus", () => {
-          const errorSpan = document.getElementById(input.id + "-error");
-          if (errorSpan) errorSpan.textContent = "";
-        });
+    [movieName, movieType, releaseDate, movieDetails, imageCover, author, bgImage].forEach(input => {
+      input.addEventListener("focus", () => {
+        const errorSpan = document.getElementById(input.id + "-error");
+        if (errorSpan) errorSpan.textContent = "";
       });
+    });
 
       // Validate on blur
       movieName.addEventListener("blur", validateMovieName);
@@ -244,12 +279,15 @@ document.addEventListener("DOMContentLoaded", function () {
       releaseDate.addEventListener("blur", validateReleaseDate);
       movieDetails.addEventListener("blur", validateMovieDetails);
       imageCover.addEventListener("change", validateImageCover);
+      author.addEventListener("blur", validateAuthor);
+      bgImage.addEventListener("change", validateBgImage);  
 
       // Real-time typing validation
       movieName.addEventListener("input", validateMovieName);
       movieType.addEventListener("input", validateMovieType);
       releaseDate.addEventListener("input", validateReleaseDate);
       movieDetails.addEventListener("input", validateMovieDetails);
+      author.addEventListener("input", validateAuthor);
 
       // Final submit validation
       movieForm.addEventListener("submit", function (e) {
@@ -258,7 +296,9 @@ document.addEventListener("DOMContentLoaded", function () {
           validateMovieType() &&
           validateReleaseDate() &&
           validateMovieDetails() &&
-          validateImageCover();
+          validateImageCover() &&
+          validateAuthor() &&
+          validateBgImage();
 
         if (!isValid) {
           e.preventDefault();
