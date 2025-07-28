@@ -8,7 +8,9 @@ class Movie{
     
     }
 
-public function getMovies($type = null, $sort = 'random', $genres = []) {
+    // FETCH ALL MOVIES
+
+    public function getMovies($type = null, $sort = 'random', $genres = []) {
     $query = "SELECT m.id,
                      m.movie_name,
                      m.release_date,
@@ -67,6 +69,7 @@ public function getMovies($type = null, $sort = 'random', $genres = []) {
 
 
 
+    // FETCH ONE MOVIE
     public function getMovie($movieId){
         $query = "SELECT m.id,
                          m.movie_name,
@@ -92,8 +95,8 @@ public function getMovies($type = null, $sort = 'random', $genres = []) {
 
   
   
-  
-        public function insertMovie($name, $type, $releaseDate, $description, $image, $genres) {
+    // INSERT MOVIE
+    public function insertMovie($name, $type, $releaseDate, $description, $image, $genres) {
     try {
         $this->db->beginTransaction();
 
@@ -133,7 +136,7 @@ public function getMovies($type = null, $sort = 'random', $genres = []) {
     }
 }
 
-
+// GET MOVIE IMAGE NAME
 public function getImageByMovieId($movieId) {
     $stmt = $this->db->prepare("SELECT image FROM movies WHERE id = :id LIMIT 1");
     $stmt->execute([':id' => $movieId]);
@@ -142,7 +145,7 @@ public function getImageByMovieId($movieId) {
 }
 
 
-
+// DELETE MOVIE
 public function deleteMovieById($movieId) {
     try {
         $this->db->beginTransaction();
@@ -164,6 +167,7 @@ public function deleteMovieById($movieId) {
     }
 }
 
+// 
 
 }
 

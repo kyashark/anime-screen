@@ -284,6 +284,9 @@ function updateMovieTable(movies) {
 
 
 
+
+
+
 function loadFiltersFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
     const sort = urlParams.get("sort") || "random";

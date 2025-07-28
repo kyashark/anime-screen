@@ -15,6 +15,8 @@ class movieController extends Controller{
     }
 
 
+    // SHOW MOVIES USING FILTERING
+
     public function filter() {
     $type = isset($_GET['type']) ? $_GET['type'] : '';
     $sort = isset($_GET['sort']) ? $_GET['sort'] : 'random';
@@ -41,20 +43,6 @@ class movieController extends Controller{
     }
 }
 
-   
-
-    public function movieProfile($movieId){
-    
-        $movie = $this->movieModel->getMovie($movieId);
-
-        if($movie){
-        $username = Session::get('username');
-        $this->view('user/movieProfile', ['username' => $username, 'movie' => $movie]);
-    } else {
-        echo "Movie not found!";
-    }
-
-    }
 
     public function create(){
     Middleware::hasRole('admin'); 
@@ -63,9 +51,10 @@ class movieController extends Controller{
     $this->view('admin/movieForm', ['username' => $username]);
     }
 
-  // Store movies 
+  
+   // STORE MOVIE
 
-public function store() {
+    public function store() {
     $username = Session::get('username'); 
     Middleware::hasRole('admin');
 
@@ -153,10 +142,10 @@ public function store() {
     }
 }
 
+    // DELETE MOVIES
 
-
-public function delete() {
-    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    public function delete() {
+     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $id = $_POST['movie_id'] ?? null;
 
         if ($id) {
@@ -186,5 +175,20 @@ public function delete() {
         }
     }
 }
+
+    // SHOW MOVIE PROFILE
+
+  public function movieProfile($movieId){
+        $movie = $this->movieModel->getMovie($movieId);
+
+        if($movie){
+            $username = Session::get('username');
+            $this->view('user/movieProfile', ['username' => $username, 'movie' => $movie]);
+        } else {
+            echo "Movie not found!";
+    }
+
+    }
+
     
 }
