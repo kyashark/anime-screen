@@ -30,7 +30,7 @@
 </header>
   
 <main>
-<div class="admin-container">
+<!-- <div class="admin-container"> -->
     <form class="movie-form-grid" method="POST" action="<?= BASE_URL ?>/movie/store" enctype="multipart/form-data" id="movie-form">
 
         <!-- Movie Name -->
@@ -40,6 +40,16 @@
                 value="<?= htmlspecialchars($old['movie-name'] ?? '') ?>">
             <span class="error-msg" id='movie-name-error'>
                 <?= htmlspecialchars($errors['movie-name-error'] ?? '') ?>
+            </span>
+        </div>
+
+        <!-- Author -->
+        <div>
+            <label for="author">Author</label>
+            <input type="text" id="author" name="author" required
+                value="<?= htmlspecialchars($old['author'] ?? '') ?>">
+            <span class="error-msg" id="author-error">
+                <?= htmlspecialchars($errors['author-error'] ?? '') ?>
             </span>
         </div>
 
@@ -75,6 +85,15 @@
             </span>
         </div>
 
+        <!-- Background Image Upload -->
+        <div>
+            <label for="image-background">Upload Background Image</label>
+            <input type="file" id="image-background" name="image-background" required>
+            <span class="error-msg" id='bg-image-error'>
+                <?= htmlspecialchars($errors['bg-image-error'] ?? '') ?>
+            </span>
+        </div>
+
         <!-- Movie Details -->
         <div>
             <label for="movie-details">Movie Details</label>
@@ -107,7 +126,7 @@
         <div><input type="submit" value="Submit" class="submit-btn"></div>
 
     </form>
-</div>
+<!-- </div> -->
 
 <script src="<?= BASE_URL ?>/js/validation.js"></script>
 </main>

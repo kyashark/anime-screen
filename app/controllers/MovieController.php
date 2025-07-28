@@ -68,6 +68,8 @@ class movieController extends Controller{
         $description = trim($_POST['movie-details'] ?? '');
         $genres = $_POST['genres'] ?? [];
         $image = $_FILES['image-cover'] ?? null;
+        $backgroundImage = $_FILES['image-background'] ?? null;
+$author = trim($_POST['author'] ?? '');
 
         // Validate name
         if (empty($name)) {
@@ -107,13 +109,36 @@ class movieController extends Controller{
             }
         }
 
+        // Validate background image cover
+        if (!$backgroundImage || $backgroundImage['error'] !== UPLOAD_ERR_OK) {
+            $errors['bg-image-error'] = "Background image upload failed";
+        } else {
+            $allowedTypes = ['image/jpeg', 'image/png'];
+        if (!in_array($backgroundImage['type'], $allowedTypes)) {
+            $errors['bg-image-error'] = "Only JPG and PNG images are allowed for background";
+        }   
+        if ($backgroundImage['size'] > 2 * 1024 * 1024) {
+        $errors['bg-image-error'] = "Background image must be less than 2MB";
+        }
+        }
+
+        // Validate author
+        if (empty($author)) {
+            $errors['author-error'] = "Author name is required";
+        }
+
         // Check if no errors
         if (empty($errors)) {
             $imageName = basename($image['name']);
-            $targetPath = __DIR__ . '/../../public/upload/' . $imageName;
+            $targetPath = __DIR__ . '/../../public/images/cover/' . $imageName;
 
-            if (move_uploaded_file($image['tmp_name'], $targetPath)) {
-                $success = $this->movieModel->insertMovie($name, $type, $releaseDate, $description, $imageName, $genres);
+            $bgImageName = basename($backgroundImage['name']);
+            $bgTargetPath = __DIR__ . '/../../public/images/background/' . $bgImageName;
+
+            if (move_uploaded_file($image['tmp_name'], $targetPath) &&
+    move_uploaded_file($backgroundImage['tmp_name'], $bgTargetPath)) {
+
+        $success = $this->movieModel->insertMovie($name, $type, $releaseDate, $description, $imageName, $genres, $bgImageName, $author);
 
                 if ($success) {
                     header('Location: ' . BASE_URL . '/movie/filter');
@@ -134,7 +159,8 @@ class movieController extends Controller{
         'movie-type' => $type,
         'release-date' => $releaseDate,
         'movie-details' => $description,
-        'genres' => $genres
+        'genres' => $genres,
+        'author' => $author
     ]
 ]);
     } else {
@@ -144,37 +170,44 @@ class movieController extends Controller{
 
     // DELETE MOVIES
 
-    public function delete() {
-     if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        $id = $_POST['movie_id'] ?? null;
+public function delete() {
+  if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $id = $_POST['movie_id'] ?? null;
 
-        if ($id) {
+    if ($id) {
+      // Get cover and background image filenames before deleting
+      $movieImages = $this->movieModel->getImagesByMovieId($id);
 
-            // Get image filename before deleting
-            $imageName = $this->movieModel->getImageByMovieId($id);
+      $success = $this->movieModel->deleteMovieById($id);
 
-            $success = $this->movieModel->deleteMovieById($id);
-
-            if ($success && $imageName) {
-            $imagePath = __DIR__ . '/../../public/upload/' . $imageName;
-            if (file_exists($imagePath)) {
-                    unlink($imagePath);  // Delete the image file
-                }
-            }
-            
-            // Check if it's AJAX
-            if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
-                strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-                echo $success ? "Deleted" : "Delete failed";
-                exit;
-            }
-
-            // Normal request
-            header("Location: " . BASE_URL . "/movie");
-            exit;
+      if ($success && $movieImages) {
+        // Delete cover image
+        if (!empty($movieImages['image'])) {
+          $coverPath = __DIR__ . '/../../public/images/cover/' . $movieImages['image'];
+          if (file_exists($coverPath)) unlink($coverPath);
         }
+
+        // Delete background image
+        if (!empty($movieImages['background_image'])) {
+          $bgPath = __DIR__ . '/../../public/images/background/' . $movieImages['background_image'];
+          if (file_exists($bgPath)) unlink($bgPath);
+        }
+      }
+
+      // Check if it's AJAX
+      if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+          strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+        echo $success ? "Deleted" : "Delete failed";
+        exit;
+      }
+
+      // Normal request
+      header("Location: " . BASE_URL . "/movie");
+      exit;
     }
+  }
 }
+
 
     // SHOW MOVIE PROFILE
 

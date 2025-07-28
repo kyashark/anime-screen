@@ -12,15 +12,18 @@ class Movie{
 
     public function getMovies($type = null, $sort = 'random', $genres = []) {
     $query = "SELECT m.id,
-                     m.movie_name,
-                     m.release_date,
-                     m.movie_votes,
-                     m.image,
-                     m.type,
-                     GROUP_CONCAT(g.genre_name SEPARATOR ',') AS genres
-            FROM movies m
-            LEFT JOIN movie_genres mg ON m.id = mg.movie_id 
-            LEFT JOIN genres g ON mg.genre_id = g.genre_id";
+                 m.movie_name,
+                 m.release_date,
+                 m.movie_votes,
+                 m.image,
+                 m.type,
+                 m.background_image,
+                 m.author,
+                 GROUP_CONCAT(g.genre_name SEPARATOR ',') AS genres
+          FROM movies m
+          LEFT JOIN movie_genres mg ON m.id = mg.movie_id 
+          LEFT JOIN genres g ON mg.genre_id = g.genre_id";
+
 
     $conditions = [];
     $params = [];
@@ -72,17 +75,19 @@ class Movie{
     // FETCH ONE MOVIE
     public function getMovie($movieId){
         $query = "SELECT m.id,
-                         m.movie_name,
-                         m.release_date,
-                         m.movie_votes,
-                         m.image,
-                         m.description,
-                         GROUP_CONCAT(g.genre_name SEPARATOR ' ') AS genres
-                FROM movies m
-                LEFT JOIN movie_genres mg ON m.id = mg.movie_id 
-                LEFT JOIN genres g ON mg.genre_id = g.genre_id
-                WHERE m.id = :movieId
-                GROUP BY m.id";
+                 m.movie_name,
+                 m.release_date,
+                 m.movie_votes,
+                 m.image,
+                 m.description,
+                 m.background_image,
+                 m.author,
+                 GROUP_CONCAT(g.genre_name SEPARATOR ' ') AS genres
+          FROM movies m
+          LEFT JOIN movie_genres mg ON m.id = mg.movie_id 
+          LEFT JOIN genres g ON mg.genre_id = g.genre_id
+          WHERE m.id = :movieId
+          GROUP BY m.id";
 
             $stmt = $this->db->prepare($query);
             $stmt->bindParam(':movieId', $movieId, PDO::PARAM_INT);
@@ -96,19 +101,32 @@ class Movie{
   
   
     // INSERT MOVIE
-    public function insertMovie($name, $type, $releaseDate, $description, $image, $genres) {
+public function insertMovie($name, $type, $releaseDate, $description, $image, $genres, $backgroundImage = null, $author = null)
+ {
     try {
         $this->db->beginTransaction();
 
-        $stmt = $this->db->prepare("INSERT INTO movies (movie_name, type, release_date, description, image) VALUES (:name, :type, :release, :desc, :image)");
-        $stmt->execute([
-            ':name' => $name,
-            ':type' => $type,
-            ':release' => $releaseDate,
-            ':desc' => $description,
-            ':image' => $image
-        ]);
+        // $stmt = $this->db->prepare("INSERT INTO movies (movie_name, type, release_date, description, image) VALUES (:name, :type, :release, :desc, :image)");
+        // $stmt->execute([
+        //     ':name' => $name,
+        //     ':type' => $type,
+        //     ':release' => $releaseDate,
+        //     ':desc' => $description,
+        //     ':image' => $image
+        // ]);
 
+        $stmt = $this->db->prepare("INSERT INTO movies 
+    (movie_name, type, release_date, description, image, background_image, author) 
+    VALUES (:name, :type, :release, :desc, :image, :bgImage, :author)");
+$stmt->execute([
+    ':name' => $name,
+    ':type' => $type,
+    ':release' => $releaseDate,
+    ':desc' => $description,
+    ':image' => $image,
+    ':bgImage' => $backgroundImage,
+    ':author' => $author
+]);
         $movieId = $this->db->lastInsertId();
 
         foreach ($genres as $genreName) {
@@ -137,11 +155,11 @@ class Movie{
 }
 
 // GET MOVIE IMAGE NAME
-public function getImageByMovieId($movieId) {
-    $stmt = $this->db->prepare("SELECT image FROM movies WHERE id = :id LIMIT 1");
+public function getImagesByMovieId($movieId) {
+    $stmt = $this->db->prepare("SELECT image, background_image FROM movies WHERE id = :id LIMIT 1");
     $stmt->execute([':id' => $movieId]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $result ? $result['image'] : null;
+    return $result ?: null;
 }
 
 

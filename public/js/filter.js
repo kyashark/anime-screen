@@ -200,7 +200,7 @@ function updateMovieGrid(movies) {
     movies.forEach((movie) => {
         const movieCard = `
             <div class="movie-card" 
-                 style="background-image: url('${BASE_URL}/upload/${movie.image}');" 
+                 style="background-image: url('${BASE_URL}/images/cover/${movie.image}');" 
                  data-id="${movie.id}">
                 <div class="card-label">
                     <span>${movie.movie_name}</span>
