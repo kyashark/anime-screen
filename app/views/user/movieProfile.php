@@ -11,6 +11,51 @@
 </head>
 
 <body>
+
+    <div class="main-movie-profile-container">
+        <div class="top-section">
+            <img src='..\..\..\public\images\background\naruto.png' class="movie-profile-container">
+            
+            <div class="back-box">
+                <a href="javascript:history.back();">
+                <div class="back">
+                    <span></span>
+                    <span></span>
+                </div>
+                </a>
+            </div>
+
+            <div class="shadow-container"></div>
+        </div>
+
+        <div class="movie-details-container">
+            <div>
+                <h1><?php echo $movie['movie_name'];  ?></h1>
+                <p class="movie-year"><?php echo date('Y', strtotime($movie['release_date'])) ;?></p>
+                <p class="movie-director">Directed by Osamu Kobayashi</p>
+                <p class="movie-geners"><?php echo $movie['genres']; ?></p>
+                
+                 
+                <div class="movie-action">
+                      <button class="add-list-btn">Add List</button>
+                    <span class="vote-count"><?php echo $movie['movie_votes'];?></span>
+                    <span class="material-symbols-outlined heart" id="heart">&#xe87d;</span>  
+                </div>
+              
+
+            </div>
+            <div class="movie-cover">
+                <img src='<?= BASE_URL ?>/upload/<?php echo $movie['image'];?>'>
+
+            </div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis assumenda tempora, fugiat quibusdam temporibus 
+                rerum ut natus nobis nemo labore sit aut libero magni dignissimos quis mollitia similique recusandae voluptatibus molestias 
+                iste aliquid? Aliquam, quos? Reiciendis cumque assumenda eius aut.</div>
+        </div>
+        
+ 
+    </div>  
+
   <script src="<?= BASE_URL ?>/js/main.js"></script>
   <script src="<?= BASE_URL ?>/js/movie.js"></script>
      
