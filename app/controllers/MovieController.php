@@ -69,7 +69,7 @@ class movieController extends Controller{
         $genres = $_POST['genres'] ?? [];
         $image = $_FILES['image-cover'] ?? null;
         $backgroundImage = $_FILES['image-background'] ?? null;
-$author = trim($_POST['author'] ?? '');
+        $author = trim($_POST['author'] ?? '');
 
         // Validate name
         if (empty($name)) {
@@ -136,9 +136,9 @@ $author = trim($_POST['author'] ?? '');
             $bgTargetPath = __DIR__ . '/../../public/images/background/' . $bgImageName;
 
             if (move_uploaded_file($image['tmp_name'], $targetPath) &&
-    move_uploaded_file($backgroundImage['tmp_name'], $bgTargetPath)) {
+            move_uploaded_file($backgroundImage['tmp_name'], $bgTargetPath)) {
 
-        $success = $this->movieModel->insertMovie($name, $type, $releaseDate, $description, $imageName, $genres, $bgImageName, $author);
+            $success = $this->movieModel->insertMovie($name, $type, $releaseDate, $description, $imageName, $genres, $bgImageName, $author);
 
                 if ($success) {
                     header('Location: ' . BASE_URL . '/movie/filter');

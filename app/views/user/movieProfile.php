@@ -48,9 +48,7 @@
                 <img src='<?= BASE_URL ?>/images/cover/<?php echo $movie['image'];?>'>
 
             </div>
-            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis assumenda tempora, fugiat quibusdam temporibus 
-                rerum ut natus nobis nemo labore sit aut libero magni dignissimos quis mollitia similique recusandae voluptatibus molestias 
-                iste aliquid? Aliquam, quos? Reiciendis cumque assumenda eius aut.</div>
+            <div><?php echo $movie['description'];?></div>
         </div>
         
  

@@ -76,7 +76,7 @@
 }
 
 .movie-director {
-  font-style: italic;
+  /* font-style: italic; */
   color: #c0c0f0d0;
   margin-bottom: 20px;
   font-weight: 500;

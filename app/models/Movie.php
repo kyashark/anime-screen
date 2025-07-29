@@ -71,7 +71,6 @@ class Movie{
 }
 
 
-
     // FETCH ONE MOVIE
     public function getMovie($movieId){
         $query = "SELECT m.id,
@@ -106,27 +105,18 @@ public function insertMovie($name, $type, $releaseDate, $description, $image, $g
     try {
         $this->db->beginTransaction();
 
-        // $stmt = $this->db->prepare("INSERT INTO movies (movie_name, type, release_date, description, image) VALUES (:name, :type, :release, :desc, :image)");
-        // $stmt->execute([
-        //     ':name' => $name,
-        //     ':type' => $type,
-        //     ':release' => $releaseDate,
-        //     ':desc' => $description,
-        //     ':image' => $image
-        // ]);
-
         $stmt = $this->db->prepare("INSERT INTO movies 
-    (movie_name, type, release_date, description, image, background_image, author) 
-    VALUES (:name, :type, :release, :desc, :image, :bgImage, :author)");
-$stmt->execute([
-    ':name' => $name,
-    ':type' => $type,
-    ':release' => $releaseDate,
-    ':desc' => $description,
-    ':image' => $image,
-    ':bgImage' => $backgroundImage,
-    ':author' => $author
-]);
+               (movie_name, type, release_date, description, image, background_image, author) 
+              VALUES (:name, :type, :release, :desc, :image, :bgImage, :author)");
+        $stmt->execute([
+                    ':name' => $name,
+                    ':type' => $type,
+                    ':release' => $releaseDate,
+                    ':desc' => $description,
+                    ':image' => $image,
+                    ':bgImage' => $backgroundImage,
+                    ':author' => $author
+        ]);
         $movieId = $this->db->lastInsertId();
 
         foreach ($genres as $genreName) {
@@ -184,8 +174,6 @@ public function deleteMovieById($movieId) {
         return false;
     }
 }
-
-// 
 
 }
 
