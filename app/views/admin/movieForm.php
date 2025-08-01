@@ -16,7 +16,8 @@
         </div>
     </a>
     
-    <h2>Add New Movie</h2>
+    <h2><?= ($mode ?? '') === 'update' ? 'Update Movie' : 'Add New Movie' ?></h2>
+
 
     <div class="right-nav">
         <a href="#">

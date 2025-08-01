@@ -235,7 +235,12 @@ class movieController extends Controller{
     $username = Session::get('username');
 
         if ($movie) {
-            $this->view('admin/movieForm', ['movie' => $movie, 'username' => $username, 'mode' => 'update']);
+            // $this->view('admin/movieForm', ['movie' => $movie, 'username' => $username, 'mode' => 'update']);
+            $this->view('admin/movieForm', [
+    'movie' => $movie,
+    'username' => $username,
+    'mode' => 'update' // GOOD ✅
+]);
         } else {
             echo "Movie not found.";
         }
@@ -355,7 +360,7 @@ class movieController extends Controller{
         // If there are errors, return back to the form
         $this->view('admin/movieForm', [
             'username' => $username,
-            'mode' => 'edit',
+            'mode' => 'update',
             'movie' => [
                 'id' => $id,
                 'movie_name' => $name,
