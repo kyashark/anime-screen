@@ -207,6 +207,7 @@
   display: block;
   align-self: flex-start;
   margin-bottom: 4px;
+  font-size: 1rem;
 }
 
 textarea {
