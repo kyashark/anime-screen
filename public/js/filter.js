@@ -5,6 +5,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function initializeFiltering() {
 
+      const searchInput = document.querySelector(".search-input");
+        if (searchInput) {
+        // debounce to limit frequency of search calls
+        let debounceTimeout;
+        searchInput.addEventListener("input", function () {
+        clearTimeout(debounceTimeout);
+        debounceTimeout = setTimeout(() => {
+            updateMovies(); // Refresh movies with new search query
+        }, 300);
+        });
+    }
+
+
+
     // Initialize sorting
     const sortSelector = document.querySelector(".sort-selector");
     
@@ -146,8 +160,16 @@ function updateMovies() {
     const urlParams = new URLSearchParams(window.location.search);
     const type = urlParams.get("type") || "movie";
 
+    const searchInput = document.querySelector(".search-input");
+    const searchQuery = searchInput ? searchInput.value.trim() : "";
+
     let newUrl = `${window.location.pathname}?type=${type}&sort=${sort}`;
+
     if (activeGenres.length) newUrl += `&genres=${activeGenres.join(",")}`;
+
+    if (searchQuery.length > 0) {
+        newUrl += `&query=${encodeURIComponent(searchQuery)}`;
+    }
 
     history.pushState(null, "", newUrl);
     fetchMovies();
@@ -193,29 +215,36 @@ function fetchMovies() {
     });
 }
 
+
+
 function updateMovieGrid(movies) {
     const movieGrid = document.getElementById("movie-grid");
-    movieGrid.innerHTML = "";
+    let html = "";
     
-    movies.forEach((movie) => {
-        const movieCard = `
-            <div class="movie-card" 
-                 style="background-image: url('${BASE_URL}/images/cover/${movie.image}');" 
-                 data-id="${movie.id}">
-                <div class="card-label">
-                    <span>${movie.movie_name}</span>
-                    <div class="card-tab">
-                        <span class="year">${new Date(movie.release_date).getFullYear()}</span>
-                        <span class="vote-count">${movie.movie_votes}</span>
-                        <span class="material-symbols-outlined heart">&#xe87d;</span>
+    if (movies.length === 0) {
+        html = '<p class="no-movie-msg">No movies found</p>';
+    } else {
+        movies.forEach((movie) => {
+            html += `
+                <div class="movie-card" 
+                    style="background-image: url('${BASE_URL}/images/cover/${movie.image}');" 
+                    data-id="${movie.id}">
+                    <div class="card-label">
+                        <span>${movie.movie_name}</span>
+                        <div class="card-tab">
+                            <span class="year">${new Date(movie.release_date).getFullYear()}</span>
+                            <span class="vote-count">${movie.movie_votes}</span>
+                            <span class="material-symbols-outlined heart">&#xe87d;</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        `;
-        movieGrid.innerHTML += movieCard;
-    });
+            `;
+        });
+    }
     
-    if (typeof initializeCardInteractions === 'function') {
+    movieGrid.innerHTML = html;
+    
+    if (typeof initializeCardInteractions === 'function' && movies.length > 0) {
         initializeCardInteractions();
     }
 }
@@ -223,8 +252,15 @@ function updateMovieGrid(movies) {
 
 
 function updateMovieTable(movies) {
-    const movieDataContainer = document.querySelector(".movie-data");
+const movieDataContainer = document.querySelector(".movie-data");
     movieDataContainer.innerHTML = "";
+
+    if (!movies || movies.length === 0) {
+        movieDataContainer.innerHTML = `
+            <p class="no-movie-msg">No movies found</p>
+        `;
+        return; // Stop further processing
+    }
 
     movies.forEach((movie) => {
         const movieRow = `
@@ -246,7 +282,7 @@ function updateMovieTable(movies) {
                 </div>
                 <div>${movie.movie_votes}</div>
                 <div>
-              <button class="more-btn more-btn" data-id="${movie.id}">More</button>
+                    <button class="more-btn" data-id="${movie.id}">More</button>
                     <button class="delete-btn" data-id="${movie.id}">Delete</button>
                 </div>
             </div>
@@ -297,13 +333,19 @@ function updateMovieTable(movies) {
 
 
 
-
-
-
 function loadFiltersFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
     const sort = urlParams.get("sort") || "random";
     const genres = urlParams.get("genres");
+    const query = urlParams.get("query") || "";
+
+
+    // Set search input value
+    const searchInput = document.querySelector(".search-input");
+    if (searchInput) {
+      searchInput.value = query;
+    }
+
 
     // Set sort selector value
     const sortSelector = document.querySelector(".sort-selector");

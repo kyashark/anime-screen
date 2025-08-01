@@ -9,8 +9,7 @@ class Movie{
     }
 
     // FETCH ALL MOVIES
-
-    public function getMovies($type = null, $sort = 'random', $genres = []) {
+    public function getMovies($type = null, $sort = 'random', $genres = [], $search = null)  {
     $query = "SELECT m.id,
                  m.movie_name,
                  m.release_date,
@@ -26,7 +25,12 @@ class Movie{
 
 
     $conditions = [];
+
+    if ($search !== null && $search !== '') {
+    $conditions[] = 'm.movie_name LIKE :search';
+}
     $params = [];
+
 
     // Add condition for type if provided
     if (!empty($type)) {
@@ -62,6 +66,10 @@ class Movie{
         default:
             $query .= " ORDER BY RAND()";
     }
+
+    if ($search !== null && $search !== '') {
+    $params['search'] = "%" . $search . "%";
+}
 
     $stmt = $this->db->prepare($query);
     $stmt->execute($params);

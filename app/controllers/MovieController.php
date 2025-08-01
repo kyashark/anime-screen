@@ -18,11 +18,12 @@ class movieController extends Controller{
     // SHOW MOVIES USING FILTERING
 
     public function filter() {
+    $search = $_GET['query'] ?? '';
     $type = isset($_GET['type']) ? $_GET['type'] : '';
     $sort = isset($_GET['sort']) ? $_GET['sort'] : 'random';
     $genres = isset($_GET['genres']) ? explode(',', $_GET['genres']) : [];
 
-    $movies = $this->movieModel->getMovies($type, $sort, $genres);
+    $movies = $this->movieModel->getMovies($type, $sort, $genres, $search);
 
     // Check if the request is an AJAX call
     $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';
@@ -235,12 +236,11 @@ class movieController extends Controller{
     $username = Session::get('username');
 
         if ($movie) {
-            // $this->view('admin/movieForm', ['movie' => $movie, 'username' => $username, 'mode' => 'update']);
             $this->view('admin/movieForm', [
-    'movie' => $movie,
-    'username' => $username,
-    'mode' => 'update' // GOOD ✅
-]);
+                        'movie' => $movie,
+                        'username' => $username,
+                        'mode' => 'update' 
+        ]);
         } else {
             echo "Movie not found.";
         }
@@ -378,8 +378,6 @@ class movieController extends Controller{
         echo "Invalid request method.";
     }
 }
-
-
 
     
 }

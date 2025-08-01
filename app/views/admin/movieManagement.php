@@ -70,12 +70,12 @@ if (!empty($movies)) {
 </div>
                 
                 
-            </div>
-            <div class="second-section">
-            <input type="search" placeholder="Search" class="search-input">
-            <a href="<?= BASE_URL ?>/movie/create"><button class="add-movie-btn">Add Movie</button></a>
-</div>
+    </div>
+        <div class="second-section">
+        <input type="search" placeholder="Search Movie" class="search-input">
+        <a href="<?= BASE_URL ?>/movie/create"><button class="add-movie-btn">Add Movie</button></a>
         </div>
+      </div>
             <div class="movie-table-header">
                     <div>ID</div>
                     <div>Movie Name</div>
