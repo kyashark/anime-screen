@@ -51,7 +51,7 @@
         <option value="new">New Realease</option>
         <option value="alpha">Alphabetical</option>
   </select>    
-  <input type="search" placeholder="Search" class="search-input">
+  <input type="search" placeholder="Search Movie" class="search-input">
   </div>
 
 <div class="genre-container">
@@ -66,7 +66,7 @@
       <button class="genre" data-genre="fantasy">Fantasy</button>
   </div>
   <div class="movie-grid" id="movie-grid">
-
+<p class="no-movie-msg">No movies found</p>
   </div>
 </div>
   </main>
