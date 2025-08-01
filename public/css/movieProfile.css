@@ -30,12 +30,19 @@
   gap: 10px;
   font-size: 0.9rem;
   border-radius: 5px;
-  padding:4px 8px;
+  padding:4px 10px;
   border: none;
    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease, background-color 0.3s ease;
   cursor: pointer;
   border:1px solid aliceblue;
+  background: aliceblue;
+  color: #060513
+ 
+}
+
+.top-section a{
+ text-decoration: none;
 }
 
 .update-btn:hover{

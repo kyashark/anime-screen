@@ -23,18 +23,13 @@
                     <span></span>
                 </div>
                 </a>
-                
-                <!-- <button class="update-btn">
-                  <i class="fas fa-pen"></i> Update
-                </button> -->
-  
-        
+     
 
-                <?php if (in_array('admin', Session::get('roles') ?? [])): ?>
-                    <button class="update-btn">
-                    <i class="fas fa-pen"></i> Update
-                    </button>
-                <?php endif; ?>
+            <?php if (in_array('admin', Session::get('roles') ?? [])): ?>
+                <a href="<?= BASE_URL ?>/movie/edit/<?= $movie['id'] ?>" class="update-btn">
+                    <i class="fas fa-pen"></i> Edit
+                </a>
+            <?php endif; ?>
 
 
             </div>

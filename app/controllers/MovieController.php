@@ -52,7 +52,7 @@ class movieController extends Controller{
     }
 
   
-   // STORE MOVIE
+    // STORE MOVIE
 
     public function store() {
     $username = Session::get('username'); 
@@ -152,7 +152,11 @@ class movieController extends Controller{
         }
 
         $this->view('admin/movieForm', [
-            'username' => $username,
+        'username' => $username,
+
+        'mode' => 'create',
+        'movie' => null,
+
         'errors' => $errors,
         'old' => [
         'movie-name' => $name,
@@ -170,8 +174,8 @@ class movieController extends Controller{
 
     // DELETE MOVIES
 
-public function delete() {
-  if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    public function delete() {
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $id = $_POST['movie_id'] ?? null;
 
     if ($id) {
@@ -211,7 +215,7 @@ public function delete() {
 
     // SHOW MOVIE PROFILE
 
-  public function movieProfile($movieId){
+    public function movieProfile($movieId){
         $movie = $this->movieModel->getMovie($movieId);
 
         if($movie){
@@ -222,6 +226,155 @@ public function delete() {
     }
 
     }
+
+
+    // Movie details show for edit
+    public function edit($id) {
+    Middleware::hasRole('admin');
+    $movie = $this->movieModel->getMovie($id);
+    $username = Session::get('username');
+
+        if ($movie) {
+            $this->view('admin/movieForm', ['movie' => $movie, 'username' => $username, 'mode' => 'update']);
+        } else {
+            echo "Movie not found.";
+        }
+    }
+
+
+    // MOVIE UPDATE
+   public function update() {
+    Middleware::hasRole('admin');
+    $username = Session::get('username');
+
+    $errors = [];
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id = $_POST['movie_id'];
+        $name = trim($_POST['movie-name'] ?? '');
+        $type = trim($_POST['movie-type'] ?? '');
+        $releaseDate = $_POST['release-date'] ?? '';
+        $description = trim($_POST['movie-details'] ?? '');
+        $author = trim($_POST['author'] ?? '');
+
+        $image = $_FILES['image-cover'] ?? null;
+        $bgImage = $_FILES['image-background'] ?? null;
+
+        // Fetch existing image names
+        $existing = $this->movieModel->getMovie($id);
+        $imageName = $existing['image'];
+        $bgImageName = $existing['background_image'];
+
+        // Validate name
+        if (empty($name)) {
+            $errors['movie-name-error'] = "Movie name is required";
+        }
+
+        // Validate type
+        if (empty($type)) {
+            $errors['movie-type-error'] = "Movie type is required";
+        }
+
+        // Validate release date
+        if (empty($releaseDate)) {
+            $errors['release-date-error'] = "Release date is required";
+        } elseif (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $releaseDate)) {
+            $errors['release-date-error'] = "Invalid date format (YYYY-MM-DD)";
+        }
+
+        // Validate description
+        if (empty($description)) {
+            $errors['movie-details-error'] = "Movie description is required";
+        } elseif (str_word_count($description) > 100) {
+            $errors['movie-details-error'] = "Movie description must not exceed 100 words";
+        }
+
+        // Validate author
+        if (empty($author)) {
+            $errors['author-error'] = "Author name is required";
+        }
+
+        // Validate new image if uploaded
+        if ($image && $image['error'] === UPLOAD_ERR_OK) {
+            $allowedTypes = ['image/jpeg', 'image/png'];
+            if (!in_array($image['type'], $allowedTypes)) {
+                $errors['image-error'] = "Only JPG and PNG images are allowed";
+            }
+            if ($image['size'] > 2 * 1024 * 1024) {
+                $errors['image-error'] = "Image must be less than 2MB";
+            }
+        }
+
+        // Validate new background image if uploaded
+        if ($bgImage && $bgImage['error'] === UPLOAD_ERR_OK) {
+            $allowedTypes = ['image/jpeg', 'image/png'];
+            if (!in_array($bgImage['type'], $allowedTypes)) {
+                $errors['bg-image-error'] = "Only JPG and PNG images are allowed for background";
+            }
+            if ($bgImage['size'] > 2 * 1024 * 1024) {
+                $errors['bg-image-error'] = "Background image must be less than 2MB";
+            }
+        }
+
+        // If no validation errors
+        if (empty($errors)) {
+            // Replace cover image if new one uploaded
+            if ($image && $image['error'] === UPLOAD_ERR_OK) {
+                $oldPath = __DIR__ . '/../../public/images/cover/' . $existing['image'];
+                if (file_exists($oldPath)) {
+                    unlink($oldPath);
+                }
+
+                $imageName = basename($image['name']);
+                $target = __DIR__ . '/../../public/images/cover/' . $imageName;
+                move_uploaded_file($image['tmp_name'], $target);
+            }
+
+            // Replace background image if new one uploaded
+            if ($bgImage && $bgImage['error'] === UPLOAD_ERR_OK) {
+                $oldBgPath = __DIR__ . '/../../public/images/background/' . $existing['background_image'];
+                if (file_exists($oldBgPath)) {
+                    unlink($oldBgPath);
+                }
+
+                $bgImageName = basename($bgImage['name']);
+                $bgTarget = __DIR__ . '/../../public/images/background/' . $bgImageName;
+                move_uploaded_file($bgImage['tmp_name'], $bgTarget);
+            }
+
+            $success = $this->movieModel->updateMovie($id, $name, $type, $releaseDate, $description, $author, $imageName, $bgImageName);
+
+            if ($success) {
+                header("Location: " . BASE_URL . "/movie/movieProfile/$id");
+                exit;
+            } else {
+                $errors['general'] = "Failed to update movie in the database";
+            }
+        }
+
+        // If there are errors, return back to the form
+        $this->view('admin/movieForm', [
+            'username' => $username,
+            'mode' => 'edit',
+            'movie' => [
+                'id' => $id,
+                'movie_name' => $name,
+                'type' => $type,
+                'release_date' => $releaseDate,
+                'description' => $description,
+                'author' => $author,
+                'image' => $imageName,
+                'background_image' => $bgImageName
+            ],
+            'errors' => $errors,
+            'old' => []
+        ]);
+    } else {
+        echo "Invalid request method.";
+    }
+}
+
+
 
     
 }

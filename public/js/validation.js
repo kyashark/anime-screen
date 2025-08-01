@@ -222,48 +222,67 @@ document.addEventListener("DOMContentLoaded", function () {
         movieDetailsError.textContent = "";
         return true;
       }
-
+    
+      
       function validateImageCover() {
-        if (imageCover.files.length === 0) {
-          imageError.textContent = "Image upload is required";
-          return false;
+          // If updating (movie_id exists), don't require image
+          const isUpdate = !!document.querySelector('input[name="movie_id"]');
+          if (isUpdate && imageCover.files.length === 0) {
+            // Optional on update: no error if no new file uploaded
+            imageError.textContent = "";
+            return true;
+          }
+
+          if (imageCover.files.length === 0) {
+            imageError.textContent = "Image upload is required";
+            return false;
+          }
+
+          const file = imageCover.files[0];
+          const allowedTypes = ["image/jpeg", "image/png"];
+          if (!allowedTypes.includes(file.type)) {
+            imageError.textContent = "Only JPG and PNG images are allowed";
+            return false;
+          } else if (file.size > 2 * 1024 * 1024) {
+            imageError.textContent = "Image size must be less than 2MB";
+            return false;
+          }
+
+          imageError.textContent = "";
+          return true;
         }
 
-        const file = imageCover.files[0];
-        const allowedTypes = ["image/jpeg", "image/png"];
-        if (!allowedTypes.includes(file.type)) {
-          imageError.textContent = "Only JPG and PNG images are allowed";
-          return false;
-        } else if (file.size > 2 * 1024 * 1024) {
-          imageError.textContent = "Image size must be less than 2MB";
-          return false;
+
+        function validateBgImage() {
+          // If updating (movie_id exists), don't require image
+          const isUpdate = !!document.querySelector('input[name="movie_id"]');
+          if (isUpdate && bgImage.files.length === 0) {
+            // Optional on update: no error if no new file uploaded
+            bgImageError.textContent = "";
+            return true;
+          }
+
+          if (bgImage.files.length === 0) {
+            bgImageError.textContent = "Background image is required";
+            return false;
+          }
+
+          const file = bgImage.files[0];
+          const allowedTypes = ["image/jpeg", "image/png"];
+          if (!allowedTypes.includes(file.type)) {
+            bgImageError.textContent = "Only JPG and PNG images are allowed";
+            return false;
+          } else if (file.size > 2 * 1024 * 1024) {
+            bgImageError.textContent = "Image size must be less than 2MB";
+            return false;
+          }
+
+          bgImageError.textContent = "";
+          return true;
         }
 
-        imageError.textContent = "";
-        return true;
-      }
 
 
-
-      function validateBgImage() {
-        if (bgImage.files.length === 0) {
-          bgImageError.textContent = "Background image is required";
-          return false;
-        }
-
-        const file = bgImage.files[0];
-        const allowedTypes = ["image/jpeg", "image/png"];
-        if (!allowedTypes.includes(file.type)) {
-          bgImageError.textContent = "Only JPG and PNG images are allowed";
-          return false;
-        } else if (file.size > 2 * 1024 * 1024) {
-          bgImageError.textContent = "Image size must be less than 2MB";
-          return false;
-        }
-
-        bgImageError.textContent = "";
-        return true;
-      }
 
       // Clear error on focus
     [movieName, movieType, releaseDate, movieDetails, imageCover, author, bgImage].forEach(input => {
