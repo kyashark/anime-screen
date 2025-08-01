@@ -246,7 +246,7 @@ function updateMovieTable(movies) {
                 </div>
                 <div>${movie.movie_votes}</div>
                 <div>
-                    <button class="update-btn">More</button>
+              <button class="more-btn more-btn" data-id="${movie.id}">More</button>
                     <button class="delete-btn" data-id="${movie.id}">Delete</button>
                 </div>
             </div>
@@ -255,6 +255,7 @@ function updateMovieTable(movies) {
     });
 
 
+    // To Delete
     document.querySelectorAll(".delete-btn").forEach((btn) => {
         btn.addEventListener("click", function () {
             const movieId = this.dataset.id;
@@ -278,6 +279,18 @@ function updateMovieTable(movies) {
             }
         });
     });
+
+
+    // To Go Movie Profile
+        document.querySelectorAll(".more-btn").forEach(btn => {
+        btn.addEventListener("click", function () {
+            console.log("U triger button");
+            const movieId = this.dataset.id;
+            const baseUrl = `${window.location.origin}/anime-screen/public/movie/movieprofile`;
+            window.location.href = `${baseUrl}/${movieId}`;
+        });
+    });
+
 }
 
 

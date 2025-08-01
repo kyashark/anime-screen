@@ -11,12 +11,45 @@
   left: 100px;
   z-index: 4;
   opacity: 1;
+  /* background: red; */
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
 }
 
 .back-box span {
   width: 30px;
   height: 3px;
   margin: 7px 0;
+}
+
+.update-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  padding:4px 10px;
+  border: none;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  border:1px solid aliceblue;
+  background: aliceblue;
+  color: #060513
+ 
+}
+
+.top-section a{
+ text-decoration: none;
+}
+
+.update-btn:hover{
+  background: #130f40;
+  color: aliceblue;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  border:1px solid rgba(240, 248, 255, 0.682);
 }
 
 .top-section {

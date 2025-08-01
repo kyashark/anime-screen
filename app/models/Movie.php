@@ -49,7 +49,6 @@ class Movie{
     }
 
     $query .= " GROUP BY m.id ";
-
     switch ($sort) {
         case 'top':
             $query .= " ORDER BY m.movie_votes DESC";
@@ -75,6 +74,7 @@ class Movie{
     public function getMovie($movieId){
         $query = "SELECT m.id,
                  m.movie_name,
+                 m.type,
                  m.release_date,
                  m.movie_votes,
                  m.image,
@@ -100,61 +100,61 @@ class Movie{
   
   
     // INSERT MOVIE
-public function insertMovie($name, $type, $releaseDate, $description, $image, $genres, $backgroundImage = null, $author = null)
- {
-    try {
-        $this->db->beginTransaction();
+    public function insertMovie($name, $type, $releaseDate, $description, $image, $genres, $backgroundImage = null, $author = null)
+        {
+            try {
+            $this->db->beginTransaction();
 
-        $stmt = $this->db->prepare("INSERT INTO movies 
-               (movie_name, type, release_date, description, image, background_image, author) 
-              VALUES (:name, :type, :release, :desc, :image, :bgImage, :author)");
-        $stmt->execute([
-                    ':name' => $name,
-                    ':type' => $type,
-                    ':release' => $releaseDate,
-                    ':desc' => $description,
-                    ':image' => $image,
-                    ':bgImage' => $backgroundImage,
-                    ':author' => $author
-        ]);
-        $movieId = $this->db->lastInsertId();
+            $stmt = $this->db->prepare("INSERT INTO movies 
+                (movie_name, type, release_date, description, image, background_image, author) 
+                VALUES (:name, :type, :release, :desc, :image, :bgImage, :author)");
+            $stmt->execute([
+                        ':name' => $name,
+                        ':type' => $type,
+                        ':release' => $releaseDate,
+                        ':desc' => $description,
+                        ':image' => $image,
+                        ':bgImage' => $backgroundImage,
+                        ':author' => $author
+            ]);
+            $movieId = $this->db->lastInsertId();
 
-        foreach ($genres as $genreName) {
-            // First get genre_id by genre name
-            $stmt = $this->db->prepare("SELECT genre_id FROM genres WHERE genre_name = :name LIMIT 1");
-            $stmt->execute([':name' => $genreName]);
-            $genre = $stmt->fetch(PDO::FETCH_ASSOC);
+            foreach ($genres as $genreName) {
+                // First get genre_id by genre name
+                $stmt = $this->db->prepare("SELECT genre_id FROM genres WHERE genre_name = :name LIMIT 1");
+                $stmt->execute([':name' => $genreName]);
+                $genre = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($genre) {
-                $genreId = $genre['genre_id'];
-                $stmt = $this->db->prepare("INSERT INTO movie_genres (movie_id, genre_id) VALUES (:movieId, :genreId)");
-                $stmt->execute([
-                    ':movieId' => $movieId,
-                    ':genreId' => $genreId
-                ]);
+                if ($genre) {
+                    $genreId = $genre['genre_id'];
+                    $stmt = $this->db->prepare("INSERT INTO movie_genres (movie_id, genre_id) VALUES (:movieId, :genreId)");
+                    $stmt->execute([
+                        ':movieId' => $movieId,
+                        ':genreId' => $genreId
+                    ]);
+                }
             }
+
+            $this->db->commit();
+            return true;
+        } catch (PDOException $e) {
+            $this->db->rollBack();
+            echo "DB Error: " . $e->getMessage(); 
+            return false;
         }
-
-        $this->db->commit();
-        return true;
-    } catch (PDOException $e) {
-        $this->db->rollBack();
-         echo "DB Error: " . $e->getMessage(); 
-        return false;
     }
-}
 
-// GET MOVIE IMAGE NAME
-public function getImagesByMovieId($movieId) {
-    $stmt = $this->db->prepare("SELECT image, background_image FROM movies WHERE id = :id LIMIT 1");
-    $stmt->execute([':id' => $movieId]);
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $result ?: null;
-}
+   // GET MOVIE IMAGE NAME
+   public function getImagesByMovieId($movieId) {
+        $stmt = $this->db->prepare("SELECT image, background_image FROM movies WHERE id = :id LIMIT 1");
+        $stmt->execute([':id' => $movieId]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ?: null;
+   }
 
 
-// DELETE MOVIE
-public function deleteMovieById($movieId) {
+   // DELETE MOVIE
+   public function deleteMovieById($movieId) {
     try {
         $this->db->beginTransaction();
 
@@ -173,9 +173,19 @@ public function deleteMovieById($movieId) {
         error_log($e->getMessage());
         return false;
     }
+ }
+
+
+   // Update Movie
+    public function updateMovie($id, $name, $type, $releaseDate, $description, $author, $imageName, $bgImageName) {
+        $sql = "UPDATE movies 
+                SET movie_name = ?, type = ?, release_date = ?, description = ?, author = ?, image = ?, background_image = ? 
+                WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([$name, $type, $releaseDate, $description, $author, $imageName, $bgImageName, $id]);
+  }
 }
 
-}
 
 /*
 SELECT m.movie_name, m.release_date, m.movie_votes, m.image 

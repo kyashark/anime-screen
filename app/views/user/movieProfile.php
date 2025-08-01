@@ -23,6 +23,15 @@
                     <span></span>
                 </div>
                 </a>
+     
+
+            <?php if (in_array('admin', Session::get('roles') ?? [])): ?>
+                <a href="<?= BASE_URL ?>/movie/edit/<?= $movie['id'] ?>" class="update-btn">
+                    <i class="fas fa-pen"></i> Edit
+                </a>
+            <?php endif; ?>
+
+
             </div>
 
             <div class="shadow-container"></div>
@@ -33,7 +42,8 @@
                 <h1><?php echo $movie['movie_name'];  ?></h1>
                 <p class="movie-year"><?php echo date('Y', strtotime($movie['release_date'])) ;?></p>
                 <p class="movie-director">Directed by <?php echo htmlspecialchars($movie['author'] ?? 'Unknown'); ?></p>
-                <p class="movie-geners"><?php echo $movie['genres']; ?></p>
+                <!-- <p class="movie-geners"><?php echo $movie['genres']; ?></p> -->
+                <p class="movie-geners"><?php echo str_replace(' ', ' . ', $movie['genres']); ?></P>
                 
                  
                 <div class="movie-action">
