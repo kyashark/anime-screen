@@ -124,7 +124,7 @@ class AuthController extends Controller{
                 if ($this->userModel->register($username, $email, $password)) {
                     $userId = $this->userModel->getLastInsertedId();
                     
-                    $this->userModel->assignRole($userId, 'admin');
+                    $this->userModel->assignRole($userId, 'user');
                 
                     header('Location: ' . BASE_URL . '/auth/login');
                     exit;
