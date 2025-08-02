@@ -128,22 +128,58 @@
   align-items: center;
 }
 
+
 .add-list-btn {
-  width: 100px;
-  padding: 3px;
-  font-size: 1.1rem;
-  border-radius: 5px;
-  border: 1.8px solid #4d4a75d2;
+  width: 110px;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 6px;
   margin-right: 20px;
-  background: #4d4a75d2;
-  color: #c0c0f0;
   cursor: pointer;
+  transition: all 0.25s ease;
+  border: 2px solid;
+  background-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.add-list-btn:hover {
-  background: #4d4a75;
-  border: 1.8px solid #4d4a75;
+/* ADD state */
+.add-list-btn.add {
+  color: #f0f8ff;
+  background-color: #1f273a;  
+  border: 2px solid #f0f8ff88;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 8px rgba(240, 248, 255, 0.08);
 }
+
+.add-list-btn.add:hover {
+  background-color: #2a3249;  
+  border-color: #f0f8ffcc;
+  box-shadow: 0 0 10px rgba(240, 248, 255, 0.15);
+}
+
+/* REMOVE state */
+.add-list-btn.remove {
+  color: #ff9e9ebe;
+  background-color: #2a1f24;
+  border: 2px solid #ff9e9e80;
+  box-shadow: 0 0 8px rgba(255, 110, 110, 0.06);
+}
+
+.add-list-btn.remove:hover {
+  background-color: #412b2f; 
+  border-color: #ff9e9e8a;
+  box-shadow: 0 0 10px rgba(255, 110, 110, 0.15);
+}
+
+
 
 .movie-action span {
   margin-left: 10px;

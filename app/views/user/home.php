@@ -14,6 +14,8 @@
           <li><a href="<?= BASE_URL ?>/user/home">Home</a></li>
           <li><a href="<?= BASE_URL ?>/movie/filter?type=movie&sort=random">Movies</a></li>
           <li><a href="<?= BASE_URL ?>/movie/filter?type=series&sort=random">Series</a></li>
+          <li><a href="<?= BASE_URL ?>/user/watchlist">Watchlist</a></li>
+
     </ul>
 
     <div class="right-nav">

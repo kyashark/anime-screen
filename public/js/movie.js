@@ -5,6 +5,15 @@ document.addEventListener("DOMContentLoaded", function() {
   if (document.getElementById("movie-grid") || document.querySelector(".movie-card")) {
     initializeMovieInteractions();
   }
+
+  if(document.getElementById("watchlist-movie-card")){
+    initializeWatchlistButton() 
+  }
+
+  
+  if (document.querySelector(".add-list-btn")) {
+    initializeAddListToggle();
+  }
 });
 
 function initializeMovieInteractions() {
@@ -23,6 +32,7 @@ function initializeMovieInteractions() {
   
   // Initialize heart icons
   initializeHeartClick();
+ 
 }
 
 function initializeCardHover() {
@@ -62,6 +72,53 @@ function initializeHeartClick() {
     });
   });
 }
+
+
+// Watchlist action button
+function initializeWatchlistButton() {
+  const btn = document.querySelector('.watchlist-btn');
+
+  if (!btn) return;
+
+  const states = [
+    { class: 'state-add', text: 'To Watch' },
+    { class: 'state-watching', text: 'Watching' },
+    { class: 'state-watched', text: 'Watched' },
+  ];
+
+  let current = 0;
+
+  btn.addEventListener("click", () => {
+    btn.classList.remove(states[current].class);
+    current = (current + 1) % states.length;
+    btn.classList.add(states[current].class);
+    btn.textContent = states[current].text;
+  });
+}
+
+// Watchlist add and remove button
+function initializeAddListToggle() {
+  const addBtn = document.querySelector(".add-list-btn");
+
+  if (!addBtn) return;
+
+  addBtn.addEventListener("click", () => {
+    const isAdded = addBtn.classList.contains("remove");
+
+    if (isAdded) {
+      // Remove from watchlist
+      addBtn.classList.remove("remove");
+      addBtn.classList.add("add");
+      addBtn.textContent = "Watchlist";
+    } else {
+      // Add to watchlist
+      addBtn.classList.remove("add");
+      addBtn.classList.add("remove");
+      addBtn.textContent = "Remove";
+    }
+  });
+}
+
 
 // Make this available to filter.js
 function initializeCardInteractions() {

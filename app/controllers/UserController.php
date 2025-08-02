@@ -16,4 +16,11 @@ class UserController extends Controller {
         Middleware::redirectIfLoggedIn();
         $this->view('index');
     }
+
+public function watchlist() {
+    Middleware::requireLogin();   
+    Session::start(); 
+    $username = Session::get('username'); 
+    $this->view('user/watchlist', ['username' => $username]);
+}
 }

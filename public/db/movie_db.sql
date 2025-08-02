@@ -170,3 +170,18 @@ INSERT INTO `movie_genres` (`movie_id`, `genre_id`) VALUES
 (18, 6),
 (19, 1),
 (19, 4);
+
+
+-- ----------------------------------------
+
+-- USER_WATCHLIST
+
+CREATE TABLE user_watchlist (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    movie_id INT NOT NULL,
+    added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_watchlist (user_id, movie_id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE
+);
