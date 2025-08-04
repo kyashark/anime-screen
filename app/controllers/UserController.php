@@ -11,7 +11,6 @@ class UserController extends Controller {
 
     public function __construct() {
     Session::start();
-    // $this->watchlistModel = new Watchlist();
     $this->watchlistModel = $this->model('Watchlist');
 }
 
@@ -28,6 +27,32 @@ class UserController extends Controller {
     }
 
 
+
+    // DISPLAY WATCHLIST MOVIES
+    public function watchlist() {
+        Session::start();
+        $userId = Session::get('user_id');
+
+        if (!$userId) {
+            header('Location: ' . BASE_URL . '/user/home');
+            exit;
+        }
+
+        $watchlist = $this->watchlistModel->getUserWatchlist($userId);
+
+        foreach ($watchlist as &$movie) {
+        $movie['isInWatchlist'] = $this->watchlistModel->isInWatchlist($userId, $movie['id']);
+        }
+
+        $username = Session::get('username');
+
+        $this->view('user/watchlist', [
+            'username' => $username,
+            'movies' => $watchlist
+        ]);
+    }
+
+    // TOGGLE WATCHLIST BUTTON
     public function toggleWatchlist($id) {
         Session::start();
         header('Content-Type: application/json'); 
@@ -48,33 +73,35 @@ class UserController extends Controller {
             $this->watchlistModel->addToWatchlist($userId, $id);
             echo json_encode(['status' => 'added']);
         }
-
     
         exit;
     }
 
-public function watchlist() {
-    Session::start();
-    $userId = Session::get('user_id');
 
-    if (!$userId) {
-        header('Location: ' . BASE_URL . '/user/home');
-        exit;
+    // WATCHLIST STATUS UPDATE
+    public function updateWatchlistStatus($id) { 
+         Session::start();
+
+        // Decode JSON input
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        if (!$data || !isset($data['status'])) {
+            echo json_encode(['success' => false, 'error' => 'Missing status in request']);
+            return;
+        }
+
+        $status = $data['status'];
+
+        if (in_array($status, ['to_watch', 'watching', 'watched'])) {
+            $updated = $this->watchlistModel->updateStatusByWatchlistId($id, $status);
+
+            if ($updated) {
+                echo json_encode(['success' => true]);
+            } else {
+                echo json_encode(['success' => false, 'error' => 'Update failed']);
+            }
+            } else {
+                echo json_encode(['success' => false, 'error' => 'Invalid status']);
+            }
     }
-
-    $watchlist = $this->watchlistModel->getUserWatchlist($userId);
-
-        // Add isInWatchlist key to each movie
-    foreach ($watchlist as &$movie) {
-        $movie['isInWatchlist'] = $this->watchlistModel->isInWatchlist($userId, $movie['id']);
-    }
-
-
-    $username = Session::get('username');
-
-    $this->view('user/watchlist', [
-        'username' => $username,
-        'movies' => $watchlist
-    ]);
-}
 }

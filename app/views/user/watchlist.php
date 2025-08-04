@@ -49,21 +49,21 @@
 
             <div class="watchlist-acttion-container">
                 <div class="watchlist-stats">
-                    <button class="stat-box">
-                        <h3>Favorites</h3>
-                        <p>5</p>
+                    <button class="stat-box active" data-status="all">
+                    <h3>All Movies</h3>
+                    <p class="count-all">0</p>
                     </button>
-                    <button class="stat-box">
-                        <h3>To Watch</h3>
-                        <p>24</p>
+                    <button class="stat-box" data-status="to_watch">
+                    <h3>To Watch</h3>
+                    <p class="count-to_watch">0</p>
                     </button>
-                    <button class="stat-box">
-                        <h3>Watching</h3>
-                        <p>3</p>
+                    <button class="stat-box" data-status="watching">
+                    <h3>Watching</h3>
+                    <p class="count-watching">0</p>
                     </button>
-                    <button class="stat-box">
-                        <h3>Watched</h3>
-                        <p>14</p>
+                    <button class="stat-box" data-status="watched">
+                    <h3>Watched</h3>
+                     <p class="count-watched">0</p>
                     </button>
                 </div>
                  <input type="search" placeholder="Search Movie" class="watchlist-search-input">
@@ -73,25 +73,42 @@
 
             <div class="watchlist-container-grid">
                 <div class="watchlist-grid">
-                    <?php if (!empty($movies)) : ?>
+                 
                         <?php foreach ($movies as $movie) : ?>
-                            <div class="watchlist-movie-card">
+                                <div class="watchlist-movie-card" data-status="<?= htmlspecialchars($movie['status'] ?? 'all') ?>">
                                 <div class="watchlist-movie-cover">
-                                    <!-- <img src="<?= BASE_URL ?>/public/images/cover/<?= htmlspecialchars($movie['image']) ?>"> -->
                                      <img src='<?= BASE_URL ?>/images/cover/<?php echo $movie['image'];?>'>
                                 </div>
                                 <div class="movie-details">
                                     <div class="movie-watchlist-action">
-                                        <button class="watchlist-btn state-add">To Watch</button>
+                                    <?php
+                                        $statusKey = !empty($movie['status']) ? $movie['status'] : 'to_watch';
+
+                                        $classMap = [
+                                        'to_watch' => 'state-add',
+                                        'watching' => 'state-watching',
+                                        'watched' => 'state-watched'
+                                        ];
+
+                                        $textMap = [
+                                        'to_watch' => 'To Watch',
+                                        'watching' => 'Watching',
+                                        'watched' => 'Watched'
+                                        ];
+
+                                        $btnClass = $classMap[$statusKey];
+                                        $btnText = $textMap[$statusKey];
+                                    ?>
+                                    <button class="watchlist-btn <?= $btnClass ?>" data-id="<?= $movie['watchlist_id'] ?>">
+                                    <?= $btnText ?>
+                                    </button>
                                     </div>
                                     <h2><?= htmlspecialchars($movie['movie_name']) ?></h2>
-                                    <!-- <p class="movie-year"><?= htmlspecialchars($movie['release_date']) ?></p> -->
                                      <p class="movie-year"><?php echo date('Y', strtotime($movie['release_date'])) ;?></p>
                                     <p class="movie-director">Directed by <?= htmlspecialchars($movie['author']) ?></p>
                                     <p class="movie-geners"><?php echo str_replace(',', ' . ', $movie['genres']); ?></p>
 
                                     <div class="movie-action">
-                                        <!-- <button class="add-list-btn remove" data-id="<?= $movie['id'] ?>">Saved</button> -->
                                         <button 
                                             class="add-list-btn <?php echo $movie['isInWatchlist'] ? 'remove' : 'add'; ?>" 
                                             data-id="<?php echo $movie['id']; ?>">
@@ -103,49 +120,22 @@
                                 </div>
                             </div>
                         <?php endforeach; ?>
-                    <?php else : ?>
-                        <p class="watchlist-para">No movies in your watchlist</p>
-                    <?php endif; ?>
+                    
 
+                    <div id="empty-message" class="watchlist-para" style="display: none;">
+                    
+                    </div>
+                    
                 </div>
-                
-               
-
-            
-
-
-
+           
         </div>
    </main>
 
-<script>
-  const BASE_URL = "<?= BASE_URL ?>";
-</script>
-  <script src="<?= BASE_URL ?>/js/main.js"></script>
-  <script src="<?= BASE_URL ?>/js/movie.js"></script>
-  <script src="<?= BASE_URL ?>/js/filter.js"></script>
+    <script>
+    const BASE_URL = "<?= BASE_URL ?>";
+    </script>
+    <script src="<?= BASE_URL ?>/js/main.js"></script>
+    <script src="<?= BASE_URL ?>/js/movie.js"></script>
 </body>
 
 </html>
-
-
-
-   <!-- <div class="watchlist-movie-card" id="watchlist-movie-card">
-                        <div class="watchlist-movie-cover">
-                            <img src='../../public/images/cover/ponyo.jpeg'> 
-                        </div>
-                        <div class="movie-details">
-                            <div class="movie-watchlist-action">
-                                <button class="watchlist-btn state-add">To Watch</button>
-                            </div>
-                            <h2>Ponyo</h2>
-                            <p class="movie-year">1998</p>
-                            <p class="movie-director">Directed by Hayao Miyazaki</p>
-                            <p class="movie-geners">Adventure . Fantasy</P>
-                            <div class="movie-action">
-                                <button class="add-list-btn add">Watchlist</button>
-                                <span class="vote-count">1000</span>
-                                <span class="material-symbols-outlined heart" id="heart">&#xe87d;</span>  
-                            </div>
-                        </div>
-</div> -->
