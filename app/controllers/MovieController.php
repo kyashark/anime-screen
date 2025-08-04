@@ -216,17 +216,44 @@ class movieController extends Controller{
 
     // SHOW MOVIE PROFILE
 
-    public function movieProfile($movieId){
-        $movie = $this->movieModel->getMovie($movieId);
+    // public function movieProfile($movieId){
+    //     $movie = $this->movieModel->getMovie($movieId);
 
-        if($movie){
-            $username = Session::get('username');
-            $this->view('user/movieProfile', ['username' => $username, 'movie' => $movie]);
-        } else {
-            echo "Movie not found!";
-    }
+    //     if($movie){
+    //         $username = Session::get('username');
+    //         $this->view('user/movieProfile', ['username' => $username, 'movie' => $movie]);
+    //     } else {
+    //         echo "Movie not found!";
+    // }
 
+    // }
+    public function movieProfile($movieId) {
+    Session::start();
+    $userId = Session::get('user_id');
+
+    $movie = $this->movieModel->getMovie($movieId);
+
+    if ($movie) {
+        $username = Session::get('username');
+
+        // Load Watchlist model to check if movie is in user's watchlist
+        require_once '../app/models/Watchlist.php';
+        $watchlistModel = new Watchlist();
+
+        $movie['isInWatchlist'] = false;
+        if ($userId) {
+            $movie['isInWatchlist'] = $watchlistModel->isInWatchlist($userId, $movieId);
+        }
+
+        $this->view('user/movieProfile', [
+            'username' => $username,
+            'movie' => $movie
+        ]);
+    } else {
+        echo "Movie not found!";
     }
+}
+
 
 
     // Movie details show for edit

@@ -146,7 +146,8 @@
 }
 
 /* ADD state */
-.add-list-btn.add {
+.add-list-btn.add,
+.add-list-btn.remove {
   color: #f0f8ff;
   background-color: #1f273a;  
   border: 2px solid #f0f8ff88;
@@ -159,24 +160,11 @@
   box-shadow: 0 0 8px rgba(240, 248, 255, 0.08);
 }
 
-.add-list-btn.add:hover {
+.add-list-btn.add:hover,
+.add-list-btn.remove:hover {
   background-color: #2a3249;  
   border-color: #f0f8ffcc;
   box-shadow: 0 0 10px rgba(240, 248, 255, 0.15);
-}
-
-/* REMOVE state */
-.add-list-btn.remove {
-  color: #ff9e9ebe;
-  background-color: #2a1f24;
-  border: 2px solid #ff9e9e80;
-  box-shadow: 0 0 8px rgba(255, 110, 110, 0.06);
-}
-
-.add-list-btn.remove:hover {
-  background-color: #412b2f; 
-  border-color: #ff9e9e8a;
-  box-shadow: 0 0 10px rgba(255, 110, 110, 0.15);
 }
 
 

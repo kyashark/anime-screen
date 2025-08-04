@@ -16,7 +16,7 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .watchlist-hero-content {
@@ -45,15 +45,111 @@
   animation: popIn 0.6s ease;
 }
 
+.watchlist-para {
+  margin: 50px;
+  text-align: center;
+  color: #777;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.watchlist-acttion-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.watchlist-search-input {
+  padding: 6px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 1rem;
+  border: none;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  padding-left: 20px;
+  width: 200px;
+}
+
+.watchlist-stats {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.stat-box {
+  min-width: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  border-radius: 8px;
+  padding: 6px 10px;
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-weight: 100;
+  font-size: 0.75rem;
+}
+
+.watchlist-stats > button:nth-child(1) {
+  background-color: #e10c8514;
+  color: #e10c85c1;
+  border: 2px solid #e10c8562;
+}
+
+.watchlist-stats > button:nth-child(1):hover {
+  background-color: #e10c8529;
+}
+
+.watchlist-stats > button:nth-child(2) {
+  color: #79b4f7b6;
+  border: 2px solid #79b4f769;
+  background-color: #1e3a5f4b;
+}
+
+.watchlist-stats > button:nth-child(2):hover {
+  background-color: #1e3a5f6e;
+}
+
+.watchlist-stats > button:nth-child(3) {
+  background-color: #573e0059;
+  color: #f8cb827e;
+  border: 2px solid #f8cb8283;
+}
+
+.watchlist-stats > button:nth-child(3):hover {
+  background-color: #573e006c;
+}
+
+.watchlist-stats > button:nth-child(4) {
+  background-color: #194d377b;
+  color: #7cf8b09d;
+  border: 2px solid #7cf8b06a;
+}
+
+.watchlist-stats > button:nth-child(4):hover {
+  background-color: #194d37aa;
+}
+
 .watchlist-container-grid {
   width: 100%;
   height: auto;
-  margin-top: 30px;
   display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: 2fr 1fr;
   gap: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 /* Watchlist movie card grid */
@@ -65,6 +161,7 @@
   padding: 10px;
   grid-template-columns: 1fr;
   grid-row: auto;
+  width: 80%;
 }
 
 /* Watchlist movie card */
@@ -83,6 +180,19 @@
   border-bottom: none;
 }
 
+/* Cover Image */
+.watchlist-movie-card > div:nth-child(1) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.watchlist-movie-cover img {
+  width: 190px;
+  height: 260px;
+  border-radius: 4px;
+}
+
 .watchlist-movie-card > div:nth-child(2) {
   display: flex;
   flex-direction: column;
@@ -91,8 +201,11 @@
   color: aliceblue;
 }
 
-.watchlist-movie-card h2 {
-  letter-spacing: 2px;
+.watchlist-movie-card > div:nth-child(2) h2 {
+  font-size: 1.6rem;
+  color: aliceblue;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 /* Watchlist action buttons */
@@ -133,117 +246,30 @@
 }
 
 .state-add {
-  background-color: #1e3a5f;
-  color: #79b4f7;
+  color: #79b4f7e1;
+  background-color: #1e3a5fb0;
 }
 
 .state-add:hover {
-  background-color: #244c7a;
+  background-color: #1e3a5fda;
 }
 
 .state-watching {
-  background-color: #573e00;
-  color: #f8ca82;
+  background-color: #573e007f;
+  color: #f8cb829a;
 }
 .state-watching:hover {
-  background-color: #6b4d00;
+  background-color: #573e009e;
 }
 
 .state-watched {
-  background-color: #194d37;
-  color: #7cf8b0;
+  background-color: #194d377b;
+  color: #7cf8b09d;
 }
 .state-watched:hover {
-  background-color: #1f5e44;
+  background-color: #194d379d;
 }
 
-.watchlist-movie-card h2 {
-  color: aliceblue;
-  margin-bottom: 10px;
-  font-size: 2rem;
-}
-.watchlist-movie-cover img {
-  width: 170px;
-  height: 230px;
-  border-radius: 4px;
-}
-
-/* explore grid */
-
-.watchlist-container-grid > div:nth-child(2) {
-  /* background: rgb(191, 0, 255); */
-}
-
-.watchlist-stats {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  border-radius: 5px;
-  color: #f0f8ff;
-  height: 500px;
-  align-items: end;
-  margin-top: 10px;
-}
-
-.stat-box {
-  padding: 10px;
-  border-radius: 5px;
-  text-align: center;
-  transition: transform 0.2s ease;
-  cursor: pointer;
-  width: 70%;
-  color: #f0f8ffd7;
-  /* border: 2px solid #77777735; */
-  border: 2px solid #f0f8ff84;
-  border-left: 4px solid #f0f8ffc6;
-}
-
-.stat-box:hover {
-  background-color: #f0f8ff1a;
-}
-
-.watchlist-stats h4 {
-  width: 70%;
-  font-size: 1.2rem;
-}
-
-.stat-box h3 {
-  font-size: 1rem;
-  margin-bottom: 8px;
-  letter-spacing: 1px;
-}
-
-.stat-box p {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-/* Optional animation */
-@keyframes popIn {
-  0% {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-/* Filter and sort section */
-
-.movie-watchlist-action {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.movie-watchlist-action .first-section,
-.movie-watchlist-action .second-section {
-  display: flex;
-  gap: 10px;
-}
 
 /* Responsive Movie Page */
 
@@ -264,14 +290,36 @@
     .watchlist-stats h4 {
       width: 90%;
     }
+
+    .watchlist-container-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: 2fr;
+    }
+
+    .watchlist-container-grid > div:nth-child(2) {
+      grid-row: 1;
+      grid-column: 1;
+    }
+
+    .watchlist-container-grid > div:nth-child(1) {
+      width: 100%;
+    }
+
+    .watchlist-acttion-container {
+      flex-direction: column-reverse;
+      align-items: self-start;
+      gap: 20px;
+    }
+
+    .watchlist-search-input {
+      align-self: flex-end;
+      margin-bottom: 10px;
+    }
   }
 
   @media only screen and (max-width: 768px) {
     .watchlist-container {
       width: 85vw;
-    }
-    .stat-box {
-      /* background: yellow; */
     }
   }
 
@@ -288,6 +336,35 @@
 
     .watchlist-hero-section p {
       font-size: 1.1rem;
+    }
+
+    .watchlist-movie-card > div:nth-child(2) h2 {
+      font-size: 1.5rem;
+    }
+
+    .watchlist-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      place-items: center;
+    }
+  }
+
+  @media only screen and (max-width: 550px) {
+    .watchlist-movie-card {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+
+    .watchlist-movie-card > div:nth-child(2) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .watchlist-movie-card > div:nth-child(2) h2 {
+      font-size: 1.6rem;
     }
   }
 

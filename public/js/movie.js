@@ -1,24 +1,18 @@
 // MOVIE.JS - Handles movie-specific interactions
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   // Initialize only if movie elements exist
   if (document.getElementById("movie-grid") || document.querySelector(".movie-card")) {
     initializeMovieInteractions();
   }
 
-  if(document.getElementById("watchlist-movie-card")){
-    initializeWatchlistButton() 
-  }
-
-  
-  if (document.querySelector(".add-list-btn")) {
-    initializeAddListToggle();
-  }
+  initializeAddListToggle();
+  initializeWatchlistButton();
 });
 
 function initializeMovieInteractions() {
   // Movie Cards click handler
-  document.addEventListener("click", function(event) {
+  document.addEventListener("click", function (event) {
     const card = event.target.closest(".movie-card");
     if (card) {
       const movieId = card.dataset.id;
@@ -29,10 +23,7 @@ function initializeMovieInteractions() {
 
   // Initialize card hover effects
   initializeCardHover();
-  
-  // Initialize heart icons
   initializeHeartClick();
- 
 }
 
 function initializeCardHover() {
@@ -73,8 +64,7 @@ function initializeHeartClick() {
   });
 }
 
-
-// Watchlist action button
+// Watchlist status button toggle (To Watch / Watching / Watched)
 function initializeWatchlistButton() {
   const btn = document.querySelector('.watchlist-btn');
 
@@ -96,33 +86,77 @@ function initializeWatchlistButton() {
   });
 }
 
-// Watchlist add and remove button
+// Watchlist add and remove buttons (all cards)
 function initializeAddListToggle() {
-  const addBtn = document.querySelector(".add-list-btn");
+  const addBtns = document.querySelectorAll(".add-list-btn");
 
-  if (!addBtn) return;
+  if (!addBtns.length) return;
 
-  addBtn.addEventListener("click", () => {
-    const isAdded = addBtn.classList.contains("remove");
+  addBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const movieId = btn.dataset.id;
 
-    if (isAdded) {
-      // Remove from watchlist
-      addBtn.classList.remove("remove");
-      addBtn.classList.add("add");
-      addBtn.textContent = "Watchlist";
-    } else {
-      // Add to watchlist
-      addBtn.classList.remove("add");
-      addBtn.classList.add("remove");
-      addBtn.textContent = "Remove";
-    }
+      fetch(`${BASE_URL}/user/toggleWatchlist/${movieId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+        .then(res => {
+          if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+          return res.json();
+        })
+        .then(data => {
+          if (data.status === "added") {
+            btn.classList.remove("add");
+            btn.classList.add("remove");
+            btn.textContent = "Saved";
+          } else {
+            btn.classList.remove("remove");
+            btn.classList.add("add");
+            btn.textContent = "Watchlist";
+          }
+
+          window.location.reload();
+        })
+  
+        .catch(error => {
+          console.error("Fetch error:", error);
+        });
+    });
   });
 }
 
+function refreshWatchlistGrid() {
+  fetch(`${BASE_URL}/user/getWatchlistJson`)
+    .then(res => res.json())
+    .then(movies => {
+      const grid = document.getElementById('watchlist-grid');
+      grid.innerHTML = ''; // clear current grid
+      
+      movies.forEach(movie => {
+        // Create the HTML for each movie card - customize this to your HTML structure
+        const card = document.createElement('div');
+        card.className = 'movie-card';
+        card.dataset.id = movie.id;
+        card.innerHTML = `
+          <img src="${BASE_URL}/images/cover/${movie.image}" alt="${movie.movie_name}">
+          <h3>${movie.movie_name}</h3>
+          <button class="add-list-btn remove" data-id="${movie.id}">Saved</button>
+        `;
+        grid.appendChild(card);
+      });
 
-// Make this available to filter.js
+      // Re-initialize buttons or interactions if needed
+      initializeAddListToggle();
+      initializeMovieInteractions();
+    });
+}
+
+
+
+// Exported for use in filter.js
 function initializeCardInteractions() {
   initializeCardHover();
   initializeHeartClick();
 }
-
