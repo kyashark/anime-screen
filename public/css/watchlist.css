@@ -1,0 +1,412 @@
+.watchlist-container {
+  width: 78vw;
+  height: auto;
+  display: block;
+  margin: 50px auto;
+  align-self: flex-start;
+}
+
+.watchlist-hero-section {
+  color: aliceblue;
+  text-align: center;
+  width: 100%;
+  background: linear-gradient(135deg, var(--primary), #eb293c39);
+  padding: 30px 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.watchlist-hero-content {
+  max-width: 700px;
+  margin: auto;
+}
+
+.watchlist-hero-section h1 {
+  font-size: 2.3rem;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.watchlist-hero-section p {
+  font-size: 1.2rem;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+  opacity: 0.9;
+}
+
+.hero-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 15px;
+  animation: popIn 0.6s ease;
+}
+
+.watchlist-para {
+  margin: 50px;
+  text-align: center;
+  color: #777777bd;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.watchlist-acttion-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.watchlist-search-input {
+  padding: 6px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 1rem;
+  border: none;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  padding-left: 20px;
+  width: 200px;
+}
+
+.watchlist-stats {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.stat-box {
+  min-width: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  border-radius: 6px;
+  padding: 6px 10px;
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-weight: 100;
+  font-size: 0.75rem;
+}
+
+.watchlist-stats > button.active {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+}
+
+.watchlist-stats > button:nth-child(1) {
+  background-color: #d9d9d920;
+  border: 2px solid #d9d9d9b9;
+  color: #ffffffc2;
+}
+
+.watchlist-stats > button:nth-child(1):hover {
+  background-color: #d9d9d92c;
+}
+
+.watchlist-stats > button:nth-child(1).active {
+  background-color: #d9d9d940;
+  border-color: #d9d9d9ff;
+  color: #ffffffdd;
+  box-shadow: 0 0 8px 2px rgba(217, 217, 217, 0.25);
+  font-weight: 600;
+}
+
+.watchlist-stats > button:nth-child(2) {
+  color: #79b4f7b6;
+  border: 2px solid #79b4f771;
+  background-color: #1e3a5f69;
+}
+
+.watchlist-stats > button:nth-child(2):hover {
+  background-color: #1e3a5f6e;
+}
+
+.watchlist-stats > button:nth-child(2).active {
+  background-color: hsla(214, 52%, 25%, 0.678);
+  border-color: #79b4f7;
+  color: #79b4f7;
+  box-shadow: 0 0 2px 2px hsla(212, 89%, 72%, 0.25);
+  font-weight: 600;
+}
+
+.watchlist-stats > button:nth-child(3) {
+  background-color: #573e0059;
+  color: #f8cb827e;
+  border: 2px solid #f8cb8283;
+}
+
+.watchlist-stats > button:nth-child(3):hover {
+  background-color: #573e006c;
+}
+
+.watchlist-stats > button:nth-child(3).active {
+  background-color: rgba(248, 203, 130, 0.15);
+  border-color: #f8cb82;
+  color: #f8cb82;
+  font-weight: 600;
+  box-shadow: 0 0 4px 1px rgba(248, 203, 130, 0.3);
+}
+
+.watchlist-stats > button:nth-child(4) {
+  background-color: #194d377b;
+  color: #7cf8b09d;
+  border: 2px solid #7cf8b06a;
+}
+
+.watchlist-stats > button:nth-child(4):hover {
+  background-color: #194d37aa;
+}
+
+.watchlist-stats > button:nth-child(4).active {
+  background-color: rgba(124, 248, 176, 0.2);
+  border-color: #7cf8b0;
+  color: #7cf8b0;
+  box-shadow: 0 0 2px 1px rgba(124, 248, 176, 0.4);
+  font-weight: 600;
+}
+
+.watchlist-container-grid {
+  width: 100%;
+  height: auto;
+  display: grid;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+/* Watchlist movie card grid */
+.watchlist-container-grid > div:nth-child(1) {
+  border: 1px solid #77777780;
+  border-radius: 5px;
+  display: grid;
+  height: auto;
+  padding: 10px;
+  grid-template-columns: 1fr;
+  grid-row: auto;
+  width: 80%;
+}
+
+/* Watchlist movie card */
+.watchlist-movie-card {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr;
+  gap: 30px;
+  padding: 20px;
+  border-bottom: 1px solid #77777780;
+}
+
+.watchlist-grid > div:last-child {
+  border-bottom: none;
+}
+
+.watchlist-grid > .last-visible {
+  border-bottom: none !important;
+}
+
+/* Cover Image */
+.watchlist-movie-card > div:nth-child(1) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.watchlist-movie-cover img {
+  width: 190px;
+  height: 260px;
+  border-radius: 4px;
+}
+
+.watchlist-movie-card > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  height: auto;
+  color: aliceblue;
+}
+
+.watchlist-movie-card > div:nth-child(2) h2 {
+  font-size: 1.6rem;
+  color: aliceblue;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* Watchlist action buttons */
+.watchlist-movie-card .movie-watchlist-action {
+  display: flex;
+  justify-content: end;
+}
+
+.watchlist-movie-card .movie-watchlist-action button {
+  align-self: flex-end;
+  padding: 5px 6px 5px 36px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  width: 110px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* dot */
+.watchlist-movie-card .movie-watchlist-action button::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: currentColor;
+  transition: background-color 0.3s ease;
+}
+
+.state-add {
+  color: #79b4f7e1;
+  background-color: #1e3a5fb0;
+}
+
+.state-add:hover {
+  background-color: #1e3a5fda;
+}
+
+.state-watching {
+  background-color: #573e007f;
+  color: #f8cb829a;
+}
+.state-watching:hover {
+  background-color: #573e009e;
+}
+
+.state-watched {
+  background-color: #194d377b;
+  color: #7cf8b09d;
+}
+.state-watched:hover {
+  background-color: #194d379d;
+}
+
+/* Responsive Movie Page */
+
+@media only screen and (max-width: 1280px) {
+  .watchlist-container {
+    width: 80vw;
+  }
+
+  @media only screen and (max-width: 1024px) {
+    .watchlist-container {
+      width: 82vw;
+    }
+
+    .stat-box {
+      width: 90%;
+    }
+
+    .watchlist-stats h4 {
+      width: 90%;
+    }
+
+    .watchlist-container-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: 2fr;
+    }
+
+    .watchlist-container-grid > div:nth-child(2) {
+      grid-row: 1;
+      grid-column: 1;
+    }
+
+    .watchlist-container-grid > div:nth-child(1) {
+      width: 100%;
+    }
+
+    .watchlist-acttion-container {
+      flex-direction: column-reverse;
+      align-items: self-start;
+      gap: 20px;
+    }
+
+    .watchlist-search-input {
+      align-self: flex-end;
+      margin-bottom: 10px;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .watchlist-container {
+      width: 85vw;
+    }
+  }
+
+  @media only screen and (max-width: 640px) {
+    .movie-watchlist-action {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 20px;
+    }
+
+    .watchlist-hero-section h1 {
+      font-size: 2.1rem;
+    }
+
+    .watchlist-hero-section p {
+      font-size: 1.1rem;
+    }
+
+    .watchlist-movie-card > div:nth-child(2) h2 {
+      font-size: 1.5rem;
+    }
+
+    .watchlist-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      place-items: center;
+    }
+  }
+
+  @media only screen and (max-width: 550px) {
+    .watchlist-movie-card {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+
+    .watchlist-movie-card > div:nth-child(2) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .watchlist-movie-card > div:nth-child(2) h2 {
+      font-size: 1.6rem;
+    }
+  }
+
+  @media only screen and (max-width: 475px) {
+  }
+}

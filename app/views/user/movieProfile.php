@@ -42,12 +42,14 @@
                 <h1><?php echo $movie['movie_name'];  ?></h1>
                 <p class="movie-year"><?php echo date('Y', strtotime($movie['release_date'])) ;?></p>
                 <p class="movie-director">Directed by <?php echo htmlspecialchars($movie['author'] ?? 'Unknown'); ?></p>
-                <!-- <p class="movie-geners"><?php echo $movie['genres']; ?></p> -->
                 <p class="movie-geners"><?php echo str_replace(' ', ' . ', $movie['genres']); ?></P>
                 
                  
                 <div class="movie-action">
-                      <button class="add-list-btn">Add List</button>
+                      <!-- <button class="add-list-btn add" data-id="<?= $movie['id'] ?>">Watchlist</button> -->
+                    <button  class="add-list-btn <?php echo $movie['isInWatchlist'] ? 'remove' : 'add'; ?>" data-id="<?php echo $movie['id']; ?>">
+                        <?php echo $movie['isInWatchlist'] ? 'Saved' : 'Watchlist'; ?>
+                    </button>
                     <span class="vote-count"><?php echo $movie['movie_votes'];?></span>
                     <span class="material-symbols-outlined heart" id="heart">&#xe87d;</span>  
                 </div>

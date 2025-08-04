@@ -44,39 +44,39 @@ if (!empty($movies)) {
     <div class="admin-container">
         <div class="movie-admin-action">
             <div class="first-section">
-        
-    
-            <select class="sort-selector" id="sort-selector">
-            <option value="random" selected>Sort Movies</option>
-  <option value="top">Top Voted</option>
-  <option value="new">New Release</option>
-  <option value="alpha">Alphabetical</option>
-</select> 
+                <select class="sort-selector" id="sort-selector">
+                  <option value="random" selected>Sort Movies</option>
+                  <option value="top">Top Voted</option>
+                  <option value="new">New Release</option>
+                  <option value="alpha">Alphabetical</option>
+                </select> 
  
- 
-        
-  <div class="genre-selector" id="genre-selector">
-  <button id="toggle-genres" class="genre">Select Genres</button>
-  <div class="genres-wrapper" id="genres-wrapper">
-    <label><input type="checkbox" class="genre" data-genre="adventure"> Adventure</label>
-    <label><input type="checkbox" class="genre" data-genre="comedy"> Comedy</label>
-    <label><input type="checkbox" class="genre" data-genre="drama"> Drama</label>
-    <label><input type="checkbox" class="genre" data-genre="horror"> Horror</label>
-    <label><input type="checkbox" class="genre" data-genre="sci-fi"> Sci-Fi</label>
-    <label><input type="checkbox" class="genre" data-genre="thriller"> Thriller</label>
-    <label><input type="checkbox" class="genre" data-genre="romance"> Romance</label>
-    <label><input type="checkbox" class="genre" data-genre="fantasy"> Fantasy</label>
-  </div>
-</div>
-                
-                
-    </div>
-        <div class="second-section">
-        <input type="search" placeholder="Search Movie" class="search-input">
-        <a href="<?= BASE_URL ?>/movie/create"><button class="add-movie-btn">Add Movie</button></a>
+                <div class="genre-selector" id="genre-selector">
+                   <button id="toggle-genres" class="genre">Select Genres</button>
+                   <div class="genres-wrapper" id="genres-wrapper">
+                        <label><input type="checkbox" class="genre" data-genre="adventure"> Adventure</label>
+                        <label><input type="checkbox" class="genre" data-genre="comedy"> Comedy</label>
+                        <label><input type="checkbox" class="genre" data-genre="drama"> Drama</label>
+                        <label><input type="checkbox" class="genre" data-genre="horror"> Horror</label>
+                        <label><input type="checkbox" class="genre" data-genre="sci-fi"> Sci-Fi</label>
+                        <label><input type="checkbox" class="genre" data-genre="thriller"> Thriller</label>
+                        <label><input type="checkbox" class="genre" data-genre="romance"> Romance</label>
+                        <label><input type="checkbox" class="genre" data-genre="fantasy"> Fantasy</label>
+                    </div>
+                </div>
+              </div>
+
+              <div class="second-section">
+                <input type="search" placeholder="Search Movie" class="search-input">
+                 <a href="<?= BASE_URL ?>/movie/create">
+                    <button class="add-movie-btn">Add Movie</button>
+                 </a>
+              </div>
         </div>
-      </div>
-            <div class="movie-table-header">
+
+
+        
+        <div class="movie-table-header">
                     <div>ID</div>
                     <div>Movie Name</div>
                     <div>Year</div>
