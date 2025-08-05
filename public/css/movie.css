@@ -21,23 +21,54 @@
   gap: 15px;
 }
 
-.sort-container input,
 .sort-container button {
   padding: 7px;
-  border-radius: 5px;
+  border-radius: 7px;
   font-weight: 500;
   font-size: 1.1rem;
-  border: none;
 }
 
-.sort-container button {
-  color: #ffffff;
-  background-color: #0f0b32;
+/* .sort-container button {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+   background-color: #0f0b32eb;
+  border: 2px solid #252150f7;
 }
 
 .sort-container button.active {
   color: #ffffff;
-  background-color: #262051;
+  background-color: #2d286ac5;
+  border-color: #332c7aad;
+  color: #ffffffdd;
+  box-shadow: 0 0 4px 1px #332c7aad;
+}
+ */
+
+.sort-container button {
+  background-color: #0f0b32eb;
+  border: 2px solid #252150f7;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease-in-out;
+  color: #c3c8ff;
+}
+
+.sort-container button:hover {
+  background-color: #1c1842;
+  border-color: #302a5b;
+}
+
+.sort-container button.active {
+  background-color: #2d286ac5;
+  border-color: #3c3688;
+  box-shadow: 0 0 4px 1px #3c3688aa;
+  color: #d8dcff;
+}
+
+.sort-container input {
+  padding: 7px;
+  border-radius: 7px;
+  font-weight: 500;
+  font-size: 1.1rem;
+  border: none;
 }
 
 .sort-container input {
@@ -74,7 +105,7 @@
   -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
 }
 
-.genre {
+/* .genre {
   padding: 4px 10px;
   border-radius: 5px;
   border: none;
@@ -84,10 +115,33 @@
   border: 0.5px solid #d9d9d983;
   color: #ffffff;
   white-space: nowrap;
+} */
+
+/* .genre.active {
+  background-color: #d9d9d93d;
+} */
+
+.genre {
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  background-color: #d9d9d913;
+  border: 1.5px solid #d9d9d9b9;
+  color: #ffffffc2;
+}
+
+.genre:hover {
+  background-color: #d9d9d92c;
 }
 
 .genre.active {
-  background-color: #d9d9d93d;
+  background-color: #d9d9d940;
+  border-color: #d9d9d9ff;
+  color: #ffffffdd;
+  box-shadow: 0 0 2px 2px rgba(217, 217, 217, 0.25);
 }
 
 .movie-grid {
@@ -178,10 +232,10 @@
   border-radius: 3px;
 }
 
-#toggle-genres{
+#toggle-genres {
   padding: 6px;
-width: 150px;
-margin-right: 20px;
+  width: 150px;
+  margin-right: 20px;
 }
 
 .sort-selector {
@@ -195,17 +249,15 @@ margin-right: 20px;
 }
 
 .no-movie-msg {
-  position: fixed;         
-  top: 50%;             
-  left: 50%;              
-  transform: translate(-50%, -50%);  
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 1.2rem;
   color: #555;
   z-index: 1000;
   text-align: center;
 }
-
-
 
 /* Responsive Movie Page */
 
@@ -233,9 +285,6 @@ margin-right: 20px;
       width: 85vw;
     }
 
-
-
-
     .sort-container input,
     .sort-container button {
       font-size: 1rem;
@@ -252,8 +301,6 @@ margin-right: 20px;
     .sort-container section {
       gap: 10px;
     }
-
-
   }
 
   @media only screen and (max-width: 640px) {
@@ -265,8 +312,6 @@ margin-right: 20px;
     .sort-container section {
       display: none;
     }
-
-
   }
 
   @media only screen and (max-width: 475px) {

@@ -27,6 +27,10 @@ header h1 {
   color: #ffffff;
 }
 
+.nav-bar a.active {
+  color: #95a0ff;
+}
+
 .right-nav {
   display: flex;
   align-items: center;
@@ -65,6 +69,10 @@ header h2 {
 }
 
 .favorite-btn:hover {
+  color: #ff6b81;
+}
+
+.favorite-btn.active {
   color: #ff6b81;
 }
 
