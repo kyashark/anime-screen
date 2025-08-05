@@ -211,42 +211,6 @@ function fetchMovies() {
 
 
 
-// function updateMovieGrid(movies) {
-//     const movieGrid = document.getElementById("movie-grid");
-//     let html = "";
-    
-//     if (movies.length === 0) {
-//         html = '<p class="no-movie-msg">No movies found</p>';
-//     } else {
-//         movies.forEach((movie) => {
-//             html += `
-//                 <div class="movie-card" 
-//                     style="background-image: url('${BASE_URL}/images/cover/${movie.image}');" 
-//                     data-id="${movie.id}">
-//                     <div class="card-label">
-//                         <span>${movie.movie_name}</span>
-//                         <div class="card-tab">
-//                             <span class="year">${new Date(movie.release_date).getFullYear()}</span>
-//                             <span class="vote-count">${movie.movie_votes}</span>
-//                               <span class="material-symbols-outlined heart <?= $movie['isFavorited'] ? 'active-heart' : '' ?>" 
-//                                 data-id="<?= $movie['id'] ?>"
-//                                 style="font-variation-settings: 'FILL' <?= $movie['isFavorited'] ? 1 : 0 ?>, 'wght' 400, 'GRAD' 0, 'opsz' 0;">
-//                                 &#xe87d;
-//                             </span>
-//                         </div>
-//                     </div>
-//                 </div>
-//             `;
-//         });
-//     }
-    
-//     movieGrid.innerHTML = html;
-    
-//     if (typeof initializeCardInteractions === 'function' && movies.length > 0) {
-//         initializeCardInteractions();
-//     }
-// }
-
 function updateMovieGrid(movies) {
     const movieGrid = document.getElementById("movie-grid");
     let html = "";

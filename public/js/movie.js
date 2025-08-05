@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initializeWatchlistButton();
   initializeWatchlistFilter();
   updateWatchlistCounts();
+  initializeWatchlistSearch()
  
 });
 
@@ -267,6 +268,8 @@ function initializeWatchlistFilter() {
   }
 }
 
+
+
 // WATCHLIST: UPDATE COUNT BADGES
 function updateWatchlistCounts() {
   const movieCards = document.querySelectorAll(".watchlist-movie-card");
@@ -289,6 +292,42 @@ function updateWatchlistCounts() {
   document.querySelector(".count-watched").textContent = counts.watched;
   document.querySelector(".count-all").textContent = movieCards.length;
 }
+
+
+
+// MOVIE SEARCH FUNCTION
+
+function initializeWatchlistSearch() {
+  const searchInput = document.getElementById("movie-search");
+  if (!searchInput) return;
+
+  const movieCards = document.querySelectorAll(".watchlist-movie-card");
+  const emptyMessage = document.getElementById("empty-message");
+
+  searchInput.addEventListener("input", function () {
+    const query = this.value.toLowerCase();
+    let visibleCount = 0;
+
+    movieCards.forEach(card => {
+      const title = card.querySelector("h2")?.textContent.toLowerCase() || "";
+      if (title.includes(query)) {
+        card.style.display = "";
+        visibleCount++;
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+    if (visibleCount === 0) {
+      emptyMessage.style.display = "block";
+      emptyMessage.textContent = "No movies found for your search";
+    } else {
+      emptyMessage.style.display = "none";
+    }
+  });
+}
+
+
 
 
 
