@@ -1,5 +1,6 @@
 <html>
 
+<div class="app-wrapper">
 <head>
   <title>Home</title>
   <meta charset="UTF-8">
@@ -64,7 +65,7 @@
     </div>
   </div>
 </main>
-
+</div>
   <div class="background-image">
     <img src="<?= BASE_URL ?>/images/dragon.png">
   </div>

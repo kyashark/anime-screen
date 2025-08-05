@@ -78,9 +78,6 @@ main {
   bottom: 40px;
 }
 
-
-
-
 /* Responsive */
 
 @media only screen and (max-width: 1536px) {
@@ -109,8 +106,7 @@ main {
 }
 
 @media only screen and (max-width: 475px) {
-
-    .toast {
+  .toast {
     font-size: 14px;
     padding: 10px 16px;
     border-radius: 6px;

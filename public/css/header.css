@@ -20,7 +20,6 @@ header h1 {
   display: flex;
   gap: 70px;
   list-style: none;
-  
 }
 
 .nav-bar li a {
@@ -31,8 +30,7 @@ header h1 {
 .right-nav {
   display: flex;
   align-items: center;
-  gap:10px;
-  /* background-color: yellowgreen; */
+  gap: 10px;
 }
 
 .right-nav a {
@@ -43,13 +41,13 @@ header h1 {
 .right-nav .username {
   margin-right: 30px;
   text-align: left;
+  margin-left: 20px;
 }
 
 /* Admin Header */
-header h2{
+header h2 {
   font-size: 1.8rem;
   color: #ffffff;
-  
 }
 
 .favorite-btn {
@@ -58,20 +56,17 @@ header h2{
   color: #ff6b8187;
   padding: 6px 12px;
   border-radius: 8px;
-  font-size:1.3rem;
+  font-size: 1.3rem;
   cursor: pointer;
   transition: all 0.25s ease;
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-right: 20px;
 }
 
 .favorite-btn:hover {
   color: #ff6b81;
 }
-
-
 
 /* Responsive */
 
@@ -85,6 +80,15 @@ header h2{
   header {
     width: 82vw;
   }
+
+  .nav-bar {
+    gap: 40px;
+  }
+
+  .right-nav .username {
+    margin-right: 15px;
+    margin-left: 10px;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -92,29 +96,27 @@ header h2{
     width: 85vw;
   }
 
-  header h2{
+  header h2 {
     font-size: 1.6rem;
   }
+
   .nav-bar {
-    gap: 50px;
+    gap: 30px;
   }
-  
-  header h2{
-  font-size: 1.7rem;
-  color: #ffffff;
-  padding-left: 25px;
-  
+
+  header h2 {
+    font-size: 1.7rem;
+    color: #ffffff;
+    padding-left: 25px;
+  }
 }
 
-
-}
-
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 720px) {
   header h1 {
     display: block;
   }
 
-  header h2{
+  header h2 {
     font-size: 1.5rem;
   }
   .nav-bar {
@@ -132,6 +134,7 @@ header h2{
     gap: 12px;
     background: linear-gradient(135deg, #020107, #0b0925);
     padding-bottom: 25px;
+    z-index: 999;
   }
 
   .nav-bar li {
@@ -184,7 +187,7 @@ header h2{
     font-size: 2.6rem;
   }
 
-  header h2{
+  header h2 {
     font-size: 1.3rem;
   }
 }
