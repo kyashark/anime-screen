@@ -51,7 +51,7 @@
   color: #777777bd;
 }
 
-@keyframes popIn {
+/* @keyframes popIn {
   0% {
     transform: scale(0.5);
     opacity: 0;
@@ -60,7 +60,7 @@
     transform: scale(1);
     opacity: 1;
   }
-}
+} */
 
 .watchlist-acttion-container {
   display: flex;

@@ -46,12 +46,15 @@
                 
                  
                 <div class="movie-action">
-                      <!-- <button class="add-list-btn add" data-id="<?= $movie['id'] ?>">Watchlist</button> -->
                     <button  class="add-list-btn <?php echo $movie['isInWatchlist'] ? 'remove' : 'add'; ?>" data-id="<?php echo $movie['id']; ?>">
                         <?php echo $movie['isInWatchlist'] ? 'Saved' : 'Watchlist'; ?>
                     </button>
                     <span class="vote-count"><?php echo $movie['movie_votes'];?></span>
-                    <span class="material-symbols-outlined heart" id="heart">&#xe87d;</span>  
+                    <span class="material-symbols-outlined heart <?= $movie['isFavorited'] ? 'active-heart' : '' ?>" 
+                          data-id="<?= $movie['id'] ?>"
+                          style="font-variation-settings: 'FILL' <?= $movie['isFavorited'] ? 1 : 0 ?>, 'wght' 400, 'GRAD' 0, 'opsz' 0;">
+                    &#xe87d;
+                    </span>
                 </div>
               
 

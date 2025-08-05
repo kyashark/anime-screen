@@ -31,6 +31,8 @@ header h1 {
 .right-nav {
   display: flex;
   align-items: center;
+  gap:10px;
+  /* background-color: yellowgreen; */
 }
 
 .right-nav a {
@@ -50,6 +52,24 @@ header h2{
   
 }
 
+.favorite-btn {
+  background-color: transparent;
+  border: none;
+  color: #ff6b8187;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size:1.3rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 20px;
+}
+
+.favorite-btn:hover {
+  color: #ff6b81;
+}
 
 
 

@@ -69,22 +69,16 @@ function initializeManagementSorting(sortSelector) {
 function initializeSorting(sortButtons, sortSelector) {
     sortButtons.forEach((button) => {
         button.addEventListener("click", () => {
-            // Check if the clicked button is already active
             const wasActive = button.classList.contains("active");
-            
-            // Remove active class from all buttons
             sortButtons.forEach((btn) => btn.classList.remove("active"));
-            
-            // Toggle the active state
+
             if (!wasActive) {
                 button.classList.add("active");
             }
             
-            // Update the sort selector value
             const newSort = wasActive ? "random" : button.dataset.sort;
             sortSelector.value = newSort;
             
-            // Force update the movies
             updateMovies();
         });
     });
@@ -217,14 +211,53 @@ function fetchMovies() {
 
 
 
+// function updateMovieGrid(movies) {
+//     const movieGrid = document.getElementById("movie-grid");
+//     let html = "";
+    
+//     if (movies.length === 0) {
+//         html = '<p class="no-movie-msg">No movies found</p>';
+//     } else {
+//         movies.forEach((movie) => {
+//             html += `
+//                 <div class="movie-card" 
+//                     style="background-image: url('${BASE_URL}/images/cover/${movie.image}');" 
+//                     data-id="${movie.id}">
+//                     <div class="card-label">
+//                         <span>${movie.movie_name}</span>
+//                         <div class="card-tab">
+//                             <span class="year">${new Date(movie.release_date).getFullYear()}</span>
+//                             <span class="vote-count">${movie.movie_votes}</span>
+//                               <span class="material-symbols-outlined heart <?= $movie['isFavorited'] ? 'active-heart' : '' ?>" 
+//                                 data-id="<?= $movie['id'] ?>"
+//                                 style="font-variation-settings: 'FILL' <?= $movie['isFavorited'] ? 1 : 0 ?>, 'wght' 400, 'GRAD' 0, 'opsz' 0;">
+//                                 &#xe87d;
+//                             </span>
+//                         </div>
+//                     </div>
+//                 </div>
+//             `;
+//         });
+//     }
+    
+//     movieGrid.innerHTML = html;
+    
+//     if (typeof initializeCardInteractions === 'function' && movies.length > 0) {
+//         initializeCardInteractions();
+//     }
+// }
+
 function updateMovieGrid(movies) {
     const movieGrid = document.getElementById("movie-grid");
     let html = "";
-    
+
     if (movies.length === 0) {
         html = '<p class="no-movie-msg">No movies found</p>';
     } else {
         movies.forEach((movie) => {
+            const fill = movie.isFavorited ? 1 : 0;
+            const activeClass = movie.isFavorited ? 'active-heart' : '';
+
             html += `
                 <div class="movie-card" 
                     style="background-image: url('${BASE_URL}/images/cover/${movie.image}');" 
@@ -234,20 +267,25 @@ function updateMovieGrid(movies) {
                         <div class="card-tab">
                             <span class="year">${new Date(movie.release_date).getFullYear()}</span>
                             <span class="vote-count">${movie.movie_votes}</span>
-                            <span class="material-symbols-outlined heart">&#xe87d;</span>
+                            <span class="material-symbols-outlined heart ${activeClass}" 
+                                data-id="${movie.id}"
+                                style="font-variation-settings: 'FILL' ${fill}, 'wght' 400, 'GRAD' 0, 'opsz' 0;">
+                                &#xe87d;
+                            </span>
                         </div>
                     </div>
                 </div>
             `;
         });
     }
-    
+
     movieGrid.innerHTML = html;
-    
+
     if (typeof initializeCardInteractions === 'function' && movies.length > 0) {
-        initializeCardInteractions();
+        initializeCardInteractions(); // rebinds click events etc.
     }
 }
+
 
 
 
