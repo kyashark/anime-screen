@@ -69,7 +69,8 @@
                      <p class="count-watched">0</p>
                     </button>
                 </div>
-                 <input type="search" placeholder="Search Movie" class="watchlist-search-input">
+                 <input type="search" placeholder="Search Movie" class="watchlist-search-input" id="movie-search">
+
             </div>
 
             

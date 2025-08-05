@@ -19,6 +19,9 @@
     </ul>
 
     <div class="right-nav">
+       <a class="favorite-btn" href="<?= BASE_URL ?>/user/favoritesPage">
+           <i class="far fa-heart"></i>
+        </a>
         <a href="#">
             <span class="username">
                 <?php echo $username ?>
