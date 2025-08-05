@@ -57,5 +57,11 @@ class Watchlist {
         return $stmt->execute([$status, $watchlistId]);
     }
 
+    public function getWatchlistEntry($userId, $movieId) {
+        $stmt = $this->db->prepare("SELECT id, status FROM watchlist WHERE user_id = ? AND movie_id = ?");
+        $stmt->execute([$userId, $movieId]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
 
 }

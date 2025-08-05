@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initializeWatchlistButton();
   initializeWatchlistFilter();
   updateWatchlistCounts();
+ 
 });
 
 
@@ -151,13 +152,19 @@ function initializeWatchlistButton() {
     btn.addEventListener("click", () => {
       console.log("Watchlist button clicked");
 
+      const watchlistId = btn.dataset.id;
+      if (!watchlistId || watchlistId === "0") {
+        showToast("Please add this movie to your watchlist first");
+        return;
+      }
+
       let current = states.findIndex((s) => btn.classList.contains(s.class));
       if (current === -1) current = 0;
 
       const next = (current + 1) % states.length;
 
       const statusValue = ["to_watch", "watching", "watched"][next];
-      const watchlistId = btn.dataset.id;
+      // const watchlistId = btn.dataset.id;
 
       console.log(
         "Sending to:",
@@ -191,6 +198,10 @@ function initializeWatchlistButton() {
     });
   });
 }
+
+
+
+
 
 
 
@@ -278,6 +289,10 @@ function updateWatchlistCounts() {
   document.querySelector(".count-watched").textContent = counts.watched;
   document.querySelector(".count-all").textContent = movieCards.length;
 }
+
+
+
+
 
 // Exported
 function initializeCardInteractions() {
