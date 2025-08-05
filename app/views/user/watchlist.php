@@ -20,6 +20,9 @@
     </ul>
 
     <div class="right-nav">
+        <button class="favorite-btn" onclick="window.location.href='favorite.php'">
+           <i class="far fa-heart"></i>
+        </button>
         <a href="#">
             <span class="username">
                 <?php echo $username ?>
@@ -115,17 +118,17 @@
                                             <?php echo $movie['isInWatchlist'] ? 'Saved' : 'Watchlist'; ?>
                                         </button>
                                         <span class="vote-count"><?= htmlspecialchars($movie['movie_votes']) ?></span>
-                                        <span class="material-symbols-outlined heart">&#xe87d;</span>  
+                                           <span class="material-symbols-outlined heart <?= $movie['isFavorited'] ? 'active-heart' : '' ?>" 
+                                                data-id="<?= $movie['id'] ?>"
+                                                style="font-variation-settings: 'FILL' <?= $movie['isFavorited'] ? 1 : 0 ?>, 'wght' 400, 'GRAD' 0, 'opsz' 0;">
+                                            &#xe87d;
+                                            </span>
                                     </div>
                                 </div>
                             </div>
                         <?php endforeach; ?>
-                    
-
                     <div id="empty-message" class="watchlist-para" style="display: none;">
-                    
                     </div>
-                    
                 </div>
            
         </div>

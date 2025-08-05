@@ -4,14 +4,17 @@ require_once "../core/Controller.php";
 require_once "../core/Session.php";
 require_once "../middleware/Middleware.php";
 require_once "../app/models/Watchlist.php";
+require_once "../app/models/Favorite.php";
 
 class UserController extends Controller {
 
      private $watchlistModel;
+     private $favoriteModel;
 
     public function __construct() {
     Session::start();
     $this->watchlistModel = $this->model('Watchlist');
+    $this->favoriteModel = $this->model('Favorite');
 }
 
 
@@ -29,10 +32,9 @@ class UserController extends Controller {
 
 
     // DISPLAY WATCHLIST MOVIES
-    public function watchlist() {
-        Session::start();
-        $userId = Session::get('user_id');
 
+    public function watchlist() {
+        $userId = Session::get('user_id');
         if (!$userId) {
             header('Location: ' . BASE_URL . '/user/home');
             exit;
@@ -41,7 +43,9 @@ class UserController extends Controller {
         $watchlist = $this->watchlistModel->getUserWatchlist($userId);
 
         foreach ($watchlist as &$movie) {
-        $movie['isInWatchlist'] = $this->watchlistModel->isInWatchlist($userId, $movie['id']);
+            $movie['isInWatchlist'] = $this->watchlistModel->isInWatchlist($userId, $movie['id']);
+            $movie['isFavorited'] = $this->favoriteModel->isFavorited($userId, $movie['id']);
+            $movie['movie_votes'] = $this->favoriteModel->getVotesFromMovieTable($movie['id']);
         }
 
         $username = Session::get('username');
@@ -51,6 +55,8 @@ class UserController extends Controller {
             'movies' => $watchlist
         ]);
     }
+
+
 
     // TOGGLE WATCHLIST BUTTON
     public function toggleWatchlist($id) {
@@ -80,7 +86,7 @@ class UserController extends Controller {
 
     // WATCHLIST STATUS UPDATE
     public function updateWatchlistStatus($id) { 
-         Session::start();
+        Session::start();
 
         // Decode JSON input
         $data = json_decode(file_get_contents("php://input"), true);
@@ -104,4 +110,40 @@ class UserController extends Controller {
                 echo json_encode(['success' => false, 'error' => 'Invalid status']);
             }
     }
+
+        // TOGGLE FAVOURITE
+        public function toggleFavorite($movieId) {
+            Session::start();
+
+            if (!Session::get('user_id')) {
+                http_response_code(401);
+                echo json_encode(['error' => 'Not logged in']);
+                return;
+            }
+
+            $userId = Session::get('user_id');
+
+            if ($this->favoriteModel->isFavorited($userId, $movieId)) {
+                $this->favoriteModel->removeFavorite($userId, $movieId);
+                $status = 'removed';
+            } else {
+                $this->favoriteModel->addFavorite($userId, $movieId);
+                $status = 'added';
+            }
+
+            $count = $this->favoriteModel->getVotesFromMovieTable($movieId);
+
+            echo json_encode([
+                'status' => $status,
+                'count' => $count
+            ]);
+    }
+
+
+
+
+
+
+
+
 }

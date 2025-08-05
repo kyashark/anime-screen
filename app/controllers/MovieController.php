@@ -3,6 +3,7 @@
 require_once "../core/Controller.php";
 require_once "../core/Session.php";
 require_once "../middleware/Middleware.php";
+require_once "../app/models/Favorite.php";
 
 class movieController extends Controller{
     private $movieModel;
@@ -12,37 +13,50 @@ class movieController extends Controller{
         $username = Session::get('username');
  
       $this->movieModel = $this->model('Movie');
+      $this->favoriteModel = $this->model('Favorite');
     }
 
 
     // SHOW MOVIES USING FILTERING
 
+
     public function filter() {
-    $search = $_GET['query'] ?? '';
-    $type = isset($_GET['type']) ? $_GET['type'] : '';
-    $sort = isset($_GET['sort']) ? $_GET['sort'] : 'random';
-    $genres = isset($_GET['genres']) ? explode(',', $_GET['genres']) : [];
+        Session::start();
+        $userId = Session::get('user_id');
 
-    $movies = $this->movieModel->getMovies($type, $sort, $genres, $search);
+        require_once '../app/models/Favorite.php';
+        $favoriteModel = new Favorite();
 
-    // Check if the request is an AJAX call
-    $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';
+        $search = $_GET['query'] ?? '';
+        $type = $_GET['type'] ?? '';
+        $sort = $_GET['sort'] ?? 'random';
+        $genres = isset($_GET['genres']) ? explode(',', $_GET['genres']) : [];
 
-    if ($isAjax) {
-        // Return JSON response for AJAX
-        header('Content-Type: application/json');
-        echo json_encode($movies);
-        exit;
-    } else {
-        $username = Session::get('username');
+        $movies = $this->movieModel->getMovies($type, $sort, $genres, $search);
 
-        if (Middleware::hasRole('admin')) {
-            $this->view('admin/movieManagement', ['username' => $username, 'movies' => $movies]);
+        foreach ($movies as &$movie) {
+            $movie['isFavorited'] = $userId ? $favoriteModel->isFavorited($userId, $movie['id']) : false;
+            $movie['movie_votes'] = $favoriteModel->getVotesFromMovieTable($movie['id']);
+        }
+
+        $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';
+
+        if ($isAjax) {
+            header('Content-Type: application/json');
+            echo json_encode($movies);
+            exit;
         } else {
-            $this->view('user/movie', ['username' => $username, 'movies' => $movies]);
+            $username = Session::get('username');
+
+            if (Middleware::hasRole('admin')) {
+                $this->view('admin/movieManagement', ['username' => $username, 'movies' => $movies]);
+            } else {
+                $this->view('user/movie', ['username' => $username, 'movies' => $movies]);
+            }
         }
     }
-}
+
+
 
 
     public function create(){
@@ -213,20 +227,7 @@ class movieController extends Controller{
   }
 }
 
-
-    // SHOW MOVIE PROFILE
-
-    // public function movieProfile($movieId){
-    //     $movie = $this->movieModel->getMovie($movieId);
-
-    //     if($movie){
-    //         $username = Session::get('username');
-    //         $this->view('user/movieProfile', ['username' => $username, 'movie' => $movie]);
-    //     } else {
-    //         echo "Movie not found!";
-    // }
-
-    // }
+    // MOVIE PROFILE
     public function movieProfile($movieId) {
     Session::start();
     $userId = Session::get('user_id');
@@ -243,6 +244,18 @@ class movieController extends Controller{
         $movie['isInWatchlist'] = false;
         if ($userId) {
             $movie['isInWatchlist'] = $watchlistModel->isInWatchlist($userId, $movieId);
+        
+            // Load Favorite model
+            require_once '../app/models/Favorite.php';
+            $favoriteModel = new Favorite();
+
+            // Add favorited status and vote count
+            $movie['isFavorited'] = $favoriteModel->isFavorited($userId, $movieId);
+            $movie['movie_votes'] = $favoriteModel->getVotesFromMovieTable($movieId);
+        } else {
+            // Set default values if not logged in
+            $movie['isFavorited'] = false;
+            $movie['movie_votes'] = $this->favoriteModel->getVotesFromMovieTable($movieId);
         }
 
         $this->view('user/movieProfile', [
