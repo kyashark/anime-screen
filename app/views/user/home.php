@@ -65,9 +65,18 @@
         <p>Trending Now</p>
       </div>
     </div>
+     
+    <section id="genre-highlights" class="content-section"></section>
+
+    <section id="new-release" class="content-section"></section>
+
+    <section id="trending-now" class="content-section"></section>
+   
   </div>
 </main>
+
 </div>
+
   <div class="background-image">
     <img src="<?= BASE_URL ?>/images/dragon.png">
   </div>

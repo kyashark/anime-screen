@@ -3,6 +3,7 @@
   height: auto;
   margin: 0 auto;
   margin-top: 110px;
+  /* background: yellow; */
 }
 
 .home-container h1 {
@@ -83,6 +84,24 @@
   position: relative;
   z-index: 1;
 }
+
+.content-section{
+  background-color:#ffffff2e;  
+  height: auto;
+  height: 400px;
+  margin: 0 auto;
+  margin-top: 150px;
+  margin-bottom: 40px;
+  border-radius: 10px;
+
+}
+
+/* Section */
+
+
+
+
+
 
 @media only screen and (max-width: 1280px) {
   .home-container {
