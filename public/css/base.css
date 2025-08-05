@@ -48,6 +48,39 @@ main {
   width: 50vw;
 }
 
+/* Toast Message */
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.827);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  line-height: 1.5;
+  max-height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+  max-width: 80%;
+  /* word-break: break-word; */
+}
+
+.toast.show {
+  opacity: 1;
+  bottom: 40px;
+}
+
+
+
+
 /* Responsive */
 
 @media only screen and (max-width: 1536px) {
@@ -76,4 +109,10 @@ main {
 }
 
 @media only screen and (max-width: 475px) {
+
+    .toast {
+    font-size: 14px;
+    padding: 10px 16px;
+    border-radius: 6px;
+  }
 }

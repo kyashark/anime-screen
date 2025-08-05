@@ -85,6 +85,7 @@ class UserController extends Controller {
 
 
     // WATCHLIST STATUS UPDATE
+
     public function updateWatchlistStatus($id) { 
         Session::start();
 
@@ -111,39 +112,74 @@ class UserController extends Controller {
             }
     }
 
-        // TOGGLE FAVOURITE
-        public function toggleFavorite($movieId) {
-            Session::start();
+    
 
-            if (!Session::get('user_id')) {
-                http_response_code(401);
-                echo json_encode(['error' => 'Not logged in']);
-                return;
-            }
 
-            $userId = Session::get('user_id');
 
-            if ($this->favoriteModel->isFavorited($userId, $movieId)) {
-                $this->favoriteModel->removeFavorite($userId, $movieId);
-                $status = 'removed';
-            } else {
-                $this->favoriteModel->addFavorite($userId, $movieId);
-                $status = 'added';
-            }
 
-            $count = $this->favoriteModel->getVotesFromMovieTable($movieId);
 
-            echo json_encode([
-                'status' => $status,
-                'count' => $count
-            ]);
+    // TOGGLE FAVOURITE
+    public function toggleFavorite($movieId) {
+        Session::start();
+
+        if (!Session::get('user_id')) {
+            http_response_code(401);
+            echo json_encode(['error' => 'Not logged in']);
+            return;
+        }
+
+        $userId = Session::get('user_id');
+
+        if ($this->favoriteModel->isFavorited($userId, $movieId)) {
+            $this->favoriteModel->removeFavorite($userId, $movieId);
+            $status = 'removed';
+        } else {
+            $this->favoriteModel->addFavorite($userId, $movieId);
+            $status = 'added';
+        }
+
+        $count = $this->favoriteModel->getVotesFromMovieTable($movieId);
+
+        echo json_encode([
+            'status' => $status,
+            'count' => $count
+        ]);
+}
+
+    //  GO TO FAVORITE PAGE
+public function favoritesPage() {
+    $userId = Session::get('user_id');
+    $favorites = $this->favoriteModel->getFavoriteMovies($userId);
+
+    foreach ($favorites as &$movie) {
+        // Check if in watchlist
+        $isInWatchlist = $this->watchlistModel->isInWatchlist($userId, $movie['id']);
+        $movie['isInWatchlist'] = $isInWatchlist;
+        $movie['isFavorited'] = true;
+
+        // Get vote count
+        $movie['movie_votes'] = $this->favoriteModel->getVotesFromMovieTable($movie['id']);
+
+        // Get genres if not present
+        if (!isset($movie['genres'])) {
+            $movie['genres'] = ''; // or fetch from another table if needed
+        }
+
+        // Get watchlist details (status + id) if available
+        $watchlistDetails = $this->watchlistModel->getWatchlistEntry($userId, $movie['id']);
+        if ($watchlistDetails) {
+            $movie['status'] = $watchlistDetails['status'];
+            $movie['watchlist_id'] = $watchlistDetails['id'];
+        } else {
+            $movie['status'] = 'to_watch'; // default
+            $movie['watchlist_id'] = null;
+        }
     }
 
-
-
-
-
-
-
+    $this->view('user/favorite', [
+        'username' => Session::get('username'),
+        'movies' => $favorites
+    ]);
+}
 
 }

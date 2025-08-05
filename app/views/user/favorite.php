@@ -39,45 +39,25 @@
       </div>
      
   </header>
-    <main>
-        <div class="watchlist-container">
-            
-            <div class="watchlist-hero-section">
-                <div class="watchlist-hero-content">
-                    <span class="fa-solid fa-clapperboard hero-icon"></span>
-                    <h1>Your Watchlist</h1>
-                    <p>All the movies and shows you want to watch, in one place.</p>
-                </div>
-            </div>
+<main>
+    <div class="watchlist-container">
+        <div class="watchlist-hero-section">
+  <div class="watchlist-hero-content">
+  <span class="fa-solid fa-bookmark hero-icon"></span>
 
-            <div class="watchlist-action-container">
-                <div class="watchlist-stats">
-                    <button class="stat-box active" data-status="all">
-                    <h3>All Movies</h3>
-                    <p class="count-all">0</p>
-                    </button>
-                    <button class="stat-box" data-status="to_watch">
-                    <h3>To Watch</h3>
-                    <p class="count-to_watch">0</p>
-                    </button>
-                    <button class="stat-box" data-status="watching">
-                    <h3>Watching</h3>
-                    <p class="count-watching">0</p>
-                    </button>
-                    <button class="stat-box" data-status="watched">
-                    <h3>Watched</h3>
-                     <p class="count-watched">0</p>
-                    </button>
-                </div>
-                 <input type="search" placeholder="Search Movie" class="watchlist-search-input">
-            </div>
+    <h1>Your Favorites</h1>
+    <p>All the movies and shows you love, saved in one place</p>
+  </div>
+</div>
 
-            
-
-            <div class="watchlist-container-grid">
-                <div class="watchlist-grid">
-                 
-                        <?php foreach ($movies as $movie) : ?>
+        <div class="watchlist-container-grid fav-page-grid">
+            <div class="watchlist-grid">
+                <?php if (empty($movies)) : ?>
+                    <div class="watchlist-para">
+                        No favorites found
+                    </div>
+                <?php else : ?>
+                   <?php foreach ($movies as $movie) : ?>
                                 <div class="watchlist-movie-card" data-status="<?= htmlspecialchars($movie['status'] ?? 'all') ?>">
                                 <div class="watchlist-movie-cover">
                                      <img src='<?= BASE_URL ?>/images/cover/<?php echo $movie['image'];?>'>
@@ -127,12 +107,15 @@
                                 </div>
                             </div>
                         <?php endforeach; ?>
-                    <div id="empty-message" class="watchlist-para" style="display: none;">
-                    </div>
-                </div>
-           
+
+
+                <?php endif; ?>
+            </div>
         </div>
-   </main>
+    </div>
+</main>
+
+<div id="toast" class="toast"></div>
 
     <script>
     const BASE_URL = "<?= BASE_URL ?>";
