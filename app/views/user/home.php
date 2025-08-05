@@ -1,5 +1,6 @@
 <html>
 
+<div class="app-wrapper">
 <head>
   <title>Home</title>
   <meta charset="UTF-8">
@@ -9,13 +10,15 @@
 
 <body>
   <header>
+    <?php
+      $currentUrl = $_SERVER['REQUEST_URI'];
+    ?>
     <h1>A</h1>
     <ul class="nav-bar" id="nav-bar">
-          <li><a href="<?= BASE_URL ?>/user/home">Home</a></li>
-          <li><a href="<?= BASE_URL ?>/movie/filter?type=movie&sort=random">Movies</a></li>
-          <li><a href="<?= BASE_URL ?>/movie/filter?type=series&sort=random">Series</a></li>
-          <li><a href="<?= BASE_URL ?>/user/watchlist">Watchlist</a></li>
-
+      <li><a href="<?= BASE_URL ?>/user/home" class="<?= strpos($currentUrl, '/user/home') !== false ? 'active' : '' ?>">Home</a></li>
+      <li><a href="<?= BASE_URL ?>/movie/filter?type=movie" class="<?= strpos($currentUrl, '/movie/filter?type=movie') !== false ? 'active' : '' ?>">Movies</a></li>
+      <li><a href="<?= BASE_URL ?>/movie/filter?type=series" class="<?= strpos($currentUrl, '/movie/filter?type=series') !== false ? 'active' : '' ?>">Series</a></li>
+      <li><a href="<?= BASE_URL ?>/user/watchlist" class="<?= strpos($currentUrl, '/user/watchlist') !== false ? 'active' : '' ?>">Watchlist</a></li>
     </ul>
 
     <div class="right-nav">
@@ -62,8 +65,17 @@
         <p>Trending Now</p>
       </div>
     </div>
+     
+    <section id="genre-highlights" class="content-section"></section>
+
+    <section id="new-release" class="content-section"></section>
+
+    <section id="trending-now" class="content-section"></section>
+   
   </div>
 </main>
+
+</div>
 
   <div class="background-image">
     <img src="<?= BASE_URL ?>/images/dragon.png">

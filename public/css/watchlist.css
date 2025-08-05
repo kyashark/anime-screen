@@ -10,7 +10,8 @@
   color: aliceblue;
   text-align: center;
   width: 100%;
-  background: linear-gradient(135deg, var(--primary), #eb293c39);
+  background: linear-gradient(135deg, var(--primary), #eb293c2b);
+  /* background: #130f40a7; */
   padding: 30px 20px;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
